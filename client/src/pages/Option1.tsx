@@ -26,9 +26,11 @@ export default function Option1() {
             {/* Logo */}
             <Link href="/">
               <a className="flex items-center gap-2 cursor-pointer">
-                <div className="bg-aps-blue border-2 border-white p-2">
-                  <span className="text-white font-heading font-bold text-3xl tracking-tighter">APS</span>
-                </div>
+                <img 
+                  src="/assets/aps-logo-white.png" 
+                  alt="American Power Systems" 
+                  className="h-12 w-auto" 
+                />
                 <span className="text-white font-light text-sm hidden sm:block leading-tight opacity-80">
                   AMERICAN<br/>POWER SYSTEMS
                 </span>
