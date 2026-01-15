@@ -1,0 +1,346 @@
+I have completely updated the **Locations** data to match the list you provided, including all specific sales contacts, phone numbers, and addresses.
+
+I have also updated the **Locations Page** design to handle multiple contacts (e.g., separating "Office" from "Sales").
+
+### **Step 1: Update Data (`client/src/data/aps.ts`)**
+
+*Action:* Replace the entire file. This includes the new location list and keeps the image fixes from the previous step.
+
+```typescript
+import { 
+  Wrench, ClipboardList, Activity, Trash2, 
+  Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass 
+} from "lucide-react";
+
+export const companyInfo = {
+  name: "American Power Systems",
+  founded: "1994",
+  phone: "(800) 395-0693",
+  email: "info@ampowersys.com",
+  address: "1851 Central Place South, Suite 206",
+  cityStateZip: "Kent, WA 98030",
+  tagline: "Complete DC Power Solutions",
+  linkedinUrl: "https://www.linkedin.com/company/american-power-systems-llc",
+  lineCardUrl: "/assets/aps-line-card.pdf" 
+};
+
+export const navItems = [
+  { name: "Home", href: "#top", id: "home" },
+  { name: "Products", href: "#products", id: "products" },
+  { name: "Services", href: "#services", id: "services" },
+  { name: "Locations", href: "/locations", id: "locations" },
+  { name: "Partners", href: "#partners", id: "partners" },
+  { name: "Contact", href: "#contact", id: "contact" },
+];
+
+export const products = [
+  { 
+    title: "DC Power Plants", 
+    desc: "Complete turnkey DC power plants, rectifiers, and distribution panels for telecom & utility.",
+    details: "We provide solutions from industry leaders with necessary rectifiers, chargers, converters, and distribution.",
+    image: "/assets/cd_cat_header.jpg", 
+    icon: Zap
+  },
+  { 
+    title: "Batteries (VRLA & Flooded)", 
+    desc: "Premium reserve power solutions including VRLA, NiCad, and Lithium-ion technologies.",
+    details: "Authorized distributor for MK Battery, East Penn, and other top-tier manufacturers.",
+    image: "/assets/897bc8aa394edab959e2a18f5c83f36a.jpg",
+    icon: Battery
+  },
+  { 
+    title: "UPS & Inverters", 
+    desc: "Single Phase and Three Phase UPS systems and inverters for critical AC power backup.",
+    details: "Protect your critical loads with reliable AC power solutions.",
+    image: "/assets/generated_images/industrial_power_systems_factory_floor.png",
+    icon: Server
+  },
+  { 
+    title: "Racking & Containment", 
+    desc: "Seismic-rated battery racking, spill containment systems, and safety compliance gear.",
+    details: "Includes over-current protection, bus/cable components, and certified spill containment.",
+    image: "/assets/40181a_faa5d04f181b4812b04963a4670024b5~mv2.jpg",
+    icon: ShieldCheck
+  }
+];
+
+export const services = [
+  {
+    title: "Installation & Removal",
+    desc: "Specializing in Central Office, Cellular, and Data Centers. We handle batteries, grounding, cabling, ironwork, and bussing.",
+    icon: Wrench,
+    details: ["Power Plants & Distribution", "Batteries & Grounding", "Ironwork & Bussing"]
+  },
+  {
+    title: "Battery Maintenance",
+    desc: "Comprehensive preventative maintenance programs: Basic, Extended, & Select options available.",
+    icon: ClipboardList,
+    details: ["Preventative Programs", "IEEE Standards", "VRLA & Flooded"]
+  },
+  {
+    title: "Testing & Monitoring",
+    desc: "IEEE battery capacity testing, internal resistance testing (VRLA), and remote site monitoring down to individual cells.",
+    icon: Activity,
+    details: ["Capacity Testing", "Resistance Testing", "Cell Tracking"]
+  },
+  {
+    title: "Disposal & Logistics",
+    desc: "Removal and disposal of lead acid batteries with certificates. Labor, material procurement, and site delivery.",
+    icon: Trash2,
+    details: ["EPA Compliant Disposal", "Material Procurement", "Site Delivery"]
+  }
+];
+
+export const partners = [
+  { name: "East Penn Manufacturing", logo: "/assets/EPM-Logo_RGB.jpg" },
+  { name: "C&D Technologies", logo: "/assets/cd-logo.png" },
+  { name: "MK Battery", logo: "/assets/MK Battery.png" },
+  { name: "Enviroguard", logo: "/assets/Enviroguard.png" },
+  { name: "Hindle Power", logo: "/assets/Hindle.png" },
+  { name: "C&C Power", logo: "/assets/cc-power-logo.png" }
+];
+
+// UPDATED LOCATIONS LIST
+export const locations = [
+  {
+    name: "Kent, WA",
+    type: "Corporate Office",
+    address: "1851 Central Place South, Suite 206",
+    city: "Kent, WA 98030",
+    contacts: [
+        { label: "Office", phone: "1-800-395-0693" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=1851+Central+Place+South+Kent+WA+98030&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Kent, WA",
+    type: "Warehouse",
+    address: "26507 79th Ave South",
+    city: "Kent, WA 98032",
+    contacts: [
+        { label: "Sales | Jon Wagoner", phone: "253-216-8288" },
+        { label: "Sales | Joshua Sharp", phone: "253-406-9037" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=26507+79th+Ave+South+Kent+WA+98032&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Anchorage, AK",
+    type: "Warehouse",
+    address: "2410 Azurite, Suite B",
+    city: "Anchorage, AK 99507",
+    contacts: [
+        { label: "Sales | Cody Raymond", phone: "907-791-0288" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=2410+Azurite+Suite+B+Anchorage+AK+99507&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Phoenix, AZ",
+    type: "Warehouse",
+    address: "5237 S. 28th Place",
+    city: "Phoenix, AZ 85040",
+    contacts: [
+        { label: "Sales | Matt Brubaker", phone: "602-361-3220" },
+        { label: "Office", phone: "602-437-2150" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=5237+S+28th+Place+Phoenix+AZ+85040&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Rialto, CA",
+    type: "Warehouse",
+    address: "2595 W Renaissance Parkway #3",
+    city: "Rialto, CA 92376",
+    contacts: [
+        { label: "Sales | Keana Houston", phone: "714-725-2091" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=2595+W+Renaissance+Parkway+Rialto+CA+92376&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Stockton, CA",
+    type: "Warehouse",
+    address: "1627 Industrial Drive Suite C",
+    city: "Stockton, CA 95206",
+    contacts: [
+        { label: "Office", phone: "209-467-8999" },
+        { label: "Sales | Tom Treacy", phone: "661-212-6269" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=1627+Industrial+Drive+Suite+C+Stockton+CA+95206&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Centennial, CO",
+    type: "Warehouse | Newly Opened",
+    address: "6951 S. Blackhawk St, Ste 200",
+    city: "Centennial, CO 80112-4795",
+    contacts: [
+        { label: "Office", phone: "303-371-6777" },
+        { label: "Sales | Nick Knebel", phone: "720-415-1531" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=6951+S+Blackhawk+St+Centennial+CO+80112&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Indianapolis, IN",
+    type: "Warehouse",
+    address: "8440 E 33rd Street",
+    city: "Indianapolis, IN 46226",
+    contacts: [
+        { label: "Sales | Jackie Mages", phone: "262-282-3678" },
+        { label: "Office", phone: "317-550-0568" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=8440+E+33rd+Street+Indianapolis+IN+46226&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Albuquerque, NM",
+    type: "Warehouse",
+    address: "3500 Richmond Dr, NE, Suite B",
+    city: "Albuquerque, NM 87107",
+    contacts: [
+        { label: "Sales | Kevin Lizarraga", phone: "928-203-6202" },
+        { label: "Office", phone: "505-345-0523" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=3500+Richmond+Dr+NE+Albuquerque+NM+87107&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Garland, TX",
+    type: "Warehouse",
+    address: "1011 South Jupiter Road",
+    city: "Garland, TX 75042",
+    contacts: [
+        { label: "Sales | Josh Hall", phone: "469-263-5484" },
+        { label: "Office", phone: "1-877-995-4277" },
+        { label: "Houston Sales | Chris Ferguson", phone: "979-398-9176" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=1011+South+Jupiter+Road+Garland+TX+75042&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Kaysville, UT",
+    type: "Warehouse",
+    address: "1205 Flint Meadow Drive",
+    city: "Kaysville, UT 84037",
+    contacts: [
+        { label: "Sales | Mark Nelson", phone: "303-336-8147" },
+        { label: "Office", phone: "1-801-444-0207" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=1205+Flint+Meadow+Drive+Kaysville+UT+84037&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Mequon, WI",
+    type: "Warehouse",
+    address: "6100 West Executive Drive, Ste D",
+    city: "Mequon, WI 53092",
+    contacts: [
+        { label: "Sales | Jackie Mages", phone: "262-282-3678" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=6100+West+Executive+Drive+Mequon+WI+53092&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  }
+];
+
+```
+
+### **Step 2: Update Locations Page (`client/src/pages/Locations.tsx`)**
+
+*Action:* Replace the entire file. I have redesigned this page to properly display multiple contacts per location and cleaned up the map layout.
+
+```tsx
+import { navItems, locations } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png";
+import { Link } from "wouter";
+import { MapPin, Phone, User, Building2 } from "lucide-react";
+
+export default function Locations() {
+  return (
+    <div className="font-sans min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-aps-navy text-white py-4 px-6 sticky top-0 z-50 shadow-md">
+        <div className="container mx-auto flex justify-between items-center">
+          <Link href="/">
+            <a className="font-bold text-2xl tracking-tighter flex items-center gap-2">
+               <img src={apsLogo} alt="APS" className="h-8 w-auto" />
+            </a>
+          </Link>
+          <nav className="hidden md:flex gap-6 text-sm font-medium">
+            {navItems.map(item => (
+                <Link key={item.name} href={item.id === "home" ? "/" : `/${item.id}`}>
+                    <a className="hover:text-aps-red transition-colors">{item.name}</a>
+                </Link>
+            ))}
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="bg-aps-navy text-white py-16">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-4xl font-bold mb-4">Our Locations</h1>
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            Serving customers nationwide with strategic warehouses and support offices across the United States.
+          </p>
+        </div>
+      </section>
+
+      {/* Locations Grid */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {locations.map((loc, idx) => (
+              <div key={idx} className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 flex flex-col md:flex-row h-full">
+                
+                {/* Map Column */}
+                <div className="md:w-5/12 bg-gray-200 min-h-[250px] md:min-h-full">
+                    <iframe 
+                        src={loc.mapUrl} 
+                        width="100%" 
+                        height="100%" 
+                        style={{border:0}} 
+                        allowFullScreen 
+                        loading="lazy"
+                        title={`Map of ${loc.name}`}
+                        className="w-full h-full min-h-[250px]"
+                    ></iframe>
+                </div>
+
+                {/* Info Column */}
+                <div className="p-6 md:w-7/12 flex flex-col justify-between">
+                    <div>
+                        <div className="flex justify-between items-start mb-4">
+                            <h2 className="text-xl font-bold text-aps-navy">{loc.name}</h2>
+                            <span className="inline-block bg-gray-100 text-gray-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">
+                                {loc.type}
+                            </span>
+                        </div>
+                        
+                        <div className="mb-6 flex items-start gap-3 text-gray-600">
+                            <MapPin className="text-aps-red shrink-0 w-5 h-5 mt-1" />
+                            <span className="text-sm">{loc.address}<br/>{loc.city}</span>
+                        </div>
+
+                        {/* Contacts List */}
+                        <div className="space-y-4 border-t border-gray-100 pt-4">
+                            {loc.contacts.map((contact, cIdx) => (
+                                <div key={cIdx} className="flex items-start gap-3">
+                                    {contact.label.toLowerCase().includes("sales") ? (
+                                        <User className="text-aps-blue shrink-0 w-4 h-4 mt-1" />
+                                    ) : (
+                                        <Building2 className="text-gray-400 shrink-0 w-4 h-4 mt-1" />
+                                    )}
+                                    <div>
+                                        <span className="text-xs text-gray-400 font-bold uppercase tracking-wider block mb-0.5">
+                                            {contact.label}
+                                        </span>
+                                        <a href={`tel:${contact.phone}`} className="text-aps-red font-bold hover:underline">
+                                            {contact.phone}
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+```

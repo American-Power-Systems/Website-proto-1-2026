@@ -105,18 +105,20 @@ export default function Option1() {
         </div>
       </section>
 
-      {/* Partners Ticker - Added ID for navigation */}
-      <section id="partners" className="bg-gray-100 border-b border-gray-200 py-8 overflow-hidden">
+      {/* Partners Ticker - Modernized */}
+      <section id="partners" className="bg-gray-100 border-b border-gray-200 py-10 overflow-hidden">
         <div className="container mx-auto px-6">
-            <p className="text-center text-gray-400 text-xs font-bold uppercase tracking-widest mb-6">Trusted Partners & Brands</p>
+            <p className="text-center text-gray-400 text-xs font-bold uppercase tracking-widest mb-8">Trusted Suppliers & Partners</p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
                 {partners.map((partner, idx) => (
-                    <img 
-                        key={idx} 
-                        src={partner.logo} 
-                        alt={partner.name} 
-                        className="h-12 md:h-16 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-300 opacity-70 hover:opacity-100 mix-blend-multiply" 
-                    />
+                    <div key={idx} className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+                        {/* Using object-contain ensures logos don't get cut off */}
+                        <img 
+                            src={partner.logo} 
+                            alt={partner.name} 
+                            className="max-h-full max-w-full object-contain mix-blend-multiply" 
+                        />
+                    </div>
                 ))}
             </div>
         </div>
@@ -151,7 +153,7 @@ export default function Option1() {
                     </a>
                 </div>
 
-                {/* Column 2: SERVICES - Added ID scroll target just above this if needed */}
+                {/* Column 2: SERVICES */}
                 <div id="services" className="bg-gray-50 p-10 border-t-4 border-aps-red hover:shadow-xl transition-all group">
                     <h3 className="text-2xl font-bold text-aps-navy mb-6 flex items-center gap-3">
                         <Wrench className="text-aps-red" /> Installation Services
@@ -174,7 +176,6 @@ export default function Option1() {
         </div>
       </section>
 
-      {/* Standardized Section Order: Hero -> Products/Services -> Partners (above) -> LinkedIn -> Footer */}
       <LinkedInFeed variant="default" />
 
       {/* Footer */}
@@ -186,6 +187,7 @@ export default function Option1() {
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
                 American Power Systems provides industry-leading DC power solutions for telecommunications, utility, and industrial applications.
               </p>
+              {/* Real Social Links */}
               <div className="flex gap-4">
                   <a href={companyInfo.linkedinUrl} target="_blank" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#0077b5] cursor-pointer transition text-white">
                     <i className="fab fa-linkedin-in"></i>
