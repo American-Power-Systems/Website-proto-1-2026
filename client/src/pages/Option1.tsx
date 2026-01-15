@@ -81,12 +81,13 @@ export default function Option1() {
         <div className="absolute inset-0 bg-gradient-to-r from-aps-blue/90 to-transparent flex items-center">
           <div className="container mx-auto px-4">
             <div className="max-w-2xl text-white">
-              <h1 className="font-heading text-6xl font-bold mb-6 leading-tight">
-                LEADING DC <br/>
+              <h1 className="font-heading text-5xl font-bold mb-6 leading-tight">
+                COMPLETE DC <br/>
                 <span className="text-aps-red">POWER SOLUTIONS</span>
               </h1>
               <p className="text-xl mb-8 opacity-90 font-light">
-                Engineering reliable power infrastructure for the world's most critical applications.
+                Meeting and exceeding customer needs through operational excellence, 
+                with a commitment to safety and quality.
               </p>
               <div className="flex gap-4">
                 <button className="bg-aps-red hover:bg-red-700 text-white px-8 py-3 font-bold uppercase tracking-wider transition-colors">
