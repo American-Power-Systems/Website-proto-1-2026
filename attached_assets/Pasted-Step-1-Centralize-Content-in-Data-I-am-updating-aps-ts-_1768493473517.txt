@@ -1,3 +1,10 @@
+Step 1: Centralize Content in Data
+I am updating aps.ts to include your company info, social links, and the specific "Line Card" download link so you only have to change them in one place.
+
+Update client/src/data/aps.ts:
+
+TypeScript
+
 import { 
   Wrench, ClipboardList, Activity, Trash2, 
   Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass, MapPin 
