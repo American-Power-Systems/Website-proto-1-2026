@@ -134,3 +134,28 @@
     @apply font-heading uppercase tracking-wide;
   }
 }
+
+/* APS BRAND COLORS OVERRIDE */
+:root {
+    --aps-navy: #003366;
+    --aps-red: #CC0000;
+    --aps-grey: #333333;
+}
+
+/* Force Navbar and Footers to match APS Navy */
+.bg-aps-navy, header, footer, .navbar {
+    background-color: var(--aps-navy) !important;
+    color: white !important; /* Ensure text visibility on navy background */
+}
+
+/* Force Buttons to match APS Red */
+.btn-primary, .bg-aps-red, a.cta-button, button.bg-aps-red {
+    background-color: var(--aps-red) !important;
+    color: white !important;
+    border: none;
+}
+
+/* Hover effect for Red buttons */
+.btn-primary:hover, a.cta-button:hover, button.bg-aps-red:hover {
+    background-color: #a30000 !important; /* Slightly darker red */
+}
