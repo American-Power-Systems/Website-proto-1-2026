@@ -10,7 +10,7 @@ export default function Home() {
                 <img src={apsLogo} alt="APS" className="h-10" />
                 <span className="font-light opacity-70 text-sm border-l border-white/30 pl-3 ml-3 hidden sm:block">Website Design Prototypes</span>
             </div>
-            <div className="text-xs font-mono bg-black/30 px-3 py-1 rounded">v2.0 (Review Ready)</div>
+            <div className="text-xs font-mono bg-black/30 px-3 py-1 rounded">v2.1 (Dark Mode Added)</div>
         </div>
       </header>
 
@@ -92,20 +92,20 @@ export default function Home() {
                 </div>
             </div>
 
-            {/* Option 5 */}
-            <div className="bg-white rounded-xl shadow-lg border-t-4 border-black overflow-hidden hover:-translate-y-1 transition-transform">
+            {/* Option 5 - UPDATED */}
+            <div className="bg-black rounded-xl shadow-lg border-t-4 border-aps-red overflow-hidden hover:-translate-y-1 transition-transform ring-1 ring-gray-200">
                 <div className="p-8">
-                    <h3 className="text-2xl font-bold text-black mb-2">Option 5</h3>
-                    <div className="text-xs font-bold text-black uppercase tracking-widest mb-4">Minimal / Fast</div>
-                    <p className="text-gray-600 text-sm mb-6">
-                        Stripped back to essentials. High performance, typography-focused. Good for a "Documentation Hub" or landing page.
+                    <h3 className="text-2xl font-bold text-white mb-2">Option 5</h3>
+                    <div className="text-xs font-bold text-aps-red uppercase tracking-widest mb-4">Dark Mode Corporate</div>
+                    <p className="text-gray-400 text-sm mb-6">
+                        The exact structure of Option 1, but completely re-skinned in dark tones. Sleek, premium, and reduces eye strain for engineers.
                     </p>
                     <Link href="/option-5">
-                        <a className="block w-full text-center bg-black text-white py-3 rounded font-bold hover:bg-gray-800 transition-colors">Launch Prototype</a>
+                        <a className="block w-full text-center bg-gray-800 text-white py-3 rounded font-bold hover:bg-gray-700 transition-colors">Launch Prototype</a>
                     </Link>
                 </div>
-                <div className="bg-gray-100 px-8 py-4 text-xs text-gray-500">
-                    <strong>Best for:</strong> Speed & Simplicity
+                <div className="bg-gray-900 px-8 py-4 text-xs text-gray-500">
+                    <strong>Best for:</strong> Modern / Premium Feel
                 </div>
             </div>
 

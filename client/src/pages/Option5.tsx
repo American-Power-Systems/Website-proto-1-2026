@@ -1,76 +1,226 @@
-import { navItems, companyInfo, partners } from "@/data/aps";
-import apsLogo from "/assets/aps-logo-white.png";
-import naspoLogo from "/assets/naspo-logo-white.png";
-import { Link } from "wouter";
+import { navItems, products, services, partners, companyInfo } from "@/data/aps";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
+import heroImage from "/assets/homepage_hero.avif"; 
+import apsLogo from "/assets/aps-logo-white.png";
+import { Menu, Phone, Mail, MapPin, ChevronRight, Zap, Wrench } from "lucide-react";
+import { useState } from "react";
+import { Link } from "wouter";
 
 export default function Option5() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <div className="font-mono min-h-screen bg-white text-gray-900">
-      {/* Minimal Header */}
-      <header className="border-b-2 border-black p-4 flex justify-between items-center bg-aps-navy text-white sticky top-0 z-50">
-        <div className="flex items-center gap-4">
-            <a href="#top"><img src={apsLogo} alt="APS" className="h-8" /></a>
-            <span className="text-sm font-bold tracking-widest hidden sm:inline">| DC POWER SPECS</span>
+    <div className="font-sans min-h-screen flex flex-col bg-[#0a0a0a] text-gray-200">
+      
+      {/* 1. TOP BAR (Darker Shade) */}
+      <div id="top" className="bg-black border-b border-gray-900 text-gray-400 text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-end gap-4 items-center">
+        <div className="flex gap-4">
+            <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:text-aps-red flex items-center gap-1 transition-colors">
+                <Phone className="w-3 h-3" /> {companyInfo.phone}
+            </a>
+            <span className="hidden md:inline text-gray-700">|</span>
+            <a href={`mailto:${companyInfo.email}`} className="hover:text-aps-red flex items-center gap-1 transition-colors">
+                <Mail className="w-3 h-3" /> {companyInfo.email}
+            </a>
         </div>
-        <nav className="flex gap-4 text-sm font-bold">
-            <a href="#products" className="hover:underline">INDEX</a>
-            <a href="#contact" className="hover:underline">CONTACT</a>
-        </nav>
+        <div className="hidden md:flex gap-4 border-l border-gray-800 pl-4">
+            <Link href="/careers"><a className="hover:text-white font-bold">CAREERS</a></Link>
+            <a href="#" className="hover:text-white font-bold">APS PORTAL</a>
+        </div>
+      </div>
+
+      {/* 2. HEADER (Black with Red Accent) */}
+      <header className="sticky top-0 z-50 bg-[#0f0f0f]/95 backdrop-blur-md shadow-2xl border-b-4 border-aps-red">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-between items-center h-20">
+            <a href="#top" className="flex items-center gap-2 cursor-pointer">
+                <img src={apsLogo} alt={companyInfo.name} className="h-10 w-auto opacity-90 hover:opacity-100 transition-opacity" />
+            </a>
+
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex gap-8">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <a 
+                    className="text-gray-300 font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider"
+                  >
+                    {item.name}
+                  </a>
+                </Link>
+              ))}
+            </nav>
+
+            {/* Mobile Toggle */}
+            <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <Menu />
+            </button>
+          </div>
+        </div>
+        
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-black border-t border-gray-800 p-4">
+            <nav className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <a className="text-gray-300 font-bold hover:text-aps-red text-lg">{item.name}</a>
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
       </header>
 
-      <main className="max-w-3xl mx-auto p-8" id="top">
-        <div className="mb-12 border-l-4 border-aps-red pl-6 py-2">
-            <h1 className="text-4xl font-bold mb-2">American Power Systems</h1>
-            <p className="text-xl text-gray-600">{companyInfo.tagline}</p>
-            <p className="text-xs text-gray-400 mt-2 uppercase tracking-widest">EST. {companyInfo.founded}</p>
+      {/* 3. HERO (Same structure, Dark Gradient) */}
+      <section className="relative h-[650px] w-full overflow-hidden group">
+        {/* Darker overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent z-10"></div>
+        
+        <img 
+          src={heroImage} 
+          alt="APS Facility" 
+          className="w-full h-full object-cover transition-transform duration-[20s] ease-linear group-hover:scale-105 motion-reduce:transition-none opacity-60" 
+        />
+        
+        <div className="absolute inset-0 z-20 flex items-center">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl text-white">
+              <div className="inline-block bg-aps-red text-white text-xs font-bold px-3 py-1 mb-6 uppercase tracking-[0.2em] rounded-sm">
+                Since {companyInfo.founded}
+              </div>
+              <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-2xl">
+                DC POWER <br/>
+                <span className="text-gray-400">INSTALLATION SERVICES</span>
+              </h1>
+              <p className="text-xl md:text-2xl mb-10 text-gray-300 font-light max-w-2xl leading-relaxed">
+                {companyInfo.tagline}. From VRLA batteries to complete DC power plants. We install, maintain, and test critical infrastructure.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a href="#services" className="bg-aps-red hover:bg-red-700 text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center rounded-sm">
+                    View Services
+                </a>
+                <a href="#products" className="border border-gray-500 hover:border-white hover:bg-white hover:text-black text-gray-300 px-10 py-4 font-bold uppercase tracking-wider transition-all text-center rounded-sm">
+                    Our Products
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Real Action Link */}
-        <div className="grid grid-cols-2 gap-4 mb-12">
-            <a href={companyInfo.lineCardUrl} target="_blank" className="bg-gray-100 hover:bg-gray-200 p-4 block border border-gray-300 text-center font-bold">
-                ↓ DOWNLOAD LINE CARD (PDF)
-            </a>
-            <a href="#products" className="bg-black text-white hover:bg-gray-800 p-4 block text-center font-bold">
-                BROWSE CATALOG &rarr;
-            </a>
-        </div>
-
-        {/* Trust Signals */}
-        <div className="mb-12" id="partners">
-            <h3 className="text-xs font-bold uppercase mb-4 border-b border-gray-200 pb-2">Certifications</h3>
-            <div className="flex gap-4 items-center grayscale opacity-80">
-                <img src={naspoLogo} className="h-8 bg-gray-800 p-1" alt="NASPO" />
-                {partners.slice(0,3).map((p, i) => (
-                    <img key={i} src={p.logo} className="h-6" alt={p.name} />
+      {/* 4. PARTNERS (Light background for Logo Visibility) */}
+      <section id="partners" className="bg-white border-b border-gray-800 py-10 overflow-hidden">
+        <div className="container mx-auto px-6">
+            <p className="text-center text-gray-400 text-xs font-bold uppercase tracking-widest mb-8">Trusted Suppliers & Partners</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80 hover:opacity-100 transition-opacity">
+                {partners.map((partner, idx) => (
+                    <div key={idx} className="h-16 w-32 flex items-center justify-center">
+                        <img 
+                            src={partner.logo} 
+                            alt={partner.name} 
+                            className="max-h-full max-w-full object-contain" 
+                        />
+                    </div>
                 ))}
             </div>
         </div>
+      </section>
 
-        {/* Minimal Feed */}
-        <LinkedInFeed variant="minimal" />
+      {/* 5. SPLIT SECTIONS (Dark Mode) */}
+      <section id="products" className="py-20 bg-[#0a0a0a]">
+        <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-wide">Complete Power Solutions</h2>
+                <div className="w-20 h-1 bg-aps-red mx-auto mt-4"></div>
+            </div>
 
-        <div className="h-px bg-gray-200 my-12"></div>
+            <div className="grid md:grid-cols-2 gap-12">
+                {/* Column 1: PRODUCTS */}
+                <div className="bg-[#151515] p-10 border border-gray-800 border-t-4 border-t-aps-blue hover:border-gray-700 transition-all group">
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <Zap className="text-aps-red" /> DC & AC Power Products
+                    </h3>
+                    <p className="text-gray-400 mb-8">
+                        Providing DC and AC power system solutions from industry leaders. Rectifiers, chargers, UPS, and custom enclosures.
+                    </p>
+                    <ul className="space-y-3 mb-8 border-t border-gray-800 pt-6">
+                        {products.slice(0, 4).map(p => (
+                            <li key={p.title} className="flex items-center gap-2 text-sm font-medium text-gray-300">
+                                <span className="w-1.5 h-1.5 bg-aps-blue rounded-full"></span> {p.title}
+                            </li>
+                        ))}
+                    </ul>
+                    <a href="#products" className="inline-block bg-white text-black px-6 py-3 font-bold uppercase text-sm hover:bg-gray-200 transition-colors">
+                        View Product Catalog
+                    </a>
+                </div>
 
-        {/* Index */}
-        <section id="products">
-            <h3 className="text-xs font-bold uppercase mb-4 border-b border-gray-200 pb-2">Product Index</h3>
-            <ul className="space-y-4">
-                <li className="flex justify-between items-baseline group cursor-pointer">
-                    <span className="font-bold group-hover:text-aps-red">01. DC Power Plants</span>
-                    <span className="text-xs text-gray-400">RECTIFIERS / DIST</span>
+                {/* Column 2: SERVICES */}
+                <div id="services" className="bg-[#151515] p-10 border border-gray-800 border-t-4 border-t-aps-red hover:border-gray-700 transition-all group">
+                    <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                        <Wrench className="text-aps-red" /> Installation Services
+                    </h3>
+                    <p className="text-gray-400 mb-8">
+                        We don't just sell boxes. We provide full EF&I services, project management, and battery disposal for remote and central sites.
+                    </p>
+                    <ul className="space-y-3 mb-8 border-t border-gray-800 pt-6">
+                        {services.slice(0, 4).map(s => (
+                            <li key={s.title} className="flex items-center gap-2 text-sm font-medium text-gray-300">
+                                <span className="w-1.5 h-1.5 bg-aps-red rounded-full"></span> {s.title}
+                            </li>
+                        ))}
+                    </ul>
+                    <a href="#services" className="inline-block bg-aps-red text-white px-6 py-3 font-bold uppercase text-sm hover:bg-red-700 transition-colors">
+                        Explore Services
+                    </a>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      {/* 6. LINKEDIN FEED (Dark Variant) */}
+      <LinkedInFeed variant="dark" />
+
+      {/* 7. FOOTER */}
+      <footer id="contact" className="bg-black text-gray-400 pt-24 pb-12 mt-auto border-t border-gray-900">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+            <div className="col-span-1 md:col-span-1">
+              <img src={apsLogo} alt="APS" className="h-10 mb-8 opacity-80" />
+              <p className="text-sm leading-relaxed mb-6">
+                American Power Systems provides industry-leading DC power solutions for telecommunications, utility, and industrial applications.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Quick Links</h4>
+              <ul className="space-y-4 text-sm">
+                <li><a href="#services" className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Installation</a></li>
+                <li><a href="#services" className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Maintenance</a></li>
+                <li><a href="#products" className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Products</a></li>
+              </ul>
+            </div>
+
+            <div id="about">
+              <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Contact Headquarters</h4>
+              <ul className="space-y-4 text-sm">
+                <li className="flex gap-3 items-start">
+                    <MapPin className="w-5 h-5 text-aps-red shrink-0" />
+                    <span>{companyInfo.address}<br/>{companyInfo.cityStateZip}</span>
                 </li>
-                <li className="flex justify-between items-baseline group cursor-pointer">
-                    <span className="font-bold group-hover:text-aps-red">02. Batteries</span>
-                    <span className="text-xs text-gray-400">VRLA / LITHIUM</span>
+                <li className="flex gap-3 items-center">
+                    <Phone className="w-5 h-5 text-aps-red shrink-0" />
+                    <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:text-white transition">{companyInfo.phone}</a>
                 </li>
-            </ul>
-        </section>
-
-        <footer id="contact" className="mt-20 text-xs text-gray-400">
-            {companyInfo.address} | {companyInfo.phone} | <a href={`mailto:${companyInfo.email}`} className="underline">Email Us</a>
-        </footer>
-      </main>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-900 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-600 gap-4">
+            <p>© 2026 {companyInfo.name}. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
