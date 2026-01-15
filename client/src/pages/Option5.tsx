@@ -24,22 +24,27 @@ export default function Option5() {
 
       <main className="px-6">
         {/* Text Hero - No Image */}
-        <section className="py-24 max-w-5xl">
-          <p className="text-aps-red font-mono font-bold mb-4">EST. 1995 // DC POWER SPECIALISTS</p>
-          <h2 className="text-6xl md:text-8xl font-heading font-bold leading-[0.9] mb-8">
-            RELIABLE POWER.<br/>
-            CRITICAL INFRASTRUCTURE.
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-black pt-8">
-            <div className="col-span-2">
-              <p className="text-2xl font-medium leading-tight">
-                We engineer and manufacture custom DC power systems for telecommunications, utility, and industrial markets.
-              </p>
-            </div>
-            <div className="flex flex-col justify-end">
-              <a href="#" className="inline-block bg-black text-white px-8 py-4 font-bold text-center hover:bg-aps-red transition-colors">
-                DOWNLOAD LINE CARD (PDF)
-              </a>
+        <section className="py-24 border-b border-black relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-full md:w-1/2 h-full opacity-10 pointer-events-none">
+             <img src="/assets/cd_cat_header.jpg" alt="Background" className="w-full h-full object-cover grayscale" />
+          </div>
+          <div className="relative z-10 max-w-5xl">
+            <p className="text-aps-red font-mono font-bold mb-4">EST. 1995 // DC POWER SPECIALISTS</p>
+            <h2 className="text-6xl md:text-8xl font-heading font-bold leading-[0.9] mb-8">
+              RELIABLE POWER.<br/>
+              CRITICAL INFRASTRUCTURE.
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-black pt-8">
+              <div className="col-span-2">
+                <p className="text-2xl font-medium leading-tight">
+                  We engineer and manufacture custom DC power systems for telecommunications, utility, and industrial markets.
+                </p>
+              </div>
+              <div className="flex flex-col justify-end">
+                <a href="#" className="inline-block bg-black text-white px-8 py-4 font-bold text-center hover:bg-aps-red transition-colors">
+                  DOWNLOAD LINE CARD (PDF)
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -82,13 +87,19 @@ export default function Option5() {
       </main>
 
       <footer className="bg-black text-white p-6 mt-12">
-        <div className="flex justify-between items-end">
+        <div className="flex flex-col md:flex-row justify-between items-end gap-8">
            <div>
              <span className="font-heading font-bold text-2xl">APS</span>
              <p className="text-gray-500 text-sm mt-2">American Power Systems &copy; 2026</p>
+             <div className="mt-4 text-sm text-gray-400 font-mono">
+                <p>1851 Central Place South, Suite 206</p>
+                <p>Kent, WA 98030</p>
+                <p>(800) 395-0693</p>
+             </div>
            </div>
            <div className="text-right">
              <p className="text-sm font-mono">POWERING THE FUTURE</p>
+             <a href="mailto:info@ampowersys.com" className="text-aps-red hover:underline block mt-2">info@ampowersys.com</a>
            </div>
         </div>
       </footer>

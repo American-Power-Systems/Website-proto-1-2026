@@ -1,8 +1,9 @@
 import { navItems, products } from "@/data/aps";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
-import heroImage from "@assets/generated_images/industrial_power_systems_factory_floor.png";
 import { Link } from "wouter";
 import { Zap, Activity, Battery, Wrench } from "lucide-react";
+
+const heroImage = "/assets/cd_cat_header.jpg";
 
 export default function Option3() {
   const getIcon = (idx: number) => {
@@ -132,9 +133,24 @@ export default function Option3() {
       {/* LinkedIn - Dark Variant */}
       <LinkedInFeed className="bg-slate-900/30" variant="dark" />
 
-      <footer className="border-t border-cyan-900/30 py-12 mt-auto">
-        <div className="container mx-auto px-6 text-center">
-          <p className="font-mono text-cyan-900 text-sm">SYSTEM END OF LINE</p>
+      <footer className="border-t border-cyan-900/30 py-12 mt-auto bg-aps-dark/80">
+        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm mb-8">
+             <div>
+                <h4 className="font-heading font-bold text-cyan-400 mb-4">APS SYSTEMS</h4>
+                <p className="text-gray-400">Advanced DC Power Infrastructure</p>
+             </div>
+             <div>
+                <h4 className="font-heading font-bold text-cyan-400 mb-4">CONTACT NODE</h4>
+                <ul className="text-gray-400 space-y-2 font-mono text-xs">
+                    <li>1851 Central Place South, Suite 206</li>
+                    <li>Kent, WA 98030</li>
+                    <li>(800) 395-0693</li>
+                    <li>info@ampowersys.com</li>
+                </ul>
+             </div>
+        </div>
+        <div className="container mx-auto px-6 text-center border-t border-cyan-900/30 pt-8">
+          <p className="font-mono text-cyan-900 text-sm">SYSTEM END OF LINE // © 2026</p>
         </div>
       </footer>
     </div>

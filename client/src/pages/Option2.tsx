@@ -1,7 +1,8 @@
 import { navItems, products } from "@/data/aps";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
-import heroImage from "@assets/generated_images/industrial_power_systems_factory_floor.png";
 import { Link } from "wouter";
+
+const heroImage = "/assets/cd_cat_header.jpg";
 
 export default function Option2() {
   return (
@@ -102,13 +103,33 @@ export default function Option2() {
       </div>
 
       {/* Footer - Simple Grey */}
-      <footer className="bg-gray-800 text-gray-300 py-8 mt-auto">
-        <div className="container mx-auto px-4 text-center">
-          <p className="mb-2">&copy; 2026 American Power Systems</p>
-          <div className="flex justify-center space-x-4 text-sm">
-            <a href="#" className="hover:text-white">Privacy</a>
-            <a href="#" className="hover:text-white">Terms</a>
-            <a href="#" className="hover:text-white">Contact</a>
+      <footer className="bg-gray-800 text-gray-300 py-12 mt-auto">
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
+          <div>
+            <h4 className="font-bold text-white text-lg mb-4">American Power Systems</h4>
+            <p className="mb-4">
+              Providing industry-leading DC power solutions for telecommunications, utility, and industrial applications.
+            </p>
+            <p>&copy; 2026 American Power Systems</p>
+          </div>
+          
+          <div>
+            <h4 className="font-bold text-white text-lg mb-4">Contact Us</h4>
+            <ul className="space-y-2">
+              <li>1851 Central Place South, Suite 206</li>
+              <li>Kent, WA 98030</li>
+              <li>(800) 395-0693</li>
+              <li>info@ampowersys.com</li>
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-bold text-white text-lg mb-4">Links</h4>
+            <div className="flex flex-col space-y-2">
+              <a href="#" className="hover:text-white">Privacy Policy</a>
+              <a href="#" className="hover:text-white">Terms of Service</a>
+              <a href="#" className="hover:text-white">Careers</a>
+            </div>
           </div>
         </div>
       </footer>

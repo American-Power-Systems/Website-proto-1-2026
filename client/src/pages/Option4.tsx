@@ -1,7 +1,8 @@
 import { navItems, products } from "@/data/aps";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
-import heroImage from "@assets/generated_images/industrial_power_systems_factory_floor.png";
 import { Link } from "wouter";
+
+const heroImage = "/assets/cd_cat_header.jpg";
 
 export default function Option4() {
   return (
@@ -88,7 +89,17 @@ export default function Option4() {
         </div>
 
         <footer className="p-8 md:p-12 border-t border-gray-200 text-gray-500 text-sm">
-          &copy; 2026 American Power Systems
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+             <div>
+               <h4 className="font-bold text-gray-900 mb-2">American Power Systems</h4>
+               <p>1851 Central Place South, Suite 206<br/>Kent, WA 98030</p>
+             </div>
+             <div>
+               <h4 className="font-bold text-gray-900 mb-2">Contact</h4>
+               <p>(800) 395-0693<br/>info@ampowersys.com</p>
+             </div>
+          </div>
+          <p>&copy; 2026 American Power Systems. All rights reserved.</p>
         </footer>
       </main>
     </div>

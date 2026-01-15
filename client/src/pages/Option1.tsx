@@ -1,9 +1,10 @@
 import { navItems, products } from "@/data/aps";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
-import heroImage from "@assets/generated_images/industrial_power_systems_factory_floor.png";
 import { ArrowRight, ChevronRight, Menu } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
+
+const heroImage = "/assets/cd_cat_header.jpg";
 
 export default function Option1() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
