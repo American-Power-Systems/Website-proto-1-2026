@@ -1,0 +1,246 @@
+You are right—the "Minimal/Text-Only" option (Option 5) felt like a step backward for a company that deals in large physical infrastructure.
+
+I have replaced Option 5 with a completely new concept: **"The Visual Storyteller" (Split-Stream Layout)**.
+
+### **Why this is a better option:**
+
+* **Modern Layout:** instead of a "grid of boxes," it uses **alternating split-screen sections** (Image Left/Text Right, then switched). This is the standard for modern B2B websites (like Tesla Energy or stripe.com).
+* **Narrative Flow:** It naturally guides the user through the lifecycle: *We Install -> We Maintain -> We Dispose*.
+* **Easy Navigation:** It uses a clean, high-contrast header that is easy to read.
+
+Here are the files to update.
+
+### **1. Create the New Option 5 (`client/src/pages/Option5.tsx`)**
+
+*Action:* Delete the old code in this file and paste this new "Split-Stream" design.
+
+```tsx
+import { navItems, products, services, companyInfo, partners } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png"; // Using white logo for dark header
+import { Link } from "wouter";
+import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
+import { ArrowRight, Phone, Check } from "lucide-react";
+
+export default function Option5() {
+  return (
+    <div className="font-sans bg-white text-gray-900">
+      
+      {/* 1. HIGH CONTRAST HEADER */}
+      <header className="bg-gray-900 text-white sticky top-0 z-50 shadow-xl">
+        <div className="container mx-auto px-6 h-20 flex justify-between items-center">
+            <a href="#top" className="flex items-center gap-3">
+                <img src={apsLogo} alt="APS" className="h-10" />
+            </a>
+            
+            {/* Simple, Bold Nav */}
+            <nav className="hidden md:flex gap-8 text-sm font-bold tracking-widest uppercase">
+                {navItems.map(item => (
+                    <a key={item.name} href={item.href} className="hover:text-aps-red transition-colors">
+                        {item.name}
+                    </a>
+                ))}
+            </nav>
+
+            <a href="#contact" className="bg-white text-black px-6 py-2 rounded-full font-bold text-sm hover:bg-gray-200 transition">
+                Get a Quote
+            </a>
+        </div>
+      </header>
+
+      {/* 2. SPLIT HERO SECTION */}
+      <section id="top" className="relative bg-gray-100 overflow-hidden">
+        <div className="container mx-auto px-6">
+            <div className="flex flex-col lg:flex-row items-center min-h-[600px]">
+                {/* Left Text */}
+                <div className="lg:w-1/2 py-16 z-10">
+                    <div className="inline-block bg-aps-red text-white px-3 py-1 text-xs font-bold uppercase tracking-wider mb-6 rounded-sm">
+                        Since {companyInfo.founded}
+                    </div>
+                    <h1 className="text-5xl lg:text-7xl font-extrabold text-gray-900 mb-6 leading-tight">
+                        Powering <br/> 
+                        <span className="text-aps-blue">Critical Infrastructure.</span>
+                    </h1>
+                    <p className="text-xl text-gray-600 mb-8 max-w-lg leading-relaxed">
+                        {companyInfo.tagline}. We handle the entire lifecycle of your DC power systems—from installation to EPA-compliant disposal.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4">
+                        <a href="#products" className="px-8 py-4 bg-aps-blue text-white font-bold rounded shadow-lg hover:bg-blue-900 transition flex items-center justify-center gap-2">
+                            Explore Products <ArrowRight size={18} />
+                        </a>
+                        <a href={`tel:${companyInfo.phone}`} className="px-8 py-4 bg-white text-aps-blue border-2 border-aps-blue font-bold rounded hover:bg-blue-50 transition flex items-center justify-center gap-2">
+                            <Phone size={18} /> {companyInfo.phone}
+                        </a>
+                    </div>
+                </div>
+                
+                {/* Right Image (Bleed Edge) */}
+                <div className="lg:w-1/2 h-[400px] lg:h-[700px] w-full relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-gray-100 to-transparent z-10 lg:w-20"></div>
+                    <img 
+                        src="/assets/homepage_hero.avif" 
+                        alt="Facility" 
+                        className="w-full h-full object-cover rounded-tl-[100px] shadow-2xl"
+                    />
+                </div>
+            </div>
+        </div>
+      </section>
+
+      {/* 3. PARTNERS LOGO STRIP (Clean) */}
+      <section id="partners" className="py-12 border-b border-gray-200">
+        <div className="container mx-auto px-6">
+            <p className="text-center text-gray-400 font-bold uppercase tracking-widest text-xs mb-8">Trusted by Industry Leaders</p>
+            <div className="flex flex-wrap justify-center gap-12 lg:gap-20 grayscale opacity-60">
+                {partners.map((p, i) => (
+                    <img key={i} src={p.logo} alt={p.name} className="h-10 object-contain hover:grayscale-0 transition-all" />
+                ))}
+            </div>
+        </div>
+      </section>
+
+      {/* 4. "Z-PATTERN" SERVICE FLOW */}
+      <section id="services" className="py-20">
+        <div className="container mx-auto px-6">
+            <div className="text-center max-w-3xl mx-auto mb-20">
+                <h2 className="text-4xl font-bold text-gray-900 mb-4">Complete Lifecycle Support</h2>
+                <p className="text-gray-600 text-lg">We don't just ship boxes. We are your boots-on-the-ground partner for every stage of your power plant's life.</p>
+            </div>
+
+            {/* Service 1: Installation (Image Right) */}
+            <div className="flex flex-col lg:flex-row items-center gap-12 mb-24">
+                <div className="lg:w-1/2 order-2 lg:order-1">
+                    <div className="bg-blue-50 p-8 rounded-2xl border-l-4 border-aps-blue">
+                        <WrenchIcon className="w-12 h-12 text-aps-blue mb-6" />
+                        <h3 className="text-3xl font-bold text-gray-900 mb-4">Installation & EF&I</h3>
+                        <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Our teams specialize in Central Office, Cellular, and Data Center environments. We handle grounding, ironwork, cabling, and full power plant commissioning.
+                        </p>
+                        <ul className="space-y-2 mb-8">
+                            <li className="flex items-center gap-3"><Check className="text-green-500" /> Multi-site scheduling</li>
+                            <li className="flex items-center gap-3"><Check className="text-green-500" /> Remote site logistics</li>
+                            <li className="flex items-center gap-3"><Check className="text-green-500" /> DC power plants & Batteries</li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="lg:w-1/2 order-1 lg:order-2">
+                    <img src="/assets/40181a_faa5d04f181b4812b04963a4670024b5~mv2.jpg" className="rounded-xl shadow-xl w-full object-cover h-[400px]" alt="Installation" />
+                </div>
+            </div>
+
+            {/* Service 2: Maintenance (Image Left) */}
+            <div className="flex flex-col lg:flex-row items-center gap-12 mb-24">
+                <div className="lg:w-1/2">
+                    <img src="/assets/897bc8aa394edab959e2a18f5c83f36a.jpg" className="rounded-xl shadow-xl w-full object-cover h-[400px]" alt="Maintenance" />
+                </div>
+                <div className="lg:w-1/2">
+                    <div className="bg-red-50 p-8 rounded-2xl border-l-4 border-aps-red">
+                        <ActivityIcon className="w-12 h-12 text-aps-red mb-6" />
+                        <h3 className="text-3xl font-bold text-gray-900 mb-4">Testing & Maintenance</h3>
+                        <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                            Prevent failure before it happens. We offer Basic, Extended, and Select preventative maintenance programs compliant with IEEE standards.
+                        </p>
+                        <ul className="space-y-2 mb-8">
+                            <li className="flex items-center gap-3"><Check className="text-aps-red" /> IEEE Capacity Testing</li>
+                            <li className="flex items-center gap-3"><Check className="text-aps-red" /> Internal Resistance Testing</li>
+                            <li className="flex items-center gap-3"><Check className="text-aps-red" /> Cell-level monitoring</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      {/* 5. PRODUCT SHOWCASE (Horizontal Scroll) */}
+      <section id="products" className="py-20 bg-gray-900 text-white overflow-hidden">
+        <div className="container mx-auto px-6 mb-12 flex justify-between items-end">
+            <div>
+                <h2 className="text-4xl font-bold mb-2">Our Products</h2>
+                <div className="h-1 w-20 bg-aps-red"></div>
+            </div>
+            <a href="#" className="text-gray-400 hover:text-white flex items-center gap-2">View Full Catalog <ArrowRight size={16}/></a>
+        </div>
+        
+        {/* Scroll Container */}
+        <div className="flex gap-6 overflow-x-auto pb-8 px-6 snap-x">
+            {products.map((prod, idx) => (
+                <div key={idx} className="min-w-[300px] md:min-w-[400px] bg-gray-800 rounded-xl overflow-hidden snap-center hover:ring-2 ring-aps-red transition">
+                    <div className="h-48 bg-white relative">
+                        <img src={prod.image} className="w-full h-full object-cover" alt={prod.title} />
+                    </div>
+                    <div className="p-6">
+                        <h3 className="text-xl font-bold mb-2 flex items-center gap-2">
+                            <prod.icon className="text-aps-red" size={20} /> {prod.title}
+                        </h3>
+                        <p className="text-gray-400 text-sm">{prod.desc}</p>
+                    </div>
+                </div>
+            ))}
+        </div>
+      </section>
+
+      <LinkedInFeed className="bg-gray-50" />
+
+      {/* 6. FOOTER (Simple) */}
+      <footer id="contact" className="bg-white border-t border-gray-200 py-12">
+        <div className="container mx-auto px-6 text-center">
+            <h2 className="text-2xl font-bold text-aps-navy mb-6">Ready to get started?</h2>
+            <p className="text-gray-600 mb-8">{companyInfo.address} • {companyInfo.cityStateZip}</p>
+            <div className="flex justify-center gap-4">
+                <a href={`tel:${companyInfo.phone}`} className="bg-aps-red text-white px-8 py-3 rounded font-bold hover:bg-red-700 transition">
+                    Call {companyInfo.phone}
+                </a>
+                <a href={`mailto:${companyInfo.email}`} className="border border-gray-300 text-gray-700 px-8 py-3 rounded font-bold hover:bg-gray-50 transition">
+                    Email Sales
+                </a>
+            </div>
+            <p className="text-gray-400 text-sm mt-12">© 2026 {companyInfo.name}. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+// Icons for this specific page
+function WrenchIcon(props: any) {
+    return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+}
+function ActivityIcon(props: any) {
+    return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+}
+
+```
+
+### **2. Update Home to reflect the change (`client/src/pages/Home.tsx`)**
+
+*Action:* Rename "Option 5" in the menu so leadership knows what it is.
+
+*Find the "Option 5" block (around line 75) and replace it with this:*
+
+```tsx
+            {/* Option 5 - NEW */}
+            <div className="bg-white rounded-xl shadow-lg border-t-4 border-aps-blue overflow-hidden hover:-translate-y-1 transition-transform">
+                <div className="p-8">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Option 5</h3>
+                    <div className="text-xs font-bold text-aps-blue uppercase tracking-widest mb-4">Modern Split-Stream</div>
+                    <p className="text-gray-600 text-sm mb-6">
+                        A storytelling layout. Uses alternating split-screen sections (Image/Text) to guide the user through the "Install -> Maintain -> Dispose" lifecycle. 
+                    </p>
+                    <Link href="/option5">
+                        <a className="block w-full text-center bg-gray-900 text-white py-3 rounded font-bold hover:bg-gray-700 transition-colors">Launch Prototype</a>
+                    </Link>
+                </div>
+                <div className="bg-gray-100 px-8 py-4 text-xs text-gray-500">
+                    <strong>Best for:</strong> Marketing & Narrative
+                </div>
+            </div>
+
+```
+
+### **3. Review**
+
+Now, when you show this to leadership:
+
+* **Option 1:** The "Safe Bet" (Grid/Corporate).
+* **Option 5:** The "Modern Narrative" (Flow/Visuals).
+
+These two will likely be the finalists. Option 5 now looks like a high-end SaaS or Tech website rather than a wiki.
