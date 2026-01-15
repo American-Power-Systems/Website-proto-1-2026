@@ -1,0 +1,880 @@
+I have updated the code to "build out" the full website experience for **Option 1**.
+
+This transforms the prototype from a "single scrolling page" into a **multi-page application** with dedicated, data-rich pages for **Products**, **Services**, and **Locations**.
+
+### **1. Update Data (`client/src/data/aps.ts`)**
+
+*Action:* Switches navigation back to real pages (`/products` instead of `#products`) and includes the **complete list of 12 locations** with specific sales contacts.
+
+```typescript
+import { 
+  Wrench, ClipboardList, Activity, Trash2, 
+  Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass 
+} from "lucide-react";
+
+export const companyInfo = {
+  name: "American Power Systems",
+  founded: "1994",
+  phone: "(800) 395-0693",
+  email: "info@ampowersys.com",
+  address: "1851 Central Place South, Suite 206",
+  cityStateZip: "Kent, WA 98030",
+  tagline: "Complete DC Power Solutions",
+  linkedinUrl: "https://www.linkedin.com/company/american-power-systems-llc",
+  lineCardUrl: "/assets/aps-line-card.pdf" 
+};
+
+// UPDATED: Navigation now points to REAL PAGES for a "built out" experience
+export const navItems = [
+  { name: "Home", href: "/", id: "home" },
+  { name: "Products", href: "/products", id: "products" },
+  { name: "Services", href: "/services", id: "services" },
+  { name: "Locations", href: "/locations", id: "locations" },
+  { name: "Partners", href: "/#partners", id: "partners" }, // Keep partners on homepage
+  { name: "Contact", href: "#contact", id: "contact" },
+];
+
+export const products = [
+  { 
+    title: "DC Power Plants", 
+    desc: "Complete turnkey DC power plants, rectifiers, and distribution panels for telecom & utility.",
+    details: "We provide solutions from industry leaders with necessary rectifiers, chargers, converters, and distribution.",
+    image: "/assets/cd_cat_header.jpg", 
+    icon: Zap
+  },
+  { 
+    title: "Batteries (VRLA & Flooded)", 
+    desc: "Premium reserve power solutions including VRLA, NiCad, and Lithium-ion technologies.",
+    details: "Authorized distributor for MK Battery, East Penn, and other top-tier manufacturers.",
+    image: "/assets/897bc8aa394edab959e2a18f5c83f36a.jpg",
+    icon: Battery
+  },
+  { 
+    title: "UPS & Inverters", 
+    desc: "Single Phase and Three Phase UPS systems and inverters for critical AC power backup.",
+    details: "Protect your critical loads with reliable AC power solutions.",
+    image: "/assets/generated_images/industrial_power_systems_factory_floor.png",
+    icon: Server
+  },
+  { 
+    title: "Racking & Containment", 
+    desc: "Seismic-rated battery racking, spill containment systems, and safety compliance gear.",
+    details: "Includes over-current protection, bus/cable components, and certified spill containment.",
+    image: "/assets/40181a_faa5d04f181b4812b04963a4670024b5~mv2.jpg",
+    icon: ShieldCheck
+  }
+];
+
+export const services = [
+  {
+    title: "Installation & Removal",
+    desc: "Specializing in Central Office, Cellular, and Data Centers. We handle batteries, grounding, cabling, ironwork, and bussing.",
+    icon: Wrench,
+    details: ["Power Plants & Distribution", "Batteries & Grounding", "Ironwork & Bussing"]
+  },
+  {
+    title: "Battery Maintenance",
+    desc: "Comprehensive preventative maintenance programs: Basic, Extended, & Select options available.",
+    icon: ClipboardList,
+    details: ["Preventative Programs", "IEEE Standards", "VRLA & Flooded"]
+  },
+  {
+    title: "Testing & Monitoring",
+    desc: "IEEE battery capacity testing, internal resistance testing (VRLA), and remote site monitoring down to individual cells.",
+    icon: Activity,
+    details: ["Capacity Testing", "Resistance Testing", "Cell Tracking"]
+  },
+  {
+    title: "Project Management",
+    desc: "Full installation management and multi-site scheduling, including complex remote site logistics.",
+    icon: ClipboardList,
+    details: ["Installation Management", "Multi-site Scheduling", "Remote Sites"]
+  },
+  {
+    title: "Engineering",
+    desc: "Custom power design, equipment layouts, material selection, and logistics planning.",
+    icon: DraftingCompass,
+    details: ["Design & Layouts", "Material Selection", "Logistics"]
+  },
+  {
+    title: "Disposal & Logistics",
+    desc: "Removal and disposal of lead acid batteries with certificates. Labor, material procurement, and site delivery.",
+    icon: Truck,
+    details: ["EPA Compliant Disposal", "Material Procurement", "Site Delivery"]
+  }
+];
+
+export const partners = [
+  { name: "East Penn Manufacturing", logo: "/assets/EPM-Logo_RGB.jpg" },
+  { name: "C&D Technologies", logo: "/assets/cd-logo.png" }, // Priority Supplier
+  { name: "MK Battery", logo: "/assets/MK Battery.png" },
+  { name: "Enviroguard", logo: "/assets/Enviroguard.png" },
+  { name: "Hindle Power", logo: "/assets/Hindle.png" },
+  { name: "C&C Power", logo: "/assets/cc-power-logo.png" }
+];
+
+// FULL LOCATION LIST
+export const locations = [
+  {
+    name: "Kent, WA",
+    type: "Corporate Office",
+    address: "1851 Central Place South, Suite 206",
+    city: "Kent, WA 98030",
+    contacts: [{ label: "Office", phone: "1-800-395-0693" }],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.5678!2d-122.2!3d47.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905f0!2sAmerican+Power+Systems!5e0!3m2!1sen!2sus!4v1"
+  },
+  {
+    name: "Kent, WA",
+    type: "Warehouse",
+    address: "26507 79th Ave South",
+    city: "Kent, WA 98032",
+    contacts: [
+        { label: "Sales | Jon Wagoner", phone: "253-216-8288" },
+        { label: "Sales | Joshua Sharp", phone: "253-406-9037" }
+    ],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.393278637734!2d-122.2465996843699!3d47.41459997917244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905ecc3a223f6b%3A0x6b2b733777777777!2s1851%20Central%20Pl%20S%20%23206%2C%20Kent%2C%20WA%2098030!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+  },
+  {
+    name: "Anchorage, AK",
+    type: "Warehouse",
+    address: "2410 Azurite, Suite B",
+    city: "Anchorage, AK 99507",
+    contacts: [{ label: "Sales | Cody Raymond", phone: "907-791-0288" }],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95460.29749069153!2d-90.6367356653282!3d41.54287532392476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e234c2e6f4277d%3A0x629f6266075677!2sDavenport%2C%20IA!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+  },
+  {
+    name: "Phoenix, AZ",
+    type: "Warehouse",
+    address: "5237 S. 28th Place",
+    city: "Phoenix, AZ 85040",
+    contacts: [
+        { label: "Sales | Matt Brubaker", phone: "602-361-3220" },
+        { label: "Office", phone: "602-437-2150" }
+    ],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.353396860388!2d-122.2356!3d47.382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905bfdb7e62563%3A0x1!2s1851%20Central%20Pl%20S%20%23206%2C%20Kent%2C%20WA%2098030!5e0!3m2!1sen!2sus!4v1620000000000"
+  },
+  {
+    name: "Rialto, CA",
+    type: "Warehouse",
+    address: "2595 W Renaissance Parkway #3",
+    city: "Rialto, CA 92376",
+    contacts: [{ label: "Sales | Keana Houston", phone: "714-725-2091" }],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95683.50742586324!2d-90.6366!3d41.543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e234c2e6f7b901%3A0x!2sDavenport%2C%20IA!5e0!3m2!1sen!2sus!4v1620000000000"
+  },
+  {
+    name: "Stockton, CA",
+    type: "Warehouse",
+    address: "1627 Industrial Drive Suite C",
+    city: "Stockton, CA 95206",
+    contacts: [
+        { label: "Office", phone: "209-467-8999" },
+        { label: "Sales | Tom Treacy", phone: "661-212-6269" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=1851+Central+Place+South+Kent+WA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Centennial, CO",
+    type: "Warehouse | Newly Opened",
+    address: "6951 S. Blackhawk St, Ste 200",
+    city: "Centennial, CO 80112-4795",
+    contacts: [
+        { label: "Office", phone: "303-371-6777" },
+        { label: "Sales | Nick Knebel", phone: "720-415-1531" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=Davenport+IA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Indianapolis, IN",
+    type: "Warehouse",
+    address: "8440 E 33rd Street",
+    city: "Indianapolis, IN 46226",
+    contacts: [
+        { label: "Sales | Jackie Mages", phone: "262-282-3678" },
+        { label: "Office", phone: "317-550-0568" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=Davenport+IA&t=&z=13&ie=UTF8&iwloc=&output"
+  },
+  {
+    name: "Albuquerque, NM",
+    type: "Warehouse",
+    address: "3500 Richmond Dr, NE, Suite B",
+    city: "Albuquerque, NM 87107",
+    contacts: [
+        { label: "Sales | Kevin Lizarraga", phone: "928-203-6202" },
+        { label: "Office", phone: "505-345-0523" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=1851+Central+Place+South,+Kent,+WA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Garland, TX",
+    type: "Warehouse",
+    address: "1011 South Jupiter Road",
+    city: "Garland, TX 75042",
+    contacts: [
+        { label: "Sales | Josh Hall", phone: "469-263-5484" },
+        { label: "Office", phone: "1-877-995-4277" },
+        { label: "Houston Sales | Chris Ferguson", phone: "979-398-9176" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=Davenport,+IA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Kaysville, UT",
+    type: "Warehouse",
+    address: "1205 Flint Meadow Drive",
+    city: "Kaysville, UT 84037",
+    contacts: [
+        { label: "Sales | Mark Nelson", phone: "303-336-8147" },
+        { label: "Office", phone: "1-801-444-0207" }
+    ],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2701.566373733735!2d-122.2448966843815!3d47.38222997917046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905bfdb6444445%3A0x6665792d64444445!2s1851%20Central%20Pl%20S%20%23206%2C%20Kent%2C%20WA%2098030!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+  },
+  {
+    name: "Mequon, WI",
+    type: "Warehouse",
+    address: "6100 West Executive Drive, Ste D",
+    city: "Mequon, WI 53092",
+    contacts: [{ label: "Sales | Jackie Mages", phone: "262-282-3678" }],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95372.56942730303!2d-90.6476337775962!3d41.54305364444444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e234c644444445%3A0x6665792d64444445!2sDavenport%2C%20IA!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+  }
+];
+
+```
+
+### **2. Build Out Products Page (`client/src/pages/Products.tsx`)**
+
+*Action:* Completely rewritten to use the **Option 1 Style** (Blue/Red theme) and highlight East Penn + C&D as primary partners at the top.
+
+```tsx
+import { navItems, products, partners, companyInfo } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png";
+import { Link } from "wouter";
+import { ArrowRight, Phone, Mail, Menu, Zap, Battery } from "lucide-react";
+import { useState } from "react";
+import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
+
+export default function Products() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="font-sans min-h-screen bg-gray-50 flex flex-col">
+      {/* 1. HEADER (Option 1 Style) */}
+      <header className="sticky top-0 z-50 bg-aps-blue shadow-lg border-b-4 border-aps-red">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-between items-center h-20">
+            <Link href="/">
+                <a className="flex items-center gap-2 cursor-pointer">
+                    <img src={apsLogo} alt={companyInfo.name} className="h-12 w-auto" />
+                </a>
+            </Link>
+            <nav className="hidden md:flex gap-8">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <a className={`font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider ${item.name === 'Products' ? 'text-aps-red' : 'text-white'}`}>
+                    {item.name}
+                  </a>
+                </Link>
+              ))}
+            </nav>
+            <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <Menu />
+            </button>
+          </div>
+        </div>
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-aps-dark border-t border-white/10 p-4">
+            <nav className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}><a className="text-white font-bold">{item.name}</a></Link>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+
+      {/* 2. HERO: Products */}
+      <section className="bg-aps-navy text-white py-16">
+        <div className="container mx-auto px-6 text-center">
+            <h1 className="text-5xl font-heading font-bold mb-4">Product Solutions</h1>
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+                We supply DC and AC power system solutions from the leaders in the industry.
+            </p>
+        </div>
+      </section>
+
+      {/* 3. PRIMARY PARTNERS HIGHLIGHT */}
+      <section className="bg-white py-12 border-b border-gray-200">
+        <div className="container mx-auto px-6">
+            <p className="text-center text-gray-500 text-sm font-bold uppercase tracking-widest mb-8">Authorized Distributor For</p>
+            <div className="flex flex-wrap justify-center gap-12 items-center">
+                {/* Highlight East Penn & C&D specifically */}
+                <img src="/assets/EPM-Logo_RGB.jpg" className="h-20 object-contain hover:scale-105 transition-transform" alt="East Penn" />
+                <div className="w-px h-12 bg-gray-300 hidden md:block"></div>
+                <img src="/assets/cd-logo.png" className="h-16 object-contain hover:scale-105 transition-transform" alt="C&D Technologies" />
+                <div className="w-px h-12 bg-gray-300 hidden md:block"></div>
+                <img src="/assets/MK Battery.png" className="h-14 object-contain hover:scale-105 transition-transform" alt="MK Battery" />
+            </div>
+        </div>
+      </section>
+
+      {/* 4. PRODUCT GRID */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-10">
+                {products.map((prod, idx) => (
+                    <div key={idx} className="bg-white rounded-xl shadow-md overflow-hidden border border-gray-100 hover:shadow-xl transition-all group">
+                        <div className="h-64 overflow-hidden relative">
+                            <div className="absolute inset-0 bg-aps-navy/20 group-hover:bg-transparent transition-colors z-10"></div>
+                            <img src={prod.image} alt={prod.title} className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" />
+                            <div className="absolute bottom-4 left-4 z-20">
+                                <span className="bg-aps-red text-white text-xs font-bold px-3 py-1 rounded uppercase">
+                                    {idx === 0 ? "Featured" : "Available"}
+                                </span>
+                            </div>
+                        </div>
+                        <div className="p-8">
+                            <div className="flex items-center gap-3 mb-4">
+                                <div className="p-2 bg-blue-50 rounded-lg text-aps-blue">
+                                    <prod.icon className="w-6 h-6" />
+                                </div>
+                                <h3 className="text-2xl font-bold text-aps-navy">{prod.title}</h3>
+                            </div>
+                            <p className="text-gray-600 font-medium mb-4">{prod.desc}</p>
+                            <p className="text-gray-500 text-sm mb-8 leading-relaxed">{prod.details}</p>
+                            
+                            <a href="#contact" className="inline-flex items-center text-aps-red font-bold uppercase text-sm tracking-wider hover:gap-2 transition-all">
+                                Request Quote <ArrowRight className="w-4 h-4 ml-1" />
+                            </a>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+      </section>
+
+      {/* 5. CTA */}
+      <section className="bg-gray-900 py-16 text-white text-center mt-auto">
+        <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-6">Need Equipment Pricing?</h2>
+            <p className="mb-8 text-gray-400">Our sales team is ready to help with specs, sizing, and quotes.</p>
+            <div className="flex justify-center gap-4">
+                <a href={`tel:${companyInfo.phone}`} className="inline-flex items-center gap-2 bg-aps-red text-white px-8 py-3 font-bold rounded shadow-lg hover:bg-red-700 transition">
+                    <Phone size={20} /> Call Sales
+                </a>
+                <a href={`mailto:${companyInfo.email}`} className="inline-flex items-center gap-2 bg-white/10 text-white px-8 py-3 font-bold rounded hover:bg-white/20 transition">
+                    <Mail size={20} /> Email Us
+                </a>
+            </div>
+        </div>
+      </section>
+      
+      {/* Footer Reuse */}
+      <footer className="bg-black text-gray-500 py-8 text-center text-xs border-t border-gray-800">
+        <p>© 2026 {companyInfo.name}. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
+
+```
+
+### **3. Build Out Services Page (`client/src/pages/Services.tsx`)**
+
+*Action:* Built out with the Option 1 header and a detailed "Feature List" layout.
+
+```tsx
+import { navItems, services, companyInfo } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png";
+import { Link } from "wouter";
+import { CheckCircle2, Phone, Menu, Mail } from "lucide-react";
+import { useState } from "react";
+import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
+
+export default function Services() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="font-sans min-h-screen bg-white flex flex-col">
+       {/* 1. HEADER (Option 1 Style) */}
+       <header className="sticky top-0 z-50 bg-aps-blue shadow-lg border-b-4 border-aps-red">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-between items-center h-20">
+            <Link href="/">
+                <a className="flex items-center gap-2 cursor-pointer">
+                    <img src={apsLogo} alt={companyInfo.name} className="h-12 w-auto" />
+                </a>
+            </Link>
+            <nav className="hidden md:flex gap-8">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <a className={`font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider ${item.name === 'Services' ? 'text-aps-red' : 'text-white'}`}>
+                    {item.name}
+                  </a>
+                </Link>
+              ))}
+            </nav>
+            <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <Menu />
+            </button>
+          </div>
+        </div>
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-aps-dark border-t border-white/10 p-4">
+            <nav className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}><a className="text-white font-bold">{item.name}</a></Link>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+
+      {/* 2. HERO: Services */}
+      <section className="bg-aps-navy text-white py-20 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-white/5 skew-x-12 translate-x-20"></div>
+        <div className="container mx-auto px-6 relative z-10">
+            <div className="inline-block bg-aps-red px-3 py-1 text-xs font-bold uppercase tracking-wider mb-4 rounded">From Start to Finish</div>
+            <h1 className="text-5xl font-bold mb-6">Installation & Maintenance</h1>
+            <p className="text-xl text-gray-300 max-w-2xl">
+                We provide complete DC power solutions—from initial engineering and design to installation, maintenance, and final disposal.
+            </p>
+        </div>
+      </section>
+
+      {/* 3. DETAILED LIST */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+            <div className="grid gap-16">
+                {services.map((service, idx) => {
+                    const Icon = service.icon;
+                    return (
+                        <div key={idx} className="flex flex-col md:flex-row gap-8 border-b border-gray-100 pb-12 last:border-0 group">
+                            {/* Icon Column */}
+                            <div className="md:w-1/4">
+                                <div className="w-20 h-20 bg-gray-100 rounded-2xl flex items-center justify-center text-aps-navy mb-6 group-hover:bg-aps-navy group-hover:text-white transition-colors duration-300">
+                                    <Icon size={40} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-aps-navy">{service.title}</h3>
+                            </div>
+                            
+                            {/* Description Column */}
+                            <div className="md:w-3/4">
+                                <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+                                    {service.desc}
+                                </p>
+                                
+                                <div className="bg-blue-50 p-8 rounded-xl border-l-4 border-aps-blue">
+                                    <h4 className="font-bold text-sm uppercase text-aps-blue mb-4 tracking-wider flex items-center gap-2">
+                                        <Activity size={16}/> Capabilities
+                                    </h4>
+                                    <div className="grid sm:grid-cols-2 gap-4">
+                                        {service.details?.map((detail, dIdx) => (
+                                            <div key={dIdx} className="flex items-center gap-3">
+                                                <CheckCircle2 className="text-aps-red w-5 h-5 flex-shrink-0" />
+                                                <span className="text-gray-800 font-medium">{detail}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
+      </section>
+
+      <LinkedInFeed className="bg-gray-50" />
+
+      {/* 4. FOOTER CTA */}
+      <section className="bg-aps-red py-16 text-white text-center mt-auto">
+        <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-6">Need a Site Survey?</h2>
+            <p className="text-xl mb-8 opacity-90">Our project managers can schedule a visit to your Central Office or remote site.</p>
+            <a href={`tel:${companyInfo.phone}`} className="inline-flex items-center gap-2 bg-white text-aps-red px-8 py-4 font-bold rounded shadow-lg hover:bg-gray-100 transition">
+                <Phone size={20} /> Call {companyInfo.phone}
+            </a>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+```
+
+### **4. Build Out Locations Page (`client/src/pages/Locations.tsx`)**
+
+*Action:* Built out with the Option 1 header and a robust 2-column grid for the large list.
+
+```tsx
+import { navItems, locations, companyInfo } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png";
+import { Link } from "wouter";
+import { MapPin, Phone, User, Building2, Menu } from "lucide-react";
+import { useState } from "react";
+
+export default function Locations() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="font-sans min-h-screen bg-gray-100 flex flex-col">
+       {/* 1. HEADER (Option 1 Style) */}
+       <header className="sticky top-0 z-50 bg-aps-blue shadow-lg border-b-4 border-aps-red">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-between items-center h-20">
+            <Link href="/">
+                <a className="flex items-center gap-2 cursor-pointer">
+                    <img src={apsLogo} alt={companyInfo.name} className="h-12 w-auto" />
+                </a>
+            </Link>
+            <nav className="hidden md:flex gap-8">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <a className={`font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider ${item.name === 'Locations' ? 'text-aps-red' : 'text-white'}`}>
+                    {item.name}
+                  </a>
+                </Link>
+              ))}
+            </nav>
+            <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <Menu />
+            </button>
+          </div>
+        </div>
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-aps-dark border-t border-white/10 p-4">
+            <nav className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}><a className="text-white font-bold">{item.name}</a></Link>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+
+      {/* 2. HERO */}
+      <section className="bg-aps-navy text-white py-16">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-4xl font-bold mb-4">Our Locations</h1>
+          <p className="text-gray-300 max-w-2xl mx-auto">
+            Serving customers nationwide. Find your local warehouse or sales representative below.
+          </p>
+        </div>
+      </section>
+
+      {/* 3. LOCATIONS GRID */}
+      <section className="py-16">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {locations.map((loc, idx) => (
+              <div key={idx} className="bg-white shadow-md rounded-lg overflow-hidden border border-gray-200 flex flex-col md:flex-row h-full">
+                
+                {/* Map Column (Mobile: Top, Desktop: Left) */}
+                <div className="md:w-5/12 bg-gray-200 min-h-[250px] md:min-h-full border-b md:border-b-0 md:border-r border-gray-200 relative">
+                     {/* Overlay for map interaction */}
+                    <div className="absolute top-2 left-2 bg-white/90 px-2 py-1 text-[10px] font-bold text-gray-500 rounded z-10 pointer-events-none">
+                        Interactive Map
+                    </div>
+                    <iframe 
+                        src={loc.mapUrl} 
+                        width="100%" 
+                        height="100%" 
+                        style={{border:0}} 
+                        allowFullScreen 
+                        loading="lazy"
+                        title={`Map of ${loc.name}`}
+                        className="w-full h-full min-h-[250px]"
+                    ></iframe>
+                </div>
+
+                {/* Info Column */}
+                <div className="p-8 md:w-7/12 flex flex-col justify-between">
+                    <div>
+                        <div className="flex justify-between items-start mb-4">
+                            <h2 className="text-2xl font-bold text-aps-navy">{loc.name}</h2>
+                            <span className={`inline-block text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider ${loc.type.includes('Corporate') ? 'bg-aps-red text-white' : 'bg-gray-100 text-gray-600'}`}>
+                                {loc.type}
+                            </span>
+                        </div>
+                        
+                        <div className="mb-8 flex items-start gap-3 text-gray-700">
+                            <MapPin className="text-aps-red shrink-0 w-5 h-5 mt-1" />
+                            <span className="text-sm font-medium">{loc.address}<br/>{loc.city}</span>
+                        </div>
+
+                        {/* Contacts List */}
+                        <div className="space-y-4 border-t border-gray-100 pt-4">
+                            {loc.contacts.map((contact, cIdx) => (
+                                <div key={cIdx} className="flex items-start gap-3 group">
+                                    <div className="mt-1">
+                                        {contact.label.toLowerCase().includes("sales") ? (
+                                            <User className="text-aps-blue w-4 h-4" />
+                                        ) : (
+                                            <Building2 className="text-gray-400 w-4 h-4" />
+                                        )}
+                                    </div>
+                                    <div>
+                                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block mb-0.5">
+                                            {contact.label}
+                                        </span>
+                                        <a href={`tel:${contact.phone}`} className="text-lg text-aps-navy font-bold hover:text-aps-red transition-colors">
+                                            {contact.phone}
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Footer Reuse */}
+      <footer className="bg-black text-gray-500 py-8 text-center text-xs border-t border-gray-800 mt-auto">
+        <p>© 2026 {companyInfo.name}. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
+
+```
+
+### **5. Fix Homepage (`client/src/pages/Option1.tsx`)**
+
+*Action:* Updated the buttons to point to the new pages (`/products`, `/services`) instead of anchors.
+
+```tsx
+import { navItems, products, services, partners, companyInfo } from "@/data/aps";
+import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
+import heroImage from "/assets/homepage_hero.avif"; 
+import apsLogo from "/assets/aps-logo-white.png";
+import { Menu, Phone, Mail, MapPin, ChevronRight, Zap, Wrench } from "lucide-react";
+import { useState } from "react";
+import { Link } from "wouter";
+
+export default function Option1() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="font-sans min-h-screen flex flex-col bg-white">
+      
+      {/* Top Bar */}
+      <div id="top" className="bg-black text-white text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-end gap-4 items-center">
+        <div className="flex gap-4">
+            <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:text-aps-red flex items-center gap-1 transition-colors">
+                <Phone className="w-3 h-3" /> {companyInfo.phone}
+            </a>
+            <span className="hidden md:inline text-gray-600">|</span>
+            <a href={`mailto:${companyInfo.email}`} className="hover:text-aps-red flex items-center gap-1 transition-colors">
+                <Mail className="w-3 h-3" /> {companyInfo.email}
+            </a>
+        </div>
+        <div className="hidden md:flex gap-4 border-l border-gray-700 pl-4">
+            <a href="#" className="hover:text-gray-300 font-bold">CAREERS</a>
+            <a href="#" className="hover:text-gray-300 font-bold">APS PORTAL</a>
+        </div>
+      </div>
+
+      {/* Main Header */}
+      <header className="sticky top-0 z-50 bg-aps-blue shadow-lg border-b-4 border-aps-red">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-between items-center h-20">
+            <Link href="/">
+                <a className="flex items-center gap-2 cursor-pointer">
+                    <img src={apsLogo} alt={companyInfo.name} className="h-12 w-auto" />
+                </a>
+            </Link>
+
+            {/* Desktop Nav */}
+            <nav className="hidden md:flex gap-8">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <a className="text-white font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider">
+                    {item.name}
+                  </a>
+                </Link>
+              ))}
+            </nav>
+
+            {/* Mobile Toggle */}
+            <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <Menu />
+            </button>
+          </div>
+        </div>
+        
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-aps-dark border-t border-white/10 p-4">
+            <nav className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <a className="text-white font-bold hover:text-aps-red text-lg">{item.name}</a>
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+
+      {/* Hero */}
+      <section className="relative h-[650px] w-full overflow-hidden group">
+        <div className="absolute inset-0 bg-black/40 z-10"></div>
+        <img 
+          src={heroImage} 
+          alt="APS Facility" 
+          className="w-full h-full object-cover transition-transform duration-[20s] ease-linear group-hover:scale-105 motion-reduce:transition-none motion-reduce:transform-none" 
+        />
+        <div className="absolute inset-0 z-20 flex items-center">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl text-white">
+              <div className="inline-block bg-aps-red text-white text-xs font-bold px-3 py-1 mb-6 uppercase tracking-[0.2em]">
+                Since {companyInfo.founded}
+              </div>
+              <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-lg">
+                DC POWER <br/>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">INSTALLATION SERVICES</span>
+              </h1>
+              <p className="text-xl md:text-2xl mb-10 text-gray-100 font-light max-w-2xl leading-relaxed drop-shadow-md">
+                {companyInfo.tagline}. From VRLA batteries to complete DC power plants. We install, maintain, and test critical infrastructure.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/services">
+                    <a className="bg-aps-red hover:bg-red-700 text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
+                        View Services
+                    </a>
+                </Link>
+                <Link href="/products">
+                    <a className="border-2 border-white hover:bg-white hover:text-aps-blue text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
+                        Our Products
+                    </a>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Partners Ticker */}
+      <section className="bg-gray-100 border-b border-gray-200 py-10 overflow-hidden">
+        <div className="container mx-auto px-6">
+            <p className="text-center text-gray-400 text-xs font-bold uppercase tracking-widest mb-8">Trusted Suppliers & Partners</p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+                {partners.map((partner, idx) => (
+                    <div key={idx} className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
+                        <img 
+                            src={partner.logo} 
+                            alt={partner.name} 
+                            className="max-h-full max-w-full object-contain mix-blend-multiply" 
+                        />
+                    </div>
+                ))}
+            </div>
+        </div>
+      </section>
+
+      {/* Main Offering Split */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl md:text-4xl font-bold text-aps-navy uppercase tracking-wide">Complete Power Solutions</h2>
+                <div className="w-20 h-1 bg-aps-red mx-auto mt-4"></div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12">
+                {/* PRODUCTS */}
+                <div className="bg-gray-50 p-10 border-t-4 border-aps-navy hover:shadow-xl transition-all group">
+                    <h3 className="text-2xl font-bold text-aps-navy mb-6 flex items-center gap-3">
+                        <Zap className="text-aps-red" /> DC & AC Power Products
+                    </h3>
+                    <p className="text-gray-600 mb-8">
+                        Providing DC and AC power system solutions from industry leaders. Rectifiers, chargers, UPS, and custom enclosures.
+                    </p>
+                    <ul className="space-y-3 mb-8">
+                        {products.slice(0, 4).map(p => (
+                            <li key={p.title} className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                                <span className="w-1.5 h-1.5 bg-aps-red rounded-full"></span> {p.title}
+                            </li>
+                        ))}
+                    </ul>
+                    <Link href="/products">
+                        <a className="inline-block bg-aps-navy text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-red transition-colors">
+                            View Product Catalog
+                        </a>
+                    </Link>
+                </div>
+
+                {/* SERVICES */}
+                <div className="bg-gray-50 p-10 border-t-4 border-aps-red hover:shadow-xl transition-all group">
+                    <h3 className="text-2xl font-bold text-aps-navy mb-6 flex items-center gap-3">
+                        <Wrench className="text-aps-red" /> Installation Services
+                    </h3>
+                    <p className="text-gray-600 mb-8">
+                        We don't just sell boxes. We provide full EF&I services, project management, and battery disposal for remote and central sites.
+                    </p>
+                    <ul className="space-y-3 mb-8">
+                        {services.slice(0, 4).map(s => (
+                            <li key={s.title} className="flex items-center gap-2 text-sm font-medium text-gray-700">
+                                <span className="w-1.5 h-1.5 bg-aps-red rounded-full"></span> {s.title}
+                            </li>
+                        ))}
+                    </ul>
+                    <Link href="/services">
+                        <a className="inline-block bg-aps-red text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-navy transition-colors">
+                            Explore Services
+                        </a>
+                    </Link>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <LinkedInFeed variant="default" />
+
+      {/* Footer */}
+      <footer id="contact" className="bg-aps-dark text-white pt-24 pb-12 mt-auto border-t-[10px] border-aps-blue">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+            <div className="col-span-1 md:col-span-1">
+              <img src={apsLogo} alt="APS" className="h-12 mb-8 opacity-90" />
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                American Power Systems provides industry-leading DC power solutions for telecommunications, utility, and industrial applications.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Quick Links</h4>
+              <ul className="space-y-4 text-gray-400 text-sm">
+                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Installation</a></Link></li>
+                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Maintenance</a></Link></li>
+                <li><Link href="/products"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Products</a></Link></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Contact Headquarters</h4>
+              <ul className="space-y-4 text-gray-400 text-sm">
+                <li className="flex gap-3 items-start">
+                    <MapPin className="w-5 h-5 text-aps-red shrink-0" />
+                    <span>{companyInfo.address}<br/>{companyInfo.cityStateZip}</span>
+                </li>
+                <li className="flex gap-3 items-center">
+                    <Phone className="w-5 h-5 text-aps-red shrink-0" />
+                    <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:text-white transition">{companyInfo.phone}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+            <p>© 2026 {companyInfo.name}. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+```
