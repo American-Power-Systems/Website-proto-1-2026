@@ -1,112 +1,56 @@
-import { navItems, products } from "@/data/aps";
-import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
+import { navItems, companyInfo, partners } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png";
+import naspoLogo from "/assets/naspo-logo-white.png";
 import { Link } from "wouter";
+import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
 
 export default function Option5() {
   return (
-    <div className="font-sans min-h-screen bg-white text-black selection:bg-aps-red selection:text-white">
+    <div className="font-mono min-h-screen bg-white text-gray-900">
       {/* Minimal Header */}
-      <header className="px-6 py-6 flex justify-between items-baseline border-b-4 border-black">
-        <h1 className="font-heading font-bold text-2xl md:text-4xl tracking-tighter">American Power Systems, LLC</h1>
-        <nav className="hidden md:flex gap-8">
-            {navItems.map((item) => (
-              <a 
-                key={item.name} 
-                href={item.href} 
-                className="text-black font-bold text-sm uppercase hover:text-aps-red transition-colors"
-              >
-                {item.name}
-              </a>
-            ))}
-            <Link href="/" className="text-gray-400 text-sm font-medium hover:text-black">Exit</Link>
+      <header className="border-b-2 border-black p-4 flex justify-between items-center bg-aps-navy text-white">
+        <div className="flex items-center gap-4">
+            <img src={apsLogo} alt="APS" className="h-8" />
+            <span className="text-sm font-bold tracking-widest hidden sm:inline">| DC POWER SPECS</span>
+        </div>
+        <nav className="flex gap-4 text-sm font-bold">
+            <Link href="/products"><a className="hover:underline">INDEX</a></Link>
+            <Link href="/contact"><a className="hover:underline">CONTACT</a></Link>
         </nav>
       </header>
 
-      <main className="px-6">
-        {/* Text Hero - No Image */}
-        <section className="py-24 border-b border-black relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-full md:w-1/2 h-full opacity-10 pointer-events-none">
-             <img src="/assets/homepage_hero.avif" alt="Background" className="w-full h-full object-cover grayscale" />
-          </div>
-          <div className="relative z-10 max-w-5xl">
-            <p className="text-aps-red font-mono font-bold mb-4">EST. 1995 // DC POWER SPECIALISTS</p>
-            <h2 className="text-6xl md:text-8xl font-heading font-bold leading-[0.9] mb-8">
-              RELIABLE POWER.<br/>
-              CRITICAL INFRASTRUCTURE.
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12 border-t border-black pt-8">
-              <div className="col-span-2">
-                <p className="text-2xl font-medium leading-tight">
-                  We engineer and manufacture custom DC power systems for telecommunications, utility, and industrial markets.
-                </p>
-              </div>
-              <div className="flex flex-col justify-end">
-                <a href="#" className="inline-block bg-black text-white px-8 py-4 font-bold text-center hover:bg-aps-red transition-colors">
-                  DOWNLOAD LINE CARD (PDF)
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* List Layout for Products */}
-        <section className="py-16 border-t border-black">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div className="md:col-span-1">
-              <h3 className="font-bold text-xl uppercase">Divisions</h3>
-            </div>
-            <div className="md:col-span-3">
-              <div className="divide-y divide-gray-200">
-                {products.map((prod, idx) => (
-                  <div key={idx} className="py-6 group flex flex-col md:flex-row md:items-center justify-between hover:bg-gray-50 transition-colors -mx-4 px-4 cursor-pointer">
-                    <div>
-                      <h4 className="text-2xl font-bold group-hover:text-aps-red transition-colors">{prod.title}</h4>
-                      <p className="text-gray-500 mt-1">{prod.desc}</p>
-                    </div>
-                    <div className="mt-4 md:mt-0">
-                      <span className="text-2xl opacity-0 group-hover:opacity-100 transition-opacity">&rarr;</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Minimal Social Feed */}
-        <section className="py-16 border-t border-black">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-             <div className="md:col-span-1">
-               <h3 className="font-bold text-xl uppercase">News Feed</h3>
-             </div>
-             <div className="md:col-span-3">
-               <LinkedInFeed className="py-0" variant="minimal" />
-             </div>
-          </div>
-        </section>
-      </main>
-
-      <footer className="bg-black text-white p-6 mt-12">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-8">
-           <div>
-             <span className="font-heading font-bold text-2xl">American Power Systems, LLC</span>
-             <p className="text-gray-500 text-sm mt-2">American Power Systems, LLC &copy; 2026</p>
-             <div className="mt-4 text-sm text-gray-400 font-mono">
-                <p>1851 Central Place South, Suite 206</p>
-                <p>Kent, WA 98030</p>
-                <p>(800) 395-0693</p>
-             </div>
-           </div>
-           <div className="text-right">
-             <p className="text-sm font-mono">POWERING THE FUTURE</p>
-             <a href="mailto:info@ampowersys.com" className="text-aps-red hover:underline block mt-2">info@ampowersys.com</a>
-             
-             <div className="mt-8 flex justify-end">
-               <img src="/assets/naspo-logo-white.png" alt="NASPO" className="h-12" />
-             </div>
-           </div>
+      <main className="max-w-3xl mx-auto p-8">
+        <div className="mb-12 border-l-4 border-aps-red pl-6 py-2">
+            <h1 className="text-4xl font-bold mb-2">American Power Systems</h1>
+            <p className="text-xl text-gray-600">{companyInfo.tagline}</p>
         </div>
-      </footer>
+
+        {/* Real Action Link */}
+        <div className="grid grid-cols-2 gap-4 mb-12">
+            <a href={companyInfo.lineCardUrl} className="bg-gray-100 hover:bg-gray-200 p-4 block border border-gray-300 text-center font-bold">
+                ↓ DOWNLOAD LINE CARD (PDF)
+            </a>
+            <Link href="/products">
+                <a className="bg-black text-white hover:bg-gray-800 p-4 block text-center font-bold">
+                    BROWSE CATALOG &rarr;
+                </a>
+            </Link>
+        </div>
+
+        {/* Trust Signals */}
+        <div className="mb-12">
+            <h3 className="text-xs font-bold uppercase mb-4 border-b border-gray-200 pb-2">Certifications</h3>
+            <div className="flex gap-4 items-center grayscale opacity-80">
+                <img src={naspoLogo} className="h-8 bg-gray-800 p-1" alt="NASPO" />
+                {partners.slice(0,3).map((p, i) => (
+                    <img key={i} src={p.logo} className="h-6" alt={p.name} />
+                ))}
+            </div>
+        </div>
+
+        {/* Minimal Feed */}
+        <LinkedInFeed variant="minimal" />
+      </main>
     </div>
   );
 }
