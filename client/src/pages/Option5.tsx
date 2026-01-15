@@ -26,7 +26,7 @@ export default function Option5() {
         {/* Text Hero - No Image */}
         <section className="py-24 border-b border-black relative overflow-hidden">
           <div className="absolute top-0 right-0 w-full md:w-1/2 h-full opacity-10 pointer-events-none">
-             <img src="/assets/cd_cat_header.jpg" alt="Background" className="w-full h-full object-cover grayscale" />
+             <img src="/assets/homepage_hero.avif" alt="Background" className="w-full h-full object-cover grayscale" />
           </div>
           <div className="relative z-10 max-w-5xl">
             <p className="text-aps-red font-mono font-bold mb-4">EST. 1995 // DC POWER SPECIALISTS</p>

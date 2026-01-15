@@ -3,7 +3,7 @@ import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
 import { Link } from "wouter";
 import { Zap, Activity, Battery, Wrench } from "lucide-react";
 
-const heroImage = "/assets/cd_cat_header.jpg";
+const heroImage = "/assets/homepage_hero.avif";
 
 export default function Option3() {
   const getIcon = (idx: number) => {

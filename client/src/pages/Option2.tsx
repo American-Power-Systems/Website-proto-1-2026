@@ -2,7 +2,7 @@ import { navItems, products } from "@/data/aps";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
 import { Link } from "wouter";
 
-const heroImage = "/assets/cd_cat_header.jpg";
+const heroImage = "/assets/homepage_hero.avif";
 
 export default function Option2() {
   return (

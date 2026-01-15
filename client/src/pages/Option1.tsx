@@ -4,7 +4,7 @@ import { ArrowRight, ChevronRight, Menu } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";
 
-const heroImage = "/assets/cd_cat_header.jpg";
+const heroImage = "/assets/homepage_hero.avif";
 
 export default function Option1() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
