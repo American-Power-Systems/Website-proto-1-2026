@@ -1,36 +1,58 @@
 export const navItems = [
   { name: "Home", href: "/" },
-  { name: "Services", href: "#services" },
   { name: "Products", href: "#products" },
+  { name: "Services", href: "#services" },
   { name: "Partners", href: "#partners" },
-  { name: "About Us", href: "#about" },
+  { name: "About", href: "#about" },
   { name: "Contact", href: "#contact" },
 ];
 
 export const products = [
   { 
     title: "DC Power Systems", 
-    desc: "Complete turnkey DC power plants designed for telecom, utility, and switchgear applications.",
-    icon: "Zap" // We will map this to an image later if needed
+    desc: "Turnkey DC power plants, rectifiers, and distribution panels for telecom & utility.",
+    image: "/assets/products_dc_power.jpg" // Placeholder path - ensure image exists
   },
   { 
-    title: "Motive Power", 
-    desc: "High-performance battery solutions for forklifts and material handling equipment.",
-    icon: "Battery"
+    title: "Batteries (VRLA & Lithium)", 
+    desc: "Premium reserve power solutions including VRLA, NiCad, and Lithium-ion technologies.",
+    image: "/assets/products_batteries.jpg"
   },
   { 
-    title: "Reserve Power", 
-    desc: "Critical backup battery systems for data centers and emergency infrastructure.",
-    icon: "Server"
+    title: "Chargers & UPS", 
+    desc: "Industrial battery chargers and uninterruptible power supplies for critical backup.",
+    image: "/assets/products_chargers.jpg"
   },
   { 
-    title: "Chargers & Accessories", 
-    desc: "Industrial chargers, racking systems, and spill containment solutions.",
-    icon: "Plug"
-  },
+    title: "Racking & Containment", 
+    desc: "Seismic-rated battery racking, spill containment systems, and safety compliance gear.",
+    image: "/assets/products_racking.jpg"
+  }
 ];
 
-// NEW: Real partners based on your uploaded files
+export const services = [
+  {
+    title: "Engineering & Design",
+    desc: "Custom power plant design, load analysis, and detailed CAD drawing packages.",
+    icon: "DraftingCompass"
+  },
+  {
+    title: "EF&I Installation",
+    desc: "Engineer, Furnish, and Install services for Central Offices and Data Centers.",
+    icon: "Wrench"
+  },
+  {
+    title: "Maintenance & Testing",
+    desc: "IEEE capacity testing, preventative maintenance (PM), and battery monitoring.",
+    icon: "Activity"
+  },
+  {
+    title: "Decommissioning",
+    desc: "Safe removal, recycling, and disposal of hazardous battery waste (EPA compliant).",
+    icon: "Trash2"
+  }
+];
+
 export const partners = [
   { name: "East Penn Manufacturing", logo: "/assets/EPM-Logo_RGB.jpg" },
   { name: "MK Battery", logo: "/assets/MK Battery.png" },
