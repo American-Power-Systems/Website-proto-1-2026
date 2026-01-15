@@ -3,9 +3,10 @@ import { companyInfo } from "@/data/aps";
 
 interface LinkedInFeedProps {
   variant?: "default" | "dark" | "minimal";
+  className?: string;
 }
 
-export function LinkedInFeed({ variant = "default" }: LinkedInFeedProps) {
+export function LinkedInFeed({ variant = "default", className = "" }: LinkedInFeedProps) {
   
   useEffect(() => {
     // Only load script if not already present
@@ -21,15 +22,26 @@ export function LinkedInFeed({ variant = "default" }: LinkedInFeedProps) {
   const isDark = variant === "dark";
   const isMinimal = variant === "minimal";
 
-  // Styles based on variant
-  const bgClass = isDark ? "bg-[#0f0f0f] border-t border-gray-800" : "bg-gray-50 border-t border-gray-200";
-  const textClass = isDark ? "text-white" : "text-aps-navy";
-  
+  // Base styles
+  const baseBg = isDark ? "bg-[#0f0f0f] border-t border-gray-800" : "bg-gray-50 border-t border-gray-200";
+  const textColor = isDark ? "text-white" : "text-aps-navy";
+  const subTextColor = isDark ? "text-gray-400" : "text-gray-600";
+  const cardBg = isDark ? "bg-[#1a1a1a]" : "bg-white";
+
+  // If Minimal, return a slim bar
   if (isMinimal) {
       return (
-        <section className={`py-8 ${bgClass}`}>
-            <div className="container mx-auto px-6 flex justify-between items-center">
-                <span className={`font-bold ${textClass}`}>Latest Updates</span>
+        <section className={`py-8 ${baseBg} ${className}`}>
+            <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+                <div className="flex items-center gap-3">
+                    <span className={`font-bold uppercase tracking-wider text-sm ${textColor}`}>Recent Updates</span>
+                    <span className="hidden md:inline w-px h-4 bg-gray-400"></span>
+                    <a href={companyInfo.linkedinUrl} target="_blank" className={`text-xs ${subTextColor} hover:underline`}>
+                        View all posts on LinkedIn &rarr;
+                    </a>
+                </div>
+                
+                {/* Compact Badge */}
                 <div 
                     className="badge-base LI-profile-badge" 
                     data-locale="en_US" 
@@ -48,13 +60,14 @@ export function LinkedInFeed({ variant = "default" }: LinkedInFeedProps) {
       );
   }
 
+  // Default / Dark Layout
   return (
-    <section className={`py-16 ${bgClass}`}>
+    <section className={`py-16 ${baseBg} ${className}`}>
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-end mb-10 gap-4">
             <div>
-                <h2 className={`text-3xl font-bold ${textClass} mb-2`}>Connect with APS</h2>
-                <p className={isDark ? "text-gray-400" : "text-gray-600"}>
+                <h2 className={`text-3xl font-bold ${textColor} mb-2`}>Connect with APS</h2>
+                <p className={subTextColor}>
                     Follow us for recent projects, installation photos, and company news.
                 </p>
             </div>
@@ -62,15 +75,16 @@ export function LinkedInFeed({ variant = "default" }: LinkedInFeedProps) {
                 href={companyInfo.linkedinUrl} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="bg-[#0077b5] text-white px-6 py-2 rounded font-bold text-sm hover:bg-[#005582] transition-colors flex items-center gap-2"
+                className="bg-[#0077b5] text-white px-6 py-2 rounded font-bold text-sm hover:bg-[#005582] transition-colors flex items-center gap-2 shadow-sm"
             >
-                <i className="fab fa-linkedin"></i> View Full Feed
+                {/* Use text/emoji fallback since font-awesome isn't installed */}
+                <span>in</span> View Full Feed
             </a>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
             {/* Primary Profile Badge (Official Widget) */}
-            <div className={`p-4 rounded-lg shadow-sm flex justify-center ${isDark ? "bg-[#1a1a1a]" : "bg-white"}`}>
+            <div className={`p-6 rounded-lg shadow-sm border ${isDark ? "border-gray-800" : "border-gray-200"} flex justify-center items-center ${cardBg}`}>
                 <div 
                     className="badge-base LI-profile-badge" 
                     data-locale="en_US" 
@@ -86,14 +100,17 @@ export function LinkedInFeed({ variant = "default" }: LinkedInFeedProps) {
                 </div>
             </div>
 
-            {/* Fallback / Manual Link Card (Safe if JS fails) */}
-            <div className={`p-8 rounded-lg shadow-sm flex flex-col justify-center items-center text-center ${isDark ? "bg-[#1a1a1a]" : "bg-white"}`}>
-                <h3 className={`text-xl font-bold mb-4 ${textClass}`}>Recent Project Highlights</h3>
-                <p className={`mb-6 ${isDark ? "text-gray-400" : "text-gray-600"}`}>
-                    We frequently post photos from our Central Office and remote site installations.
+            {/* Manual Link Card (Safe fallback) */}
+            <div className={`p-8 rounded-lg shadow-sm border ${isDark ? "border-gray-800" : "border-gray-200"} flex flex-col justify-center items-center text-center ${cardBg}`}>
+                <div className="w-16 h-16 bg-[#0077b5]/10 rounded-full flex items-center justify-center mb-6">
+                     <span className="text-2xl font-bold text-[#0077b5]">in</span>
+                </div>
+                <h3 className={`text-xl font-bold mb-4 ${textColor}`}>Project Gallery</h3>
+                <p className={`mb-8 max-w-sm ${subTextColor}`}>
+                    We frequently post photos from our Central Office, Data Center, and remote site installations.
                 </p>
-                <a href={companyInfo.linkedinUrl + "/posts"} target="_blank" className="text-aps-red font-bold hover:underline">
-                    Browse Project Gallery &rarr;
+                <a href={companyInfo.linkedinUrl + "/posts"} target="_blank" className="text-aps-red font-bold uppercase text-sm tracking-wider hover:underline">
+                    Browse Posts &rarr;
                 </a>
             </div>
         </div>
