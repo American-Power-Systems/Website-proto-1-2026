@@ -25,7 +25,7 @@ export default function Option1() {
         </div>
         <div className="hidden md:flex gap-4 border-l border-gray-700 pl-4">
             <a href="#" className="hover:text-gray-300 font-bold">CAREERS</a>
-            <a href="#" className="hover:text-gray-300 font-bold">APS PORTAL</a>
+            <a href="#" className="hover:text-gray-300 font-bold">PORTAL</a>
         </div>
       </div>
 
@@ -36,7 +36,7 @@ export default function Option1() {
             {/* Logo - Updated to use Image */}
             <Link href="/">
               <a className="flex items-center gap-2 cursor-pointer">
-                <img src={apsLogo} alt="APS Logo" className="h-12 w-auto" />
+                <img src={apsLogo} alt="American Power Systems, LLC Logo" className="h-12 w-auto" />
               </a>
             </Link>
 
@@ -69,6 +69,9 @@ export default function Option1() {
                   {item.name}
                 </a>
               ))}
+              <a href="#contact" className="mt-4 w-full text-center bg-aps-red text-white py-3 font-bold uppercase hover:bg-red-700 transition-colors">
+                 Contact Engineering
+              </a>
             </nav>
           </div>
         )}
@@ -112,13 +115,13 @@ export default function Option1() {
       <section className="bg-gray-100 border-b border-gray-200 py-8 overflow-hidden">
         <div className="container mx-auto px-6">
             <p className="text-center text-gray-400 text-xs font-bold uppercase tracking-widest mb-6">Trusted Partners & Brands</p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80 grayscale hover:grayscale-0 transition-all duration-500">
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-80">
                 {partners.map((partner, idx) => (
                     <img 
                         key={idx} 
                         src={partner.logo} 
                         alt={partner.name} 
-                        className="h-12 md:h-16 w-auto object-contain mix-blend-multiply" 
+                        className="h-12 md:h-16 w-auto object-contain mix-blend-multiply grayscale hover:grayscale-0 transition-all opacity-70 hover:opacity-100" 
                     />
                 ))}
             </div>
@@ -170,9 +173,9 @@ export default function Option1() {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
             <div className="col-span-1 md:col-span-1">
-              <img src={apsLogo} alt="APS" className="h-12 mb-8 opacity-90" />
+              <img src={apsLogo} alt="American Power Systems, LLC" className="h-12 mb-8 opacity-90" />
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
-                American Power Systems provides industry-leading DC power solutions for telecommunications, utility, and industrial applications.
+                American Power Systems, LLC provides industry-leading DC power solutions for telecommunications, utility, and industrial applications.
               </p>
               <div className="flex gap-4">
                   {/* Social Icons Placeholder */}
@@ -207,7 +210,7 @@ export default function Option1() {
           </div>
           
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
-            <p>&copy; 2026 American Power Systems. All rights reserved.</p>
+            <p>&copy; 2026 American Power Systems, LLC. All rights reserved.</p>
             <div className="flex gap-8">
                 <a href="#" className="hover:text-white">Privacy Policy</a>
                 <a href="#" className="hover:text-white">Terms of Service</a>

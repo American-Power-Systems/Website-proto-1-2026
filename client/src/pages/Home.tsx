@@ -44,10 +44,10 @@ export default function Home() {
       <div className="max-w-4xl mx-auto">
         <header className="mb-12 text-center">
           <div className="inline-block px-4 py-1 bg-aps-blue text-white text-xs font-bold uppercase tracking-widest mb-4">
-            Project: APS-Proto-2026
+            Project: American Power Systems Prototype 2026
           </div>
           <h1 className="text-5xl font-heading font-bold text-aps-blue mb-4">
-            American Power Systems
+            American Power Systems, LLC
           </h1>
           <p className="text-xl text-slate-600 font-light">
             5 Design Prototypes for Review

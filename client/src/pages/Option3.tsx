@@ -26,7 +26,7 @@ export default function Option3() {
                <span className="font-heading font-bold text-cyan-400">APS</span>
              </div>
              <span className="font-heading uppercase tracking-widest text-sm text-cyan-400/80">
-               Systems Online
+               American Power Systems, LLC
              </span>
           </div>
 
@@ -136,7 +136,7 @@ export default function Option3() {
       <footer className="border-t border-cyan-900/30 py-12 mt-auto bg-aps-dark/80">
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm mb-8">
              <div>
-                <h4 className="font-heading font-bold text-cyan-400 mb-4">APS SYSTEMS</h4>
+                <h4 className="font-heading font-bold text-cyan-400 mb-4">AMERICAN POWER SYSTEMS, LLC</h4>
                 <p className="text-gray-400">Advanced DC Power Infrastructure</p>
              </div>
              <div>

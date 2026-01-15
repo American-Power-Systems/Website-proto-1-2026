@@ -7,7 +7,7 @@ export default function Option5() {
     <div className="font-sans min-h-screen bg-white text-black selection:bg-aps-red selection:text-white">
       {/* Minimal Header */}
       <header className="px-6 py-6 flex justify-between items-baseline border-b-4 border-black">
-        <h1 className="font-heading font-bold text-4xl tracking-tighter">APS</h1>
+        <h1 className="font-heading font-bold text-2xl md:text-4xl tracking-tighter">American Power Systems, LLC</h1>
         <nav className="hidden md:flex gap-8">
             {navItems.map((item) => (
               <a 
@@ -89,8 +89,8 @@ export default function Option5() {
       <footer className="bg-black text-white p-6 mt-12">
         <div className="flex flex-col md:flex-row justify-between items-end gap-8">
            <div>
-             <span className="font-heading font-bold text-2xl">APS</span>
-             <p className="text-gray-500 text-sm mt-2">American Power Systems &copy; 2026</p>
+             <span className="font-heading font-bold text-2xl">American Power Systems, LLC</span>
+             <p className="text-gray-500 text-sm mt-2">American Power Systems, LLC &copy; 2026</p>
              <div className="mt-4 text-sm text-gray-400 font-mono">
                 <p>1851 Central Place South, Suite 206</p>
                 <p>Kent, WA 98030</p>

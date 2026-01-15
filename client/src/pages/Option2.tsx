@@ -3,6 +3,7 @@ import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
 import { Link } from "wouter";
 
 const heroImage = "/assets/homepage_hero.avif";
+const apsLogo = "/assets/aps-logo-white.png";
 
 export default function Option2() {
   return (
@@ -13,7 +14,7 @@ export default function Option2() {
         <span>|</span>
         <a href="#" className="text-white no-underline hover:text-gray-300">CONTACT US</a>
         <span>|</span>
-        <a href="#" className="text-white no-underline hover:text-gray-300">APS PORTAL</a>
+        <a href="#" className="text-white no-underline hover:text-gray-300">PORTAL</a>
       </div>
 
       {/* Navbar - Bootstrap Style (Standard) */}
@@ -22,8 +23,8 @@ export default function Option2() {
           <div className="flex items-center justify-between h-16">
             <Link href="/">
               <a className="flex items-center gap-2 text-white no-underline hover:no-underline cursor-pointer">
-                <div className="bg-white text-aps-blue font-bold px-2 py-1 font-heading text-xl">APS</div>
-                <span className="font-bold text-lg tracking-tight">American Power Systems</span>
+                <img src="/assets/aps-logo-white.png" alt="American Power Systems, LLC" className="h-10 w-auto" />
+                <span className="font-bold text-lg tracking-tight hidden md:inline">American Power Systems, LLC</span>
               </a>
             </Link>
             
@@ -106,11 +107,11 @@ export default function Option2() {
       <footer className="bg-gray-800 text-gray-300 py-12 mt-auto">
         <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
           <div>
-            <h4 className="font-bold text-white text-lg mb-4">American Power Systems</h4>
+            <h4 className="font-bold text-white text-lg mb-4">American Power Systems, LLC</h4>
             <p className="mb-4">
               Providing industry-leading DC power solutions for telecommunications, utility, and industrial applications.
             </p>
-            <p>&copy; 2026 American Power Systems</p>
+            <p>&copy; 2026 American Power Systems, LLC</p>
           </div>
           
           <div>

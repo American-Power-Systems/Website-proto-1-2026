@@ -10,7 +10,7 @@ export default function Option4() {
       {/* Sidebar Navigation */}
       <aside className="w-64 bg-aps-blue text-white fixed h-full overflow-y-auto hidden md:flex flex-col">
         <div className="p-6 border-b border-white/10">
-          <h1 className="font-heading font-bold text-3xl">APS</h1>
+          <h1 className="font-heading font-bold text-xl leading-tight">American Power Systems, LLC</h1>
           <p className="text-xs text-white/50 mt-1">DC Power Solutions</p>
         </div>
 
@@ -46,7 +46,7 @@ export default function Option4() {
       <main className="flex-1 md:ml-64">
         {/* Mobile Header */}
         <div className="md:hidden bg-aps-blue text-white p-4 flex justify-between items-center sticky top-0 z-20">
-          <span className="font-bold">APS</span>
+          <span className="font-bold">American Power Systems, LLC</span>
           <button className="p-2 border border-white/20 rounded">Menu</button>
         </div>
 
