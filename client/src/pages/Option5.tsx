@@ -1,7 +1,7 @@
 import { navItems, products, services, partners, companyInfo } from "@/data/aps";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
 import heroImage from "/assets/homepage_hero.avif"; 
-import apsLogo from "/assets/aps-logo-white.png";
+import apsLogo from "/assets/aps-logo-main.avif";
 import { Menu, Phone, Mail, MapPin, ChevronRight, Zap, Wrench } from "lucide-react";
 import { useState } from "react";
 import { Link } from "wouter";

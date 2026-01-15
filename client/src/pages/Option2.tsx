@@ -1,5 +1,5 @@
 import { navItems, products, services, partners, companyInfo } from "@/data/aps";
-import apsLogo from "/assets/aps-logo-white.png";
+import apsLogo from "/assets/aps-logo-main.avif";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
 import { Link } from "wouter";
 import { ChevronRight, ArrowRight, Menu, X } from "lucide-react";

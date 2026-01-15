@@ -19,7 +19,7 @@ export default function Option3() {
       <header className="sticky top-0 z-50 border-b border-gray-800 bg-[#0a0a0a]/95 backdrop-blur-md">
         <div className="container mx-auto px-6 h-20 flex justify-between items-center">
           <a href="#top" className="flex items-center gap-3">
-              <img src="/assets/aps-logo-white.png" alt="APS" className="h-10 w-auto" />
+              <img src="/assets/aps-logo-main.avif" alt="APS" className="h-10 w-auto" />
               <div className="hidden lg:block h-8 w-px bg-gray-700"></div>
               <span className="hidden lg:block text-sm text-gray-400 font-light tracking-widest uppercase">
                 Critical Power
@@ -141,7 +141,7 @@ export default function Option3() {
       <footer id="contact" className="bg-black text-gray-500 py-12 border-t border-gray-900 text-sm">
         <div className="container mx-auto px-6 grid md:grid-cols-4 gap-8">
             <div id="about">
-                <img src="/assets/aps-logo-white.png" className="h-8 mb-4 opacity-50" alt="Logo" />
+                <img src="/assets/aps-logo-main.avif" className="h-8 mb-4 opacity-50" alt="Logo" />
                 <p className="flex gap-2 items-start"><MapPin size={16}/> {companyInfo.address}<br/>{companyInfo.cityStateZip}</p>
             </div>
             <div>

@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import apsLogo from "/assets/aps-logo-white.png";
+import apsLogo from "/assets/aps-logo-main.avif";
 
 export default function Home() {
   return (

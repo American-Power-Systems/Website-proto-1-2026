@@ -1,5 +1,5 @@
 import { navItems, locations, companyInfo } from "@/data/aps";
-import apsLogo from "/assets/aps-logo-white.png";
+import apsLogo from "/assets/aps-logo-main.avif";
 import { Link } from "wouter";
 import { MapPin, Phone, User, Building2, Menu } from "lucide-react";
 import { useState } from "react";
