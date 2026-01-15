@@ -1,6 +1,11 @@
 import { Linkedin } from "lucide-react";
 
-export function LinkedInFeed() {
+interface LinkedInFeedProps {
+  className?: string;
+  variant?: "default" | "dark" | "minimal";
+}
+
+export function LinkedInFeed({ className, variant }: LinkedInFeedProps) {
   // Replace these with the actual "src" URLs from your LinkedIn Embeds
   const postUrls = [
     "https://www.linkedin.com/embed/feed/update/urn:li:share:7272654321987654321", // Replace with real Post ID

@@ -1,30 +1,32 @@
 export const navItems = [
   { name: "Home", href: "#" },
   { name: "About Us", href: "#" },
-  { name: "Products & Services", href: "#" },
-  { name: "Engineering", href: "#" },
-  { name: "News", href: "#" },
+  { name: "Products", href: "#" },
+  { name: "Services", href: "#" },
+  { name: "Partners", href: "#" },
+  { name: "Locations", href: "#" },
+  { name: "Contact Us", href: "#" },
 ];
 
 export const products = [
   { 
-    title: "DC Power Systems", 
-    desc: "Engineered for reliability in critical infrastructure environments. Custom configurations available.",
+    title: "DC Power Solutions", 
+    desc: "American Power Systems provides leading DC power solutions as a team, through operational excellence, with a commitment to safety and quality.",
     icon: "Zap"
   },
   { 
     title: "Batteries", 
-    desc: "High-performance energy storage solutions including VRLA, Lithium-ion, and NiCd technologies.",
+    desc: "We offer a wide range of battery solutions including VRLA, Lithium-ion, and NiCd technologies for critical backup power.",
     icon: "Battery"
   },
   { 
     title: "Installation Services", 
-    desc: "Turnkey installation services performed by certified technicians ensuring compliance and safety.",
+    desc: "Our certified technicians provide professional installation services ensuring your systems are set up for optimal performance and reliability.",
     icon: "Wrench"
   },
   { 
     title: "Maintenance", 
-    desc: "Comprehensive preventative maintenance programs and 24/7 emergency support services.",
+    desc: "Comprehensive preventative maintenance programs designed to extend the life of your power systems and prevent downtime.",
     icon: "Activity"
   },
 ];
