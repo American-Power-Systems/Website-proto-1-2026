@@ -1,3 +1,8 @@
+1. Update Data (client/src/data/aps.ts)
+Action: Reverted links to #anchors so they scroll within the specific prototype option instead of navigating away.
+
+TypeScript
+
 import { 
   Wrench, ClipboardList, Activity, Trash2, 
   Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass 
