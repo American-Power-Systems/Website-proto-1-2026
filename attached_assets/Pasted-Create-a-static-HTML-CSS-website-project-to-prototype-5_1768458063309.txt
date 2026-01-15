@@ -1,0 +1,42 @@
+Create a static HTML/CSS website project to prototype 5 different design options for "American Power Systems" (APS).
+
+1. BRANDING & COLORS:
+   - Primary Color: Navy Blue (#003366) - Use for headers, footers, and primary buttons.
+   - Accent Color: Industrial Red (#CC0000) - Use sparingly for "Call to Action" buttons.
+   - Backgrounds: White and Light Grey (#F4F4F4).
+   - Logo Text: "APS" (Bold, White text on Blue background).
+
+2. CONTENT STRUCTURE (Based on East Penn Parent Site):
+   - Header: Top bar (Black) with "Contact | Careers", followed by a Main Nav (Navy Blue).
+   - Navigation Items: Home, About Us, Products & Services, Engineering, News.
+   - Hero Section: Large industrial image placeholder with headline "Leading DC Power Solutions".
+   - Product Grid: 4-column layout (similar to East Penn's "Divisions") for: "DC Power Systems", "Batteries", "Installation Services", "Maintenance".
+
+3. SPECIAL FEATURE: LINKEDIN FEED
+   - In all options, include a section titled "Latest from APS LinkedIn".
+   - Create a 3-column grid container for this section.
+   - Inside the grid, place <iframe> placeholders where I can later paste my LinkedIn post embed codes.
+
+4. CREATE 5 DESIGN OPTIONS (Folders):
+
+   - OPTION 1: "The Modern Hybrid" (Tailwind CSS)
+     Use a sticky Navy Blue header. Use a wide-screen layout for the Hero section.
+     Make the LinkedIn section a prominent "Social Wall" near the footer.
+
+   - OPTION 2: "The Corporate Standard" (Bootstrap 5)
+     Use the standard Bootstrap Navbar and Card Grid.
+     This should look very similar to the East Penn site but with Blue colors instead of Orange.
+
+   - OPTION 3: "Dark Mode Industrial"
+     Use a dark Navy/Black background (#001a33) with White text.
+     This mimics high-end tech/engineering dashboards.
+
+   - OPTION 4: "Sidebar Navigation"
+     Try a vertical sidebar navigation (Left side) instead of a top bar.
+     This is useful for catalogs with many product categories.
+
+   - OPTION 5: "Minimal & Fast"
+     A text-heavy, high-speed version with minimal images, focusing on engineering specs and download links.
+
+5. MAIN MENU:
+   Create a root 'index.html' that acts as a menu to link to all 5 options so I can review them easily.
