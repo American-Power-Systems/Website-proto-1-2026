@@ -1,0 +1,63 @@
+Step 7: Update Option 5 (Minimal)
+I added the real logos and connected the "Download Line Card" button to the centralized URL.
+
+Update client/src/pages/Option5.tsx:
+
+TypeScript
+
+import { navItems, companyInfo, partners } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png";
+import naspoLogo from "/assets/naspo-logo-white.png";
+import { Link } from "wouter";
+import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
+
+export default function Option5() {
+  return (
+    <div className="font-mono min-h-screen bg-white text-gray-900">
+      {/* Minimal Header */}
+      <header className="border-b-2 border-black p-4 flex justify-between items-center bg-aps-navy text-white">
+        <div className="flex items-center gap-4">
+            <img src={apsLogo} alt="APS" className="h-8" />
+            <span className="text-sm font-bold tracking-widest hidden sm:inline">| DC POWER SPECS</span>
+        </div>
+        <nav className="flex gap-4 text-sm font-bold">
+            <Link href="/products"><a className="hover:underline">INDEX</a></Link>
+            <Link href="/contact"><a className="hover:underline">CONTACT</a></Link>
+        </nav>
+      </header>
+
+      <main className="max-w-3xl mx-auto p-8">
+        <div className="mb-12 border-l-4 border-aps-red pl-6 py-2">
+            <h1 className="text-4xl font-bold mb-2">American Power Systems</h1>
+            <p className="text-xl text-gray-600">{companyInfo.tagline}</p>
+        </div>
+
+        {/* Real Action Link */}
+        <div className="grid grid-cols-2 gap-4 mb-12">
+            <a href={companyInfo.lineCardUrl} className="bg-gray-100 hover:bg-gray-200 p-4 block border border-gray-300 text-center font-bold">
+                ↓ DOWNLOAD LINE CARD (PDF)
+            </a>
+            <Link href="/products">
+                <a className="bg-black text-white hover:bg-gray-800 p-4 block text-center font-bold">
+                    BROWSE CATALOG &rarr;
+                </a>
+            </Link>
+        </div>
+
+        {/* Trust Signals */}
+        <div className="mb-12">
+            <h3 className="text-xs font-bold uppercase mb-4 border-b border-gray-200 pb-2">Certifications</h3>
+            <div className="flex gap-4 items-center grayscale opacity-80">
+                <img src={naspoLogo} className="h-8 bg-gray-800 p-1" alt="NASPO" />
+                {partners.slice(0,3).map((p, i) => (
+                    <img key={i} src={p.logo} className="h-6" alt={p.name} />
+                ))}
+            </div>
+        </div>
+
+        {/* Minimal Feed */}
+        <LinkedInFeed variant="minimal" />
+      </main>
+    </div>
+  );
+}
