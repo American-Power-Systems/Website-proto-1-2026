@@ -1,9 +1,9 @@
 import { navItems, products, services, partners } from "@/data/aps";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
 import { Link } from "wouter";
-import { ArrowRight, Phone, Mail, ChevronRight, Zap, Wrench, Activity, DraftingCompass, Trash2 } from "lucide-react";
+import { ChevronRight, Zap, Wrench, Activity, DraftingCompass, Trash2, Phone, Mail } from "lucide-react";
 
-// Helper to map string icon names to components
+// Helper map for dynamic icons
 const IconMap: Record<string, any> = {
   DraftingCompass: DraftingCompass,
   Wrench: Wrench,
@@ -15,7 +15,7 @@ export default function Option3() {
   return (
     <div className="font-sans min-h-screen flex flex-col bg-[#0a0a0a] text-white selection:bg-aps-red selection:text-white">
       
-      {/* HEADER: Dark Industrial Style */}
+      {/* HEADER */}
       <header className="sticky top-0 z-50 border-b border-gray-800 bg-[#0a0a0a]/95 backdrop-blur-md">
         <div className="container mx-auto px-6 h-20 flex justify-between items-center">
           <Link href="/">
@@ -23,42 +23,39 @@ export default function Option3() {
               <img src="/assets/aps-logo-white.png" alt="APS" className="h-10 w-auto" />
               <div className="hidden lg:block h-8 w-px bg-gray-700"></div>
               <span className="hidden lg:block text-sm text-gray-400 font-light tracking-widest uppercase">
-                Critical Power Specialists
+                Critical Power
               </span>
             </a>
           </Link>
 
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
             {navItems.map((item) => (
-              <a key={item.name} href={item.href} className="text-gray-400 hover:text-white hover:text-shadow-glow transition-all">
-                {item.name}
-              </a>
+              <Link key={item.name} href={item.href}>
+                <a className="text-gray-400 hover:text-white hover:text-shadow-glow transition-all">{item.name}</a>
+              </Link>
             ))}
-            <a href="#contact" className="bg-aps-red hover:bg-red-700 text-white px-5 py-2 rounded-sm uppercase text-xs font-bold tracking-widest transition-colors">
-              Get Quote
-            </a>
+            <Link href="/contact">
+                <a className="bg-aps-red hover:bg-red-700 text-white px-5 py-2 rounded-sm uppercase text-xs font-bold tracking-widest transition-colors">
+                Get Quote
+                </a>
+            </Link>
           </nav>
         </div>
       </header>
 
-      {/* HERO: Technical Dashboard Look */}
-      <section className="relative h-[600px] flex items-center border-b border-gray-800 overflow-hidden">
-        {/* Background Grid Pattern */}
+      {/* HERO: Local CSS Noise Only */}
+      <section className="relative h-[600px] flex items-center border-b border-gray-800 overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]">
+        
+        {/* Grid Pattern */}
         <div className="absolute inset-0 z-0 opacity-20" 
              style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
         </div>
         
-        {/* Hero Image Overlay */}
-        <div className="absolute inset-0 z-0">
-            <img src="/assets/homepage_hero.avif" className="w-full h-full object-cover opacity-30 mix-blend-luminosity" alt="Background" />
-            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent"></div>
-        </div>
-
         <div className="container mx-auto px-6 relative z-10 grid md:grid-cols-2">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-6">
                 <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-green-500 text-xs font-mono uppercase">System Operational</span>
+                <span className="text-green-500 text-xs font-mono uppercase">System Online</span>
             </div>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-none tracking-tight">
               ENGINEERED <br/>
@@ -68,12 +65,12 @@ export default function Option3() {
               Complete DC power solutions. From motive power batteries to complex telecom plant engineering.
             </p>
             <div className="flex gap-4">
-              <a href="#products" className="bg-white text-black px-8 py-3 font-bold uppercase hover:bg-gray-200 transition">
-                View Products
-              </a>
-              <a href="#services" className="border border-gray-600 text-gray-300 px-8 py-3 font-bold uppercase hover:border-white hover:text-white transition">
-                Our Services
-              </a>
+              <Link href="/products">
+                  <a className="bg-white text-black px-8 py-3 font-bold uppercase hover:bg-gray-200 transition">View Products</a>
+              </Link>
+              <Link href="/services">
+                  <a className="border border-gray-600 text-gray-300 px-8 py-3 font-bold uppercase hover:border-white hover:text-white transition">Our Services</a>
+              </Link>
             </div>
           </div>
         </div>
@@ -88,7 +85,7 @@ export default function Option3() {
         </div>
       </div>
 
-      {/* SECTION 1: PRODUCTS (Visual Cards) */}
+      {/* SECTION 1: PRODUCTS */}
       <section id="products" className="py-24 bg-[#0f0f0f]">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-end mb-16">
@@ -96,22 +93,18 @@ export default function Option3() {
               <h2 className="text-3xl font-bold text-white mb-2">DC Power Products</h2>
               <div className="w-12 h-1 bg-aps-red"></div>
             </div>
-            <a href="#" className="text-gray-400 hover:text-aps-red text-sm flex items-center gap-2">View Full Catalog <ChevronRight size={16}/></a>
+            <Link href="/products">
+                <a className="text-gray-400 hover:text-aps-red text-sm flex items-center gap-2">View Full Catalog <ChevronRight size={16}/></a>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {products.map((prod, idx) => (
               <div key={idx} className="group relative bg-[#1a1a1a] border border-gray-800 hover:border-aps-red/50 transition-colors h-96 flex flex-col">
-                {/* Image Area */}
                 <div className="h-48 bg-gray-800 overflow-hidden relative">
                     <div className="absolute inset-0 bg-aps-blue/20 group-hover:bg-transparent transition-colors z-10"></div>
-                    {/* Fallback for missing images in prototype */}
-                    <div className="w-full h-full flex items-center justify-center text-gray-700 bg-gray-900">
-                        <Zap className="w-12 h-12 opacity-20" />
-                    </div>
+                    <img src={prod.image} className="w-full h-full object-cover opacity-50 group-hover:opacity-100 transition-opacity" alt={prod.title} />
                 </div>
-                
-                {/* Content */}
                 <div className="p-6 flex-1 flex flex-col">
                     <h3 className="text-xl font-bold mb-2 group-hover:text-aps-red transition-colors">{prod.title}</h3>
                     <p className="text-gray-500 text-sm mb-4 flex-1">{prod.desc}</p>
@@ -168,17 +161,8 @@ export default function Option3() {
         </div>
       </section>
 
-      {/* Social Feed (Dark) */}
-      <section className="py-20 bg-[#0f0f0f] border-t border-gray-800">
-        <div className="container mx-auto px-6">
-            <h2 className="text-xl font-bold text-white mb-8 flex items-center gap-2">
-                <span className="text-blue-500">in</span> Latest Updates
-            </h2>
-            <div className="invert filter contrast-75">
-                <LinkedInFeed />
-            </div>
-        </div>
-      </section>
+      {/* Social Feed (Dark Variant Applied) */}
+      <LinkedInFeed variant="dark" />
 
       {/* FOOTER */}
       <footer className="bg-black text-gray-500 py-12 border-t border-gray-900 text-sm">
@@ -211,6 +195,9 @@ export default function Option3() {
                     <Mail size={16} /> info@ampowersys.com
                 </a>
             </div>
+        </div>
+        <div className="container mx-auto px-6 mt-8 pt-8 border-t border-gray-900 text-center">
+            <p className="text-gray-600">&copy; 2026 American Power Systems. Dark Mode Concept.</p>
         </div>
       </footer>
     </div>
