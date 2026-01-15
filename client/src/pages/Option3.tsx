@@ -1,7 +1,7 @@
-import { navItems, products, services, partners } from "@/data/aps";
+import { navItems, products, services, partners, companyInfo } from "@/data/aps";
 import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
 import { Link } from "wouter";
-import { ChevronRight, Zap, Wrench, Activity, DraftingCompass, Trash2, Phone, Mail } from "lucide-react";
+import { ChevronRight, Zap, Wrench, Activity, DraftingCompass, Trash2, Mail, Phone, MapPin } from "lucide-react";
 
 // Helper map for dynamic icons
 const IconMap: Record<string, any> = {
@@ -18,42 +18,29 @@ export default function Option3() {
       {/* HEADER */}
       <header className="sticky top-0 z-50 border-b border-gray-800 bg-[#0a0a0a]/95 backdrop-blur-md">
         <div className="container mx-auto px-6 h-20 flex justify-between items-center">
-          <div className="flex items-center gap-6">
-              <Link href="/">
-                <a className="text-gray-500 hover:text-white text-xs uppercase tracking-widest font-bold border border-gray-700 px-3 py-1 rounded hover:border-white transition-colors">
-                    &larr; Styles
-                </a>
-              </Link>
-              <Link href="/">
-                <a className="flex items-center gap-3">
-                  <img src="/assets/aps-logo-white.png" alt="APS" className="h-10 w-auto" />
-                  <div className="hidden lg:block h-8 w-px bg-gray-700"></div>
-                  <span className="hidden lg:block text-sm text-gray-400 font-light tracking-widest uppercase">
-                    Critical Power
-                  </span>
-                </a>
-              </Link>
-          </div>
+          <a href="#top" className="flex items-center gap-3">
+              <img src="/assets/aps-logo-white.png" alt="APS" className="h-10 w-auto" />
+              <div className="hidden lg:block h-8 w-px bg-gray-700"></div>
+              <span className="hidden lg:block text-sm text-gray-400 font-light tracking-widest uppercase">
+                Critical Power
+              </span>
+          </a>
 
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
             {navItems.map((item) => (
-              <Link key={item.name} href={item.href}>
-                <a className="text-gray-400 hover:text-white hover:text-shadow-glow transition-all">{item.name}</a>
-              </Link>
+              <a key={item.name} href={item.href} className="text-gray-400 hover:text-white hover:text-shadow-glow transition-all">
+                {item.name}
+              </a>
             ))}
-            <Link href="/contact">
-                <a className="bg-aps-red hover:bg-red-700 text-white px-5 py-2 rounded-sm uppercase text-xs font-bold tracking-widest transition-colors">
-                Get Quote
-                </a>
-            </Link>
+            <a href="#contact" className="bg-aps-red hover:bg-red-700 text-white px-5 py-2 rounded-sm uppercase text-xs font-bold tracking-widest transition-colors">
+              Get Quote
+            </a>
           </nav>
         </div>
       </header>
 
-      {/* HERO: Local CSS Noise Only */}
-      <section className="relative h-[600px] flex items-center border-b border-gray-800 overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]">
-        
-        {/* Grid Pattern */}
+      {/* HERO */}
+      <section id="top" className="relative h-[600px] flex items-center border-b border-gray-800 overflow-hidden bg-gradient-to-br from-[#0f0f0f] to-[#1a1a1a]">
         <div className="absolute inset-0 z-0 opacity-20" 
              style={{ backgroundImage: 'linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px)', backgroundSize: '40px 40px' }}>
         </div>
@@ -72,19 +59,15 @@ export default function Option3() {
               Complete DC power solutions. From motive power batteries to complex telecom plant engineering.
             </p>
             <div className="flex gap-4">
-              <Link href="/products">
-                  <a className="bg-white text-black px-8 py-3 font-bold uppercase hover:bg-gray-200 transition">View Products</a>
-              </Link>
-              <Link href="/services">
-                  <a className="border border-gray-600 text-gray-300 px-8 py-3 font-bold uppercase hover:border-white hover:text-white transition">Our Services</a>
-              </Link>
+              <a href="#products" className="bg-white text-black px-8 py-3 font-bold uppercase hover:bg-gray-200 transition">View Products</a>
+              <a href="#services" className="border border-gray-600 text-gray-300 px-8 py-3 font-bold uppercase hover:border-white hover:text-white transition">Our Services</a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* PARTNERS TICKER (Dark Mode) */}
-      <div className="border-b border-gray-800 bg-black py-6">
+      {/* PARTNERS TICKER (Added ID) */}
+      <div id="partners" className="border-b border-gray-800 bg-black py-6">
         <div className="container mx-auto px-6 flex flex-wrap justify-center gap-12 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
            {partners.map((p, i) => (
                <img key={i} src={p.logo} alt={p.name} className="h-8 md:h-10 object-contain invert brightness-200" /> 
@@ -92,7 +75,7 @@ export default function Option3() {
         </div>
       </div>
 
-      {/* SECTION 1: PRODUCTS */}
+      {/* PRODUCTS */}
       <section id="products" className="py-24 bg-[#0f0f0f]">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-end mb-16">
@@ -100,9 +83,7 @@ export default function Option3() {
               <h2 className="text-3xl font-bold text-white mb-2">DC Power Products</h2>
               <div className="w-12 h-1 bg-aps-red"></div>
             </div>
-            <Link href="/products">
-                <a className="text-gray-400 hover:text-aps-red text-sm flex items-center gap-2">View Full Catalog <ChevronRight size={16}/></a>
-            </Link>
+            <a href="#contact" className="text-gray-400 hover:text-aps-red text-sm flex items-center gap-2">Request Catalog <ChevronRight size={16}/></a>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -125,32 +106,18 @@ export default function Option3() {
         </div>
       </section>
 
-      {/* SECTION 2: SERVICES (List / Technical View) */}
+      {/* SERVICES */}
       <section id="services" className="py-24 bg-[#0a0a0a] border-t border-gray-800">
         <div className="container mx-auto px-6 grid lg:grid-cols-2 gap-16">
-            
-            {/* Left: Text & Pitch */}
             <div>
                 <h2 className="text-3xl font-bold text-white mb-6">Engineering & Services</h2>
                 <p className="text-gray-400 text-lg mb-8">
                     We don't just sell batteries. We design, install, and maintain the critical infrastructure that keeps your business running.
                 </p>
-                <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 bg-gray-900 border-l-4 border-aps-red">
-                        <h4 className="font-bold text-2xl">24/7</h4>
-                        <p className="text-xs text-gray-500 uppercase">Emergency Support</p>
-                    </div>
-                    <div className="p-4 bg-gray-900 border-l-4 border-blue-600">
-                        <h4 className="font-bold text-2xl">IEEE</h4>
-                        <p className="text-xs text-gray-500 uppercase">Testing Standards</p>
-                    </div>
-                </div>
             </div>
-
-            {/* Right: Service List */}
             <div className="space-y-4">
                 {services.map((service, idx) => {
-                    const Icon = IconMap[service.icon] || Zap;
+                    const Icon = service.icon;
                     return (
                         <div key={idx} className="flex items-start gap-4 p-4 hover:bg-gray-900 rounded transition-colors border border-transparent hover:border-gray-800">
                             <div className="bg-gray-800 p-3 rounded text-aps-red">
@@ -164,47 +131,41 @@ export default function Option3() {
                     );
                 })}
             </div>
-
         </div>
       </section>
 
-      {/* Social Feed (Dark Variant Applied) */}
+      {/* LINKEDIN (Native Dark Mode - No CSS Filter) */}
       <LinkedInFeed variant="dark" />
 
-      {/* FOOTER */}
-      <footer className="bg-black text-gray-500 py-12 border-t border-gray-900 text-sm">
+      {/* FOOTER & CONTACT */}
+      <footer id="contact" className="bg-black text-gray-500 py-12 border-t border-gray-900 text-sm">
         <div className="container mx-auto px-6 grid md:grid-cols-4 gap-8">
-            <div>
+            <div id="about">
                 <img src="/assets/aps-logo-white.png" className="h-8 mb-4 opacity-50" alt="Logo" />
-                <p>1851 Central Place South,<br/>Suite 206<br/>Kent, WA 98030</p>
+                <p className="flex gap-2 items-start"><MapPin size={16}/> {companyInfo.address}<br/>{companyInfo.cityStateZip}</p>
             </div>
             <div>
                 <h4 className="text-white font-bold uppercase mb-4 text-xs tracking-wider">Solutions</h4>
                 <ul className="space-y-2">
-                    <li><a href="#" className="hover:text-aps-red">DC Power Plants</a></li>
-                    <li><a href="#" className="hover:text-aps-red">Batteries</a></li>
-                    <li><a href="#" className="hover:text-aps-red">Monitoring</a></li>
+                    <li><a href="#products" className="hover:text-aps-red">DC Power Plants</a></li>
+                    <li><a href="#products" className="hover:text-aps-red">Batteries</a></li>
                 </ul>
             </div>
             <div>
                 <h4 className="text-white font-bold uppercase mb-4 text-xs tracking-wider">Company</h4>
                 <ul className="space-y-2">
-                    <li><a href="#" className="hover:text-aps-red">About Us</a></li>
+                    <li><a href="#about" className="hover:text-aps-red">About Us</a></li>
                     <li><a href="#" className="hover:text-aps-red">Careers</a></li>
-                    <li><a href="#" className="hover:text-aps-red">Contact</a></li>
                 </ul>
             </div>
             <div>
-                <a href="tel:8003950693" className="flex items-center gap-2 text-white hover:text-aps-red transition-colors mb-2">
-                    <Phone size={16} /> (800) 395-0693
+                <a href={`tel:${companyInfo.phone}`} className="flex items-center gap-2 text-white hover:text-aps-red transition-colors mb-2">
+                    <Phone size={16} /> {companyInfo.phone}
                 </a>
-                <a href="mailto:info@ampowersys.com" className="flex items-center gap-2 hover:text-white transition-colors">
-                    <Mail size={16} /> info@ampowersys.com
+                <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-2 hover:text-white transition-colors">
+                    <Mail size={16} /> Email Sales
                 </a>
             </div>
-        </div>
-        <div className="container mx-auto px-6 mt-8 pt-8 border-t border-gray-900 text-center">
-            <p className="text-gray-600">&copy; 2026 American Power Systems. Dark Mode Concept.</p>
         </div>
       </footer>
     </div>
