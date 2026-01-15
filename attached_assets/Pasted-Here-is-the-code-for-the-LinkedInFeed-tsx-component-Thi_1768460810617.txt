@@ -1,3 +1,9 @@
+Here is the code for the LinkedInFeed.tsx component.
+This component handles the "Social Wall" section. It uses a responsive grid to display your posts and includes the logic to keep the iframes correct.
+1. Create the File
+In your Replit or IDE, create this file path:
+components/aps/LinkedInFeed.tsx
+2. Paste this Code
 import { Linkedin } from "lucide-react";
 
 export function LinkedInFeed() {
@@ -20,14 +26,13 @@ export function LinkedInFeed() {
               Latest from LinkedIn
             </h2>
             <p className="text-gray-500 mt-2">
-              Follow us <a href="https://www.linkedin.com/company/american-power-systems-llc" target="_blank" rel="noreferrer" className="text-aps-blue font-bold hover:text-aps-red">@AmericanPowerSystems</a> for real-time updates.
+              Follow us <a href="https://www.linkedin.com/company/american-power-systems-llc" target="_blank" className="text-aps-blue font-bold hover:text-aps-red">@AmericanPowerSystems</a> for real-time updates.
             </p>
           </div>
           
           <a 
             href="https://www.linkedin.com/company/american-power-systems-llc" 
             target="_blank"
-            rel="noreferrer"
             className="hidden md:inline-flex items-center justify-center px-6 py-2 border-2 border-aps-blue text-aps-blue font-bold uppercase text-sm tracking-wider hover:bg-aps-blue hover:text-white transition-all"
           >
             View All Posts
@@ -89,7 +94,6 @@ export function LinkedInFeed() {
             <a 
             href="https://www.linkedin.com/company/american-power-systems-llc" 
             target="_blank"
-            rel="noreferrer"
             className="inline-block w-full bg-aps-blue text-white py-3 font-bold uppercase rounded shadow"
           >
             View Company Page
@@ -113,3 +117,22 @@ function EmptyPlaceholder() {
         </div>
     );
 }
+
+Quick Setup Tip
+To make the Red and Blue colors work in Tailwind, make sure your tailwind.config.js (or replit.nix config) includes these specific color extensions.
+If the colors look "generic blue/red" instead of your brand colors, add this to your tailwind.config.js:
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        'aps-blue': '#003366', // Your specific Navy
+        'aps-red': '#CC0000',  // Your specific Red
+        'aps-dark': '#1a1a1a',
+      },
+      fontFamily: {
+        heading: ['Roboto', 'sans-serif'],
+      }
+    }
+  }
+}
+
