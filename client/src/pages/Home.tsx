@@ -1,87 +1,116 @@
 import { Link } from "wouter";
+import apsLogo from "/assets/aps-logo-white.png";
 
 export default function Home() {
-  const options = [
-    {
-      id: 1,
-      title: "The Modern Hybrid",
-      desc: "Tailwind CSS, Sticky Header, Wide Layout, Social Wall.",
-      path: "/option-1",
-      color: "bg-aps-blue text-white"
-    },
-    {
-      id: 2,
-      title: "The Corporate Standard",
-      desc: "Bootstrap 5 style, Card Grid, Traditional Layout.",
-      path: "/option-2",
-      color: "bg-white text-aps-blue border-2 border-aps-blue"
-    },
-    {
-      id: 3,
-      title: "Dark Mode Industrial",
-      desc: "Dark Navy background, High-end Tech Dashboard feel.",
-      path: "/option-3",
-      color: "bg-aps-dark text-white border border-slate-700"
-    },
-    {
-      id: 4,
-      title: "Sidebar Navigation",
-      desc: "Vertical Left Sidebar for catalog-heavy browsing.",
-      path: "/option-4",
-      color: "bg-slate-200 text-aps-blue"
-    },
-    {
-      id: 5,
-      title: "Minimal & Fast",
-      desc: "Text-heavy, minimal images, focus on specs.",
-      path: "/option-5",
-      color: "bg-white text-black border-l-4 border-aps-red"
-    },
-  ];
-
   return (
-    <div className="min-h-screen bg-slate-50 font-sans p-8">
-      <div className="max-w-4xl mx-auto">
-        <header className="mb-12 text-center">
-          <div className="inline-block px-4 py-1 bg-aps-blue text-white text-xs font-bold uppercase tracking-widest mb-4">
-            Project: American Power Systems Prototype 2026
-          </div>
-          <h1 className="text-5xl font-heading font-bold text-aps-blue mb-4">
-            American Power Systems, LLC
-          </h1>
-          <p className="text-xl text-slate-600 font-light">
-            5 Design Prototypes for Review
-          </p>
-        </header>
-
-        <div className="grid grid-cols-1 gap-6">
-          {options.map((opt) => (
-            <Link key={opt.id} href={opt.path}>
-              <a className={`
-                block p-8 rounded-lg shadow-sm hover:shadow-xl transition-all transform hover:-translate-y-1
-                ${opt.color} group relative overflow-hidden
-              `}>
-                <div className="relative z-10 flex justify-between items-center">
-                  <div>
-                    <span className="text-xs font-bold opacity-70 uppercase tracking-widest mb-1 block">
-                      Option 0{opt.id}
-                    </span>
-                    <h2 className="text-3xl font-heading font-bold mb-2">
-                      {opt.title}
-                    </h2>
-                    <p className="opacity-90 font-light text-lg">
-                      {opt.desc}
-                    </p>
-                  </div>
-                  <div className="bg-white/20 p-3 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                  </div>
-                </div>
-              </a>
-            </Link>
-          ))}
+    <div className="min-h-screen bg-gray-50 font-sans">
+      <header className="bg-aps-navy text-white py-6 shadow-md">
+        <div className="container mx-auto px-6 flex justify-between items-center">
+            <div className="flex items-center gap-3">
+                <img src={apsLogo} alt="APS" className="h-10" />
+                <span className="font-light opacity-70 text-sm border-l border-white/30 pl-3 ml-3 hidden sm:block">Website Design Prototypes</span>
+            </div>
+            <div className="text-xs font-mono bg-black/30 px-3 py-1 rounded">v2.0 (Review Ready)</div>
         </div>
-      </div>
+      </header>
+
+      <main className="container mx-auto px-6 py-12">
+        <div className="max-w-4xl mx-auto text-center mb-16">
+            <h1 className="text-4xl font-bold text-aps-navy mb-4">Select a Design Concept</h1>
+            <p className="text-gray-600 text-lg">
+                These 5 options explore different branding balances between "Corporate Industrial" (like East Penn) and "Modern Engineering" (APS).
+            </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            
+            {/* Option 1 */}
+            <div className="bg-white rounded-xl shadow-lg border-t-4 border-aps-red overflow-hidden hover:-translate-y-1 transition-transform">
+                <div className="p-8">
+                    <h3 className="text-2xl font-bold text-aps-navy mb-2">Option 1</h3>
+                    <div className="text-xs font-bold text-aps-red uppercase tracking-widest mb-4">The Flagship</div>
+                    <p className="text-gray-600 text-sm mb-6">
+                        Best blend of East Penn's corporate structure with modern APS branding. Features a sticky header, strong hero image, and clear service separation.
+                    </p>
+                    <Link href="/option-1">
+                        <a className="block w-full text-center bg-aps-navy text-white py-3 rounded font-bold hover:bg-aps-red transition-colors">Launch Prototype</a>
+                    </Link>
+                </div>
+                <div className="bg-gray-100 px-8 py-4 text-xs text-gray-500">
+                    <strong>Best for:</strong> General Corporate Audience
+                </div>
+            </div>
+
+            {/* Option 2 */}
+            <div className="bg-white rounded-xl shadow-lg border-t-4 border-gray-400 overflow-hidden hover:-translate-y-1 transition-transform">
+                <div className="p-8">
+                    <h3 className="text-2xl font-bold text-aps-navy mb-2">Option 2</h3>
+                    <div className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Corporate Standard</div>
+                    <p className="text-gray-600 text-sm mb-6">
+                        A conservative, grid-based layout similar to many industrial distributor sites. Uses a "boxed" design and standard Bootstrap-style navigation.
+                    </p>
+                    <Link href="/option-2">
+                        <a className="block w-full text-center bg-gray-800 text-white py-3 rounded font-bold hover:bg-black transition-colors">Launch Prototype</a>
+                    </Link>
+                </div>
+                <div className="bg-gray-100 px-8 py-4 text-xs text-gray-500">
+                    <strong>Best for:</strong> Conservative / Procurement
+                </div>
+            </div>
+
+            {/* Option 3 */}
+            <div className="bg-[#1a1a1a] rounded-xl shadow-lg border-t-4 border-blue-500 overflow-hidden hover:-translate-y-1 transition-transform">
+                <div className="p-8">
+                    <h3 className="text-2xl font-bold text-white mb-2">Option 3</h3>
+                    <div className="text-xs font-bold text-blue-400 uppercase tracking-widest mb-4">Dark Mode / Engineering</div>
+                    <p className="text-gray-400 text-sm mb-6">
+                        High-tech, dark-themed dashboard look. Differentiates APS as an advanced engineering partner rather than just a distributor.
+                    </p>
+                    <Link href="/option-3">
+                        <a className="block w-full text-center bg-blue-600 text-white py-3 rounded font-bold hover:bg-blue-500 transition-colors">Launch Prototype</a>
+                    </Link>
+                </div>
+                <div className="bg-black px-8 py-4 text-xs text-gray-500">
+                    <strong>Best for:</strong> Recruiting & Engineers
+                </div>
+            </div>
+
+            {/* Option 4 */}
+            <div className="bg-white rounded-xl shadow-lg border-t-4 border-aps-navy overflow-hidden hover:-translate-y-1 transition-transform">
+                <div className="p-8">
+                    <h3 className="text-2xl font-bold text-aps-navy mb-2">Option 4</h3>
+                    <div className="text-xs font-bold text-aps-navy uppercase tracking-widest mb-4">Sidebar / Catalog</div>
+                    <p className="text-gray-600 text-sm mb-6">
+                        Features a permanent left sidebar navigation. Ideal if the main goal of the site is browsing a large catalog of PDFs and specs.
+                    </p>
+                    <Link href="/option-4">
+                        <a className="block w-full text-center border-2 border-aps-navy text-aps-navy py-3 rounded font-bold hover:bg-aps-navy hover:text-white transition-colors">Launch Prototype</a>
+                    </Link>
+                </div>
+                <div className="bg-gray-100 px-8 py-4 text-xs text-gray-500">
+                    <strong>Best for:</strong> Document/Catalog Heavy Usage
+                </div>
+            </div>
+
+            {/* Option 5 */}
+            <div className="bg-white rounded-xl shadow-lg border-t-4 border-black overflow-hidden hover:-translate-y-1 transition-transform">
+                <div className="p-8">
+                    <h3 className="text-2xl font-bold text-black mb-2">Option 5</h3>
+                    <div className="text-xs font-bold text-black uppercase tracking-widest mb-4">Minimal / Fast</div>
+                    <p className="text-gray-600 text-sm mb-6">
+                        Stripped back to essentials. High performance, typography-focused. Good for a "Documentation Hub" or landing page.
+                    </p>
+                    <Link href="/option-5">
+                        <a className="block w-full text-center bg-black text-white py-3 rounded font-bold hover:bg-gray-800 transition-colors">Launch Prototype</a>
+                    </Link>
+                </div>
+                <div className="bg-gray-100 px-8 py-4 text-xs text-gray-500">
+                    <strong>Best for:</strong> Speed & Simplicity
+                </div>
+            </div>
+
+        </div>
+      </main>
     </div>
   );
 }
