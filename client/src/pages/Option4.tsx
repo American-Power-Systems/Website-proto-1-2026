@@ -1,109 +1,64 @@
-import { navItems, products } from "@/data/aps";
-import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
+import { navItems, products, companyInfo } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png";
 import { Link } from "wouter";
-
-const heroImage = "/assets/homepage_hero.avif";
+import { Menu, X, FileText, Download } from "lucide-react";
+import { useState } from "react";
 
 export default function Option4() {
-  return (
-    <div className="font-sans min-h-screen flex bg-gray-50">
-      {/* Sidebar Navigation */}
-      <aside className="w-64 bg-aps-blue text-white fixed h-full overflow-y-auto hidden md:flex flex-col">
-        <div className="p-6 border-b border-white/10">
-          <h1 className="font-heading font-bold text-xl leading-tight">American Power Systems, LLC</h1>
-          <p className="text-xs text-white/50 mt-1">DC Power Solutions</p>
-        </div>
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-        <nav className="flex-1 py-6">
-          <ul className="space-y-1">
-            {navItems.map((item) => (
-              <li key={item.name}>
-                <a href={item.href} className="block px-6 py-3 hover:bg-white/10 transition-colors border-l-4 border-transparent hover:border-aps-red">
-                  {item.name}
-                </a>
-              </li>
+  return (
+    <div className="font-sans flex min-h-screen bg-gray-50">
+      
+      {/* Mobile Header */}
+      <div className="lg:hidden fixed top-0 w-full bg-aps-navy text-white p-4 flex justify-between items-center z-50">
+        <img src={apsLogo} alt="APS" className="h-8" />
+        <button onClick={() => setSidebarOpen(true)}><Menu /></button>
+      </div>
+
+      {/* Sidebar Navigation */}
+      <aside className={`fixed inset-y-0 left-0 w-64 bg-aps-navy text-white transform transition-transform duration-300 z-50 lg:translate-x-0 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="p-6 flex justify-between items-center">
+            <img src={apsLogo} alt="APS" className="h-10" />
+            <button className="lg:hidden" onClick={() => setSidebarOpen(false)}><X /></button>
+        </div>
+        
+        <nav className="px-4 py-8 space-y-2">
+            {navItems.map(item => (
+                <Link key={item.name} href={item.href}>
+                    <a className="block py-3 px-4 rounded hover:bg-white/10 transition-colors font-medium">{item.name}</a>
+                </Link>
             ))}
-          </ul>
-          
-          <div className="mt-8 px-6">
-            <h3 className="text-xs font-bold text-white/40 uppercase tracking-widest mb-4">Products</h3>
-            <ul className="space-y-2 text-sm text-white/70">
-              {products.map(p => (
-                <li key={p.title}><a href="#" className="hover:text-white block py-1">{p.title}</a></li>
-              ))}
-            </ul>
-          </div>
         </nav>
 
-        <div className="p-6 border-t border-white/10 bg-aps-dark">
-          <Link href="/" className="text-sm text-white/50 hover:text-white flex items-center gap-2">
-            &larr; Back to Prototypes
-          </Link>
+        {/* New Downloads Rail */}
+        <div className="px-6 py-8 border-t border-white/10">
+            <h4 className="text-xs font-bold uppercase text-gray-400 mb-4 tracking-wider">Downloads</h4>
+            <a href={companyInfo.lineCardUrl} className="flex items-center gap-2 text-sm text-gray-300 hover:text-white mb-3">
+                <FileText size={14} /> Line Card (PDF)
+            </a>
+            <a href="#" className="flex items-center gap-2 text-sm text-gray-300 hover:text-white">
+                <Download size={14} /> Corporate Brochure
+            </a>
         </div>
       </aside>
 
       {/* Main Content Area */}
-      <main className="flex-1 md:ml-64">
-        {/* Mobile Header */}
-        <div className="md:hidden bg-aps-blue text-white p-4 flex justify-between items-center sticky top-0 z-20">
-          <span className="font-bold">American Power Systems, LLC</span>
-          <button className="p-2 border border-white/20 rounded">Menu</button>
-        </div>
-
-        {/* Hero */}
-        <header className="bg-white p-8 md:p-12 border-b border-gray-200">
-          <div className="max-w-4xl">
-            <span className="text-aps-red font-bold text-sm uppercase tracking-widest mb-2 block">Engineering Excellence</span>
-            <h2 className="text-4xl md:text-5xl font-heading font-bold text-gray-900 mb-6">
-              Leading DC Power Solutions
-            </h2>
-            <p className="text-xl text-gray-600 mb-8 max-w-2xl">
-              We provide comprehensive power solutions designed to meet the rigorous demands of industrial and telecommunications applications.
-            </p>
-            <div className="h-64 md:h-96 w-full overflow-hidden rounded-xl shadow-inner bg-gray-100">
-               <img src={heroImage} className="w-full h-full object-cover" alt="Industrial" />
-            </div>
-          </div>
-        </header>
-
-        {/* Content Grid */}
-        <div className="p-8 md:p-12">
-          <h3 className="text-2xl font-bold text-gray-900 mb-8">Product Categories</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+      <main className="flex-1 lg:ml-64 p-8 pt-24 lg:pt-8">
+        <h1 className="text-4xl font-bold text-aps-navy mb-8">Product Catalog</h1>
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
             {products.map((prod, idx) => (
-              <div key={idx} className="bg-white p-6 rounded border border-gray-200 hover:border-aps-blue transition-colors group">
-                 <div className="flex justify-between items-start mb-4">
-                   <h4 className="font-bold text-lg text-gray-800 group-hover:text-aps-blue">{prod.title}</h4>
-                   <span className="text-gray-300 text-xs">0{idx+1}</span>
-                 </div>
-                 <p className="text-sm text-gray-500 mb-4">{prod.desc}</p>
-                 <a href="#" className="text-sm font-bold text-aps-blue hover:underline">View Catalog &rarr;</a>
-              </div>
+                <div key={idx} className="bg-white p-6 rounded shadow-sm hover:shadow-md border border-gray-200 flex gap-4">
+                    <div className="w-20 h-20 bg-gray-100 shrink-0">
+                        <img src={prod.image} className="w-full h-full object-cover" alt={prod.title}/>
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-lg text-aps-navy">{prod.title}</h3>
+                        <p className="text-sm text-gray-600 mt-2 line-clamp-2">{prod.desc}</p>
+                    </div>
+                </div>
             ))}
-          </div>
-
-          <div className="mt-16">
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">Latest Updates</h3>
-            <LinkedInFeed className="bg-transparent px-0 py-0" />
-          </div>
         </div>
-
-        <footer className="p-8 md:p-12 border-t border-gray-200 text-gray-500 text-sm">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-             <div>
-               <h4 className="font-bold text-gray-900 mb-2">American Power Systems</h4>
-               <p>1851 Central Place South, Suite 206<br/>Kent, WA 98030</p>
-             </div>
-             <div>
-               <h4 className="font-bold text-gray-900 mb-2">Contact</h4>
-               <p>(800) 395-0693<br/>info@ampowersys.com</p>
-             </div>
-          </div>
-          <div className="mt-12 pt-8 border-t border-gray-100 flex items-center justify-between flex-wrap gap-4">
-            <p>&copy; 2026 American Power Systems. All rights reserved.</p>
-            <img src="/assets/naspo-logo.png" alt="NASPO ValuePoint" className="h-10" />
-          </div>
-        </footer>
       </main>
     </div>
   );
