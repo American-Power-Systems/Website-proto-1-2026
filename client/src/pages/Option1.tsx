@@ -164,10 +164,10 @@ export default function Option1() {
             <div>
               <h4 className="font-bold text-lg mb-6">Contact</h4>
               <ul className="space-y-3 text-gray-400 text-sm">
-                <li>123 Industrial Way</li>
-                <li>Power City, ST 12345</li>
-                <li>(555) 123-4567</li>
-                <li>info@americanpowersystems.com</li>
+                <li>1851 Central Place South, Suite 206</li>
+                <li>Kent, WA 98030</li>
+                <li>(800) 395-0693</li>
+                <li>info@ampowersys.com</li>
               </ul>
             </div>
             <div>
