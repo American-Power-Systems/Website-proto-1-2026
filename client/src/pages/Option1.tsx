@@ -12,13 +12,8 @@ export default function Option1() {
   return (
     <div className="font-sans min-h-screen flex flex-col bg-white">
       
-      {/* Top Bar */}
-      <div className="bg-black text-white text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-between gap-4 items-center">
-        <Link href="/">
-            <a className="hover:text-aps-red font-bold flex items-center gap-1">
-                &larr; Back to Styles
-            </a>
-        </Link>
+      {/* Top Bar (Sticky for contact info) */}
+      <div id="top" className="bg-black text-white text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-end gap-4 items-center">
         <div className="flex gap-4">
             <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:text-aps-red flex items-center gap-1 transition-colors">
                 <Phone className="w-3 h-3" /> {companyInfo.phone}
@@ -29,54 +24,56 @@ export default function Option1() {
             </a>
         </div>
         <div className="hidden md:flex gap-4 border-l border-gray-700 pl-4">
-            <Link href="/careers"><a className="hover:text-gray-300 font-bold">CAREERS</a></Link>
+            <a href="#" className="hover:text-gray-300 font-bold">CAREERS</a>
             <a href="#" className="hover:text-gray-300 font-bold">APS PORTAL</a>
         </div>
       </div>
 
-      {/* Header */}
+      {/* Main Header */}
       <header className="sticky top-0 z-50 bg-aps-blue shadow-lg border-b-4 border-aps-red">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center h-20">
-            <Link href="/">
-              <a className="flex items-center gap-2 cursor-pointer">
+            <a href="#top" className="flex items-center gap-2 cursor-pointer">
                 <img src={apsLogo} alt={companyInfo.name} className="h-12 w-auto" />
-              </a>
-            </Link>
+            </a>
 
+            {/* Desktop Nav */}
             <nav className="hidden md:flex gap-8">
               {navItems.map((item) => (
-                <Link key={item.name} href={item.href}>
-                  <a className="text-white font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider">
-                    {item.name}
-                  </a>
-                </Link>
+                <a 
+                  key={item.name} 
+                  href={item.href} 
+                  className="text-white font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider"
+                >
+                  {item.name}
+                </a>
               ))}
             </nav>
 
+            {/* Mobile Toggle */}
             <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
               <Menu />
             </button>
           </div>
         </div>
         
+        {/* Mobile Menu */}
         {mobileMenuOpen && (
           <div className="md:hidden bg-aps-dark border-t border-white/10 p-4">
             <nav className="flex flex-col gap-4">
               {navItems.map((item) => (
-                <Link key={item.name} href={item.href}>
-                  <a className="text-white font-bold hover:text-aps-red text-lg">{item.name}</a>
-                </Link>
+                <a key={item.name} href={item.href} className="text-white font-bold hover:text-aps-red text-lg">
+                  {item.name}
+                </a>
               ))}
             </nav>
           </div>
         )}
       </header>
 
-      {/* Hero (Reduced Motion Support via CSS classes handled by modern browsers, but structure cleaned here) */}
+      {/* Hero */}
       <section className="relative h-[650px] w-full overflow-hidden group">
         <div className="absolute inset-0 bg-black/40 z-10"></div>
-        {/* Added motion-reduce:transition-none to disable zoom effect for accessibility */}
         <img 
           src={heroImage} 
           alt="APS Facility" 
@@ -86,7 +83,7 @@ export default function Option1() {
           <div className="container mx-auto px-6">
             <div className="max-w-3xl text-white">
               <div className="inline-block bg-aps-red text-white text-xs font-bold px-3 py-1 mb-6 uppercase tracking-[0.2em]">
-                Since 1994
+                Since {companyInfo.founded}
               </div>
               <h1 className="font-heading text-5xl md:text-7xl font-bold mb-6 leading-tight drop-shadow-lg">
                 DC POWER <br/>
@@ -96,23 +93,19 @@ export default function Option1() {
                 {companyInfo.tagline}. From VRLA batteries to complete DC power plants. We install, maintain, and test critical infrastructure.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Link href="/services">
-                    <a className="bg-aps-red hover:bg-red-700 text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
+                <a href="#services" className="bg-aps-red hover:bg-red-700 text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
                     View Services
-                    </a>
-                </Link>
-                <Link href="/products">
-                    <a className="border-2 border-white hover:bg-white hover:text-aps-blue text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
+                </a>
+                <a href="#products" className="border-2 border-white hover:bg-white hover:text-aps-blue text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
                     Our Products
-                    </a>
-                </Link>
+                </a>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Partners Ticker (Added ID for navigation) */}
+      {/* Partners Ticker - Added ID for navigation */}
       <section id="partners" className="bg-gray-100 border-b border-gray-200 py-8 overflow-hidden">
         <div className="container mx-auto px-6">
             <p className="text-center text-gray-400 text-xs font-bold uppercase tracking-widest mb-6">Trusted Partners & Brands</p>
@@ -153,14 +146,12 @@ export default function Option1() {
                             </li>
                         ))}
                     </ul>
-                    <Link href="/products">
-                        <a className="inline-block bg-aps-navy text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-red transition-colors">
-                            View Product Catalog
-                        </a>
-                    </Link>
+                    <a href="#products" className="inline-block bg-aps-navy text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-red transition-colors">
+                        View Product Catalog
+                    </a>
                 </div>
 
-                {/* Column 2: SERVICES (Highlighted) */}
+                {/* Column 2: SERVICES - Added ID scroll target just above this if needed */}
                 <div id="services" className="bg-gray-50 p-10 border-t-4 border-aps-red hover:shadow-xl transition-all group">
                     <h3 className="text-2xl font-bold text-aps-navy mb-6 flex items-center gap-3">
                         <Wrench className="text-aps-red" /> Installation Services
@@ -175,17 +166,15 @@ export default function Option1() {
                             </li>
                         ))}
                     </ul>
-                    <Link href="/services">
-                        <a className="inline-block bg-aps-red text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-navy transition-colors">
-                            Explore Services
-                        </a>
-                    </Link>
+                    <a href="#services" className="inline-block bg-aps-red text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-navy transition-colors">
+                        Explore Services
+                    </a>
                 </div>
             </div>
         </div>
       </section>
 
-      {/* Social Wall */}
+      {/* Standardized Section Order: Hero -> Products/Services -> Partners (above) -> LinkedIn -> Footer */}
       <LinkedInFeed variant="default" />
 
       {/* Footer */}
@@ -197,31 +186,23 @@ export default function Option1() {
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
                 American Power Systems provides industry-leading DC power solutions for telecommunications, utility, and industrial applications.
               </p>
-              {/* Real Social Links */}
               <div className="flex gap-4">
                   <a href={companyInfo.linkedinUrl} target="_blank" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#0077b5] cursor-pointer transition text-white">
-                    {/* Using Font Awesome class since we don't have the icon imported or installed, but the user used it in LinkedInFeed.tsx. 
-                        Actually, I should check if FontAwesome is available. The user snippet used <i className="fab fa-linkedin"></i> in LinkedInFeed.tsx.
-                        However, the footer in Option1.tsx (bottom of snippet) used <i className="fab fa-linkedin-in"></i>.
-                        Since this is a React environment and I don't see FontAwesome loaded in index.html, this might break.
-                        I'll use Lucide icons instead since they are available and safer.
-                    */}
-                    {/* Using Lucide 'Linkedin' icon which is not imported yet, I'll import it. Wait, I see I already imported Zap, Wrench etc. I'll add Linkedin to imports */}
+                    <i className="fab fa-linkedin-in"></i>
                   </a>
               </div>
             </div>
             
             <div>
-              <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Services</h4>
+              <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Quick Links</h4>
               <ul className="space-y-4 text-gray-400 text-sm">
-                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Installation</a></Link></li>
-                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Maintenance</a></Link></li>
-                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Testing</a></Link></li>
-                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Disposal</a></Link></li>
+                <li><a href="#services" className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Installation</a></li>
+                <li><a href="#services" className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Maintenance</a></li>
+                <li><a href="#products" className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Products</a></li>
               </ul>
             </div>
 
-            <div>
+            <div id="about">
               <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Contact Headquarters</h4>
               <ul className="space-y-4 text-gray-400 text-sm">
                 <li className="flex gap-3 items-start">
@@ -237,7 +218,7 @@ export default function Option1() {
           </div>
           
           <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
-            <p>&copy; 2026 {companyInfo.name}. All rights reserved.</p>
+            <p>© 2026 {companyInfo.name}. All rights reserved.</p>
           </div>
         </div>
       </footer>
