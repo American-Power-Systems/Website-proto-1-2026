@@ -97,7 +97,7 @@ export const services = [
 
 export const partners = [
   { name: "East Penn Manufacturing", logo: "/assets/EPM-Logo_RGB.jpg" },
-  { name: "C&D Technologies", logo: "/assets/cd-logo.png" }, // Priority Supplier
+  { name: "C&D Technologies", logo: "/assets/cd-logo.avif" }, // Priority Supplier
   { name: "MK Battery", logo: "/assets/MK Battery.png" },
   { name: "Enviroguard", logo: "/assets/Enviroguard.png" },
   { name: "Hindle Power", logo: "/assets/Hindle.png" },

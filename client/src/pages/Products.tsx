@@ -62,7 +62,7 @@ export default function Products() {
                 {/* Highlight East Penn & C&D specifically */}
                 <img src="/assets/EPM-Logo_RGB.jpg" className="h-20 object-contain hover:scale-105 transition-transform" alt="East Penn" />
                 <div className="w-px h-12 bg-gray-300 hidden md:block"></div>
-                <img src="/assets/cd-logo.png" className="h-16 object-contain hover:scale-105 transition-transform" alt="C&D Technologies" />
+                <img src="/assets/cd-logo.avif" className="h-16 object-contain hover:scale-105 transition-transform" alt="C&D Technologies" />
                 <div className="w-px h-12 bg-gray-300 hidden md:block"></div>
                 <img src="/assets/MK Battery.png" className="h-14 object-contain hover:scale-105 transition-transform" alt="MK Battery" />
             </div>
