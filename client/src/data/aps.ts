@@ -1,6 +1,6 @@
 import { 
   Wrench, ClipboardList, Activity, Trash2, 
-  Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass 
+  Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass, MapPin 
 } from "lucide-react";
 
 export const navItems = [
@@ -15,25 +15,29 @@ export const navItems = [
 export const products = [
   { 
     title: "DC Power Plants", 
-    desc: "Complete DC power solutions including rectifiers, chargers, converters, and distribution panels from industry leaders.",
-    image: "/assets/products_dc_power.jpg", // Ensure this exists or use a placeholder
+    desc: "Complete turnkey DC power plants, rectifiers, and distribution panels for telecom & utility.",
+    details: "We provide solutions from industry leaders with necessary rectifiers, chargers, converters, and distribution.",
+    image: "/assets/products_dc_power.jpg", // Ensure image exists
     icon: Zap
   },
   { 
-    title: "UPS & Inverters", 
-    desc: "Single Phase and Three Phase UPS systems and inverters for critical AC power backup.",
-    image: "/assets/products_ups.jpg",
-    icon: Server
-  },
-  { 
     title: "Batteries (VRLA & Flooded)", 
-    desc: "Premium reserve power solutions for Central Office and Cellular environments.",
+    desc: "Premium reserve power solutions including VRLA, NiCad, and Lithium-ion technologies.",
+    details: "Authorized distributor for MK Battery, East Penn, and other top-tier manufacturers.",
     image: "/assets/products_batteries.jpg",
     icon: Battery
   },
   { 
-    title: "Racks & Spill Containment", 
-    desc: "Seismic-rated enclosures, battery racks, and spill containment systems for UPS and Telecom.",
+    title: "UPS & Inverters", 
+    desc: "Single Phase and Three Phase UPS systems and inverters for critical AC power backup.",
+    details: "Protect your critical loads with reliable AC power solutions.",
+    image: "/assets/products_ups.jpg",
+    icon: Server
+  },
+  { 
+    title: "Racking & Containment", 
+    desc: "Seismic-rated battery racking, spill containment systems, and safety compliance gear.",
+    details: "Includes over-current protection, bus/cable components, and certified spill containment.",
     image: "/assets/products_racking.jpg",
     icon: ShieldCheck
   }
@@ -85,15 +89,16 @@ export const locations = [
     city: "Kent, WA 98030",
     phone: "(800) 395-0693",
     type: "Headquarters",
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.393278637734!2d-122.2465996843699!3d47.41459997917244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905ecc3a223f6b%3A0x6b2b733777777777!2s1851%20Central%20Pl%20S%20%23206%2C%20Kent%2C%20WA%2098030!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+    // Embed URL for Google Maps
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.353396860388!2d-122.2356!3d47.382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905bfdb7e62563%3A0x1!2s1851%20Central%20Pl%20S%20%23206%2C%20Kent%2C%20WA%2098030!5e0!3m2!1sen!2sus!4v1620000000000"
   },
   {
-    name: "Midwest Operations", // Updated based on earlier context
+    name: "Midwest Operations",
     address: "Davenport Area", 
     city: "Davenport, IA",
     phone: "(563) 555-0123",
     type: "Regional Hub",
-    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95460.29749069153!2d-90.6367356653282!3d41.54287532392476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e234c2e6f4277d%3A0x629f6266075677!2sDavenport%2C%20IA!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95683.50742586324!2d-90.6366!3d41.543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e234c2e6f7b901%3A0x!2sDavenport%2C%20IA!5e0!3m2!1sen!2sus!4v1620000000000"
   }
 ];
 
