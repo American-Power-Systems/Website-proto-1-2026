@@ -12,7 +12,7 @@ export default function Option1() {
   return (
     <div className="font-sans min-h-screen flex flex-col bg-white">
       
-      {/* Top Bar (Sticky for contact info) */}
+      {/* Top Bar */}
       <div id="top" className="bg-black text-white text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-end gap-4 items-center">
         <div className="flex gap-4">
             <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:text-aps-red flex items-center gap-1 transition-colors">
@@ -33,20 +33,20 @@ export default function Option1() {
       <header className="sticky top-0 z-50 bg-aps-blue shadow-lg border-b-4 border-aps-red">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center h-20">
-            <a href="#top" className="flex items-center gap-2 cursor-pointer">
-                <img src={apsLogo} alt={companyInfo.name} className="h-12 w-auto" />
-            </a>
+            <Link href="/">
+                <a className="flex items-center gap-2 cursor-pointer">
+                    <img src={apsLogo} alt={companyInfo.name} className="h-12 w-auto" />
+                </a>
+            </Link>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex gap-8">
               {navItems.map((item) => (
-                <a 
-                  key={item.name} 
-                  href={item.href} 
-                  className="text-white font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider"
-                >
-                  {item.name}
-                </a>
+                <Link key={item.name} href={item.href}>
+                  <a className="text-white font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider">
+                    {item.name}
+                  </a>
+                </Link>
               ))}
             </nav>
 
@@ -62,9 +62,9 @@ export default function Option1() {
           <div className="md:hidden bg-aps-dark border-t border-white/10 p-4">
             <nav className="flex flex-col gap-4">
               {navItems.map((item) => (
-                <a key={item.name} href={item.href} className="text-white font-bold hover:text-aps-red text-lg">
-                  {item.name}
-                </a>
+                <Link key={item.name} href={item.href}>
+                  <a className="text-white font-bold hover:text-aps-red text-lg">{item.name}</a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -93,26 +93,29 @@ export default function Option1() {
                 {companyInfo.tagline}. From VRLA batteries to complete DC power plants. We install, maintain, and test critical infrastructure.
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <a href="#services" className="bg-aps-red hover:bg-red-700 text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
-                    View Services
-                </a>
-                <a href="#products" className="border-2 border-white hover:bg-white hover:text-aps-blue text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
-                    Our Products
-                </a>
+                <Link href="/services">
+                    <a className="bg-aps-red hover:bg-red-700 text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
+                        View Services
+                    </a>
+                </Link>
+                <Link href="/products">
+                    <a className="border-2 border-white hover:bg-white hover:text-aps-blue text-white px-10 py-4 font-bold uppercase tracking-wider transition-all text-center">
+                        Our Products
+                    </a>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Partners Ticker - Modernized */}
-      <section id="partners" className="bg-gray-100 border-b border-gray-200 py-10 overflow-hidden">
+      {/* Partners Ticker */}
+      <section className="bg-gray-100 border-b border-gray-200 py-10 overflow-hidden">
         <div className="container mx-auto px-6">
             <p className="text-center text-gray-400 text-xs font-bold uppercase tracking-widest mb-8">Trusted Suppliers & Partners</p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
                 {partners.map((partner, idx) => (
                     <div key={idx} className="h-16 w-32 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100">
-                        {/* Using object-contain ensures logos don't get cut off */}
                         <img 
                             src={partner.logo} 
                             alt={partner.name} 
@@ -125,7 +128,7 @@ export default function Option1() {
       </section>
 
       {/* Main Offering Split */}
-      <section id="products" className="py-20 bg-white">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
             <div className="text-center mb-16">
                 <h2 className="text-3xl md:text-4xl font-bold text-aps-navy uppercase tracking-wide">Complete Power Solutions</h2>
@@ -133,7 +136,7 @@ export default function Option1() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-12">
-                {/* Column 1: PRODUCTS */}
+                {/* PRODUCTS */}
                 <div className="bg-gray-50 p-10 border-t-4 border-aps-navy hover:shadow-xl transition-all group">
                     <h3 className="text-2xl font-bold text-aps-navy mb-6 flex items-center gap-3">
                         <Zap className="text-aps-red" /> DC & AC Power Products
@@ -148,13 +151,15 @@ export default function Option1() {
                             </li>
                         ))}
                     </ul>
-                    <a href="#products" className="inline-block bg-aps-navy text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-red transition-colors">
-                        View Product Catalog
-                    </a>
+                    <Link href="/products">
+                        <a className="inline-block bg-aps-navy text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-red transition-colors">
+                            View Product Catalog
+                        </a>
+                    </Link>
                 </div>
 
-                {/* Column 2: SERVICES */}
-                <div id="services" className="bg-gray-50 p-10 border-t-4 border-aps-red hover:shadow-xl transition-all group">
+                {/* SERVICES */}
+                <div className="bg-gray-50 p-10 border-t-4 border-aps-red hover:shadow-xl transition-all group">
                     <h3 className="text-2xl font-bold text-aps-navy mb-6 flex items-center gap-3">
                         <Wrench className="text-aps-red" /> Installation Services
                     </h3>
@@ -168,9 +173,11 @@ export default function Option1() {
                             </li>
                         ))}
                     </ul>
-                    <a href="#services" className="inline-block bg-aps-red text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-navy transition-colors">
-                        Explore Services
-                    </a>
+                    <Link href="/services">
+                        <a className="inline-block bg-aps-red text-white px-6 py-3 font-bold uppercase text-sm hover:bg-aps-navy transition-colors">
+                            Explore Services
+                        </a>
+                    </Link>
                 </div>
             </div>
         </div>
@@ -187,24 +194,18 @@ export default function Option1() {
               <p className="text-gray-400 text-sm leading-relaxed mb-6">
                 American Power Systems provides industry-leading DC power solutions for telecommunications, utility, and industrial applications.
               </p>
-              {/* Real Social Links */}
-              <div className="flex gap-4">
-                  <a href={companyInfo.linkedinUrl} target="_blank" className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-[#0077b5] cursor-pointer transition text-white">
-                    <i className="fab fa-linkedin-in"></i>
-                  </a>
-              </div>
             </div>
             
             <div>
               <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Quick Links</h4>
               <ul className="space-y-4 text-gray-400 text-sm">
-                <li><a href="#services" className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Installation</a></li>
-                <li><a href="#services" className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Maintenance</a></li>
-                <li><a href="#products" className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Products</a></li>
+                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Installation</a></Link></li>
+                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Maintenance</a></Link></li>
+                <li><Link href="/products"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Products</a></Link></li>
               </ul>
             </div>
 
-            <div id="about">
+            <div>
               <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Contact Headquarters</h4>
               <ul className="space-y-4 text-gray-400 text-sm">
                 <li className="flex gap-3 items-start">
