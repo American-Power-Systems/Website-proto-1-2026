@@ -7,22 +7,24 @@ export default function Option2() {
   return (
     <div className="font-sans min-h-screen bg-gray-100 flex flex-col text-gray-800">
       {/* Top Bar - Black */}
-      <div className="bg-black text-white py-1">
-        <div className="container mx-auto px-4 flex justify-end gap-4 text-sm">
-          <Link href="/" className="hover:underline opacity-70">Back to Menu</Link>
-          <a href="#" className="hover:underline">Contact</a>
-          <a href="#" className="hover:underline">Careers</a>
-        </div>
+      <div className="bg-black text-white text-[12px] py-[5px] px-[20px] flex justify-end gap-[15px] items-center">
+        <a href="#" className="text-white no-underline hover:text-gray-300">CAREERS</a>
+        <span>|</span>
+        <a href="#" className="text-white no-underline hover:text-gray-300">CONTACT US</a>
+        <span>|</span>
+        <a href="#" className="text-white no-underline hover:text-gray-300">APS PORTAL</a>
       </div>
 
       {/* Navbar - Bootstrap Style (Standard) */}
       <nav className="bg-aps-blue shadow-md">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <a href="#" className="flex items-center gap-2 text-white no-underline hover:no-underline">
-              <div className="bg-white text-aps-blue font-bold px-2 py-1 font-heading text-xl">APS</div>
-              <span className="font-bold text-lg tracking-tight">American Power Systems</span>
-            </a>
+            <Link href="/">
+              <a className="flex items-center gap-2 text-white no-underline hover:no-underline cursor-pointer">
+                <div className="bg-white text-aps-blue font-bold px-2 py-1 font-heading text-xl">APS</div>
+                <span className="font-bold text-lg tracking-tight">American Power Systems</span>
+              </a>
+            </Link>
             
             <div className="hidden md:flex space-x-1">
               {navItems.map((item) => (

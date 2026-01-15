@@ -11,17 +11,12 @@ export default function Option1() {
   return (
     <div className="font-sans min-h-screen flex flex-col bg-white">
       {/* Top Bar */}
-      <div className="bg-black text-white text-xs py-2 px-4">
-        <div className="container mx-auto flex justify-between items-center">
-          <span>Leading DC Power Solutions Since 1995</span>
-          <div className="flex gap-4 font-medium">
-            <a href="#" className="hover:text-aps-red transition-colors">Contact</a>
-            <span className="text-gray-600">|</span>
-            <a href="#" className="hover:text-aps-red transition-colors">Careers</a>
-            <span className="text-gray-600">|</span>
-            <Link href="/" className="text-gray-400 hover:text-white">Back to Menu</Link>
-          </div>
-        </div>
+      <div className="bg-black text-white text-[12px] py-[5px] px-[20px] flex justify-end gap-[15px] items-center">
+        <a href="#" className="text-white no-underline hover:text-gray-300">CAREERS</a>
+        <span>|</span>
+        <a href="#" className="text-white no-underline hover:text-gray-300">CONTACT US</a>
+        <span>|</span>
+        <a href="#" className="text-white no-underline hover:text-gray-300">APS PORTAL</a>
       </div>
 
       {/* Sticky Header */}
@@ -29,14 +24,16 @@ export default function Option1() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center h-20">
             {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="bg-aps-blue border-2 border-white p-2">
-                <span className="text-white font-heading font-bold text-3xl tracking-tighter">APS</span>
-              </div>
-              <span className="text-white font-light text-sm hidden sm:block leading-tight opacity-80">
-                AMERICAN<br/>POWER SYSTEMS
-              </span>
-            </div>
+            <Link href="/">
+              <a className="flex items-center gap-2 cursor-pointer">
+                <div className="bg-aps-blue border-2 border-white p-2">
+                  <span className="text-white font-heading font-bold text-3xl tracking-tighter">APS</span>
+                </div>
+                <span className="text-white font-light text-sm hidden sm:block leading-tight opacity-80">
+                  AMERICAN<br/>POWER SYSTEMS
+                </span>
+              </a>
+            </Link>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex gap-8">
