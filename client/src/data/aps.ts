@@ -1,6 +1,7 @@
 import { 
   Wrench, ClipboardList, Activity, Trash2, 
-  Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass 
+  Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass,
+  Users, DollarSign, Heart, Clock, GraduationCap, Briefcase
 } from "lucide-react";
 
 export const companyInfo = {
@@ -8,6 +9,7 @@ export const companyInfo = {
   founded: "1994",
   phone: "(800) 395-0693",
   email: "info@ampowersys.com",
+  jobsEmail: "jobs@ampowersys.com",
   address: "1851 Central Place South, Suite 206",
   cityStateZip: "Kent, WA 98030",
   tagline: "Complete DC Power Solutions",
@@ -22,7 +24,44 @@ export const navItems = [
   { name: "Services", href: "/services", id: "services" },
   { name: "Locations", href: "/locations", id: "locations" },
   { name: "Partners", href: "/#partners", id: "partners" }, // Keep partners on homepage
+  { name: "Careers", href: "/careers", id: "careers" }, // Now a real page
   { name: "Contact", href: "#contact", id: "contact" },
+];
+
+export const benefits = [
+  { title: "Weekly Pay", desc: "Consistent paychecks every Friday.", icon: DollarSign },
+  { title: "Paid Time Off", desc: "9 Paid Holidays & up to 96 hours of PTO.", icon: Clock },
+  { title: "Health Coverage", desc: "Medical, Dental, & Vision with buy-up options.", icon: Heart },
+  { title: "401(k) Match", desc: "Safe Harbor contribution to build your future.", icon: Activity },
+  { title: "Training", desc: "On-the-job training & advancement opportunities.", icon: GraduationCap },
+  { title: "Bonus Program", desc: "Christmas bonus and performance incentives.", icon: Users },
+];
+
+export const openPositions = [
+  {
+    title: "Lead Service Technician",
+    location: "Phoenix, AZ",
+    type: "Full-Time",
+    desc: "Supervise job sites, perform battery/rectifier installations, and mentor junior techs. Requires 4-6 years DC power experience."
+  },
+  {
+    title: "Lead Service Technician",
+    location: "Rialto, CA",
+    type: "Full-Time",
+    desc: "Responsible for safety meetings, MOP documentation, and hands-on installation of DC power systems. 50% travel required."
+  },
+  {
+    title: "Service Manager",
+    location: "Mequon, WI",
+    type: "Management",
+    desc: "Lead our service department operations, scheduling, and customer relationships in the Midwest region."
+  },
+  {
+    title: "DC Power Technician",
+    location: "Kent, WA (HQ)",
+    type: "Full-Time",
+    desc: "Entry to mid-level technician for DC plant installations and battery maintenance. Training provided."
+  }
 ];
 
 export const products = [

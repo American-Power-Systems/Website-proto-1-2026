@@ -11,6 +11,7 @@ import Home from "@/pages/Home";
 import Products from "@/pages/Products";
 import Services from "@/pages/Services";
 import Locations from "@/pages/Locations";
+import Careers from "@/pages/Careers";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -25,6 +26,7 @@ function Router() {
       <Route path="/products" component={Products} />
       <Route path="/services" component={Services} />
       <Route path="/locations" component={Locations} />
+      <Route path="/careers" component={Careers} />
       <Route component={NotFound} />
     </Switch>
   );
