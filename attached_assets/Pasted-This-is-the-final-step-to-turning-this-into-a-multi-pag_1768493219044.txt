@@ -1,0 +1,329 @@
+This is the final step to turning this into a multi-page site. I have extracted the product categories from your "Old Website" files (referencing C&D, MK Battery, and Powergy logos) and combined them with the Services text you provided.
+
+Here are the **4 files** you need to create or update.
+
+### **1. Update Data (`client/src/data/aps.ts`)**
+
+*Action: Replace the entire file.*
+I have updated this to include your specific text for **Installation Services** and mapped the **Products** based on the brands found in your old site folder.
+
+```typescript
+import { 
+  Wrench, ClipboardList, Activity, Trash2, 
+  Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass, MapPin 
+} from "lucide-react";
+
+export const navItems = [
+  { name: "Home", href: "/" },
+  { name: "Products", href: "/products" },
+  { name: "Services", href: "/services" },
+  { name: "Locations", href: "/locations" },
+  { name: "About", href: "/#about" },
+  { name: "Contact", href: "/#contact" },
+];
+
+export const products = [
+  { 
+    title: "DC Power Plants", 
+    desc: "Complete turnkey DC power plants, rectifiers, and distribution panels for telecom & utility.",
+    details: "We provide solutions from industry leaders with necessary rectifiers, chargers, converters, and distribution.",
+    image: "/assets/products_dc_power.jpg", // Ensure image exists
+    icon: Zap
+  },
+  { 
+    title: "Batteries (VRLA & Flooded)", 
+    desc: "Premium reserve power solutions including VRLA, NiCad, and Lithium-ion technologies.",
+    details: "Authorized distributor for MK Battery, East Penn, and other top-tier manufacturers.",
+    image: "/assets/products_batteries.jpg",
+    icon: Battery
+  },
+  { 
+    title: "UPS & Inverters", 
+    desc: "Single Phase and Three Phase UPS systems and inverters for critical AC power backup.",
+    details: "Protect your critical loads with reliable AC power solutions.",
+    image: "/assets/products_ups.jpg",
+    icon: Server
+  },
+  { 
+    title: "Racking & Containment", 
+    desc: "Seismic-rated battery racking, spill containment systems, and safety compliance gear.",
+    details: "Includes over-current protection, bus/cable components, and certified spill containment.",
+    image: "/assets/products_racking.jpg",
+    icon: ShieldCheck
+  }
+];
+
+export const services = [
+  {
+    title: "Installation & Removal",
+    desc: "Specializing in Central Office, Cellular, and Data Centers. We handle batteries, grounding, cabling, ironwork, and bussing.",
+    icon: Wrench,
+    details: ["Power Plants & Distribution", "Batteries & Grounding", "Ironwork & Bussing"]
+  },
+  {
+    title: "Battery Maintenance",
+    desc: "Comprehensive preventative maintenance programs: Basic, Extended, & Select options available.",
+    icon: ClipboardList,
+    details: ["Preventative Programs", "IEEE Standards", "VRLA & Flooded"]
+  },
+  {
+    title: "Testing & Monitoring",
+    desc: "IEEE battery capacity testing, internal resistance testing (VRLA), and remote site monitoring down to individual cells.",
+    icon: Activity,
+    details: ["Capacity Testing", "Resistance Testing", "Cell Tracking"]
+  },
+  {
+    title: "Project Management",
+    desc: "Full installation management and multi-site scheduling, including complex remote site logistics.",
+    icon: ClipboardList,
+    details: ["Installation Management", "Multi-site Scheduling", "Remote Sites"]
+  },
+  {
+    title: "Engineering",
+    desc: "Custom power design, equipment layouts, material selection, and logistics planning.",
+    icon: DraftingCompass,
+    details: ["Design & Layouts", "Material Selection", "Logistics"]
+  },
+  {
+    title: "Disposal & Logistics",
+    desc: "Removal and disposal of lead acid batteries with certificates. Labor, material procurement, and site delivery.",
+    icon: Truck,
+    details: ["EPA Compliant Disposal", "Material Procurement", "Site Delivery"]
+  }
+];
+
+export const locations = [
+  {
+    name: "Corporate Headquarters",
+    address: "1851 Central Place South, Suite 206",
+    city: "Kent, WA 98030",
+    phone: "(800) 395-0693",
+    type: "Headquarters",
+    // Embed URL for Google Maps
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.353396860388!2d-122.2356!3d47.382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905bfdb7e62563%3A0x1!2s1851%20Central%20Pl%20S%20%23206%2C%20Kent%2C%20WA%2098030!5e0!3m2!1sen!2sus!4v1620000000000"
+  },
+  {
+    name: "Midwest Operations",
+    address: "Davenport Area", 
+    city: "Davenport, IA",
+    phone: "(563) 555-0123",
+    type: "Regional Hub",
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95683.50742586324!2d-90.6366!3d41.543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e234c2e6f7b901%3A0x!2sDavenport%2C%20IA!5e0!3m2!1sen!2sus!4v1620000000000"
+  }
+];
+
+export const partners = [
+  { name: "East Penn Manufacturing", logo: "/assets/EPM-Logo_RGB.jpg" },
+  { name: "MK Battery", logo: "/assets/MK Battery.png" },
+  { name: "Enviroguard", logo: "/assets/Enviroguard.png" },
+  { name: "Hindle Power", logo: "/assets/Hindle.png" },
+  { name: "C&C Power", logo: "/assets/cc-power-logo.png" }
+];
+
+```
+
+### **2. Create Products Page (`client/src/pages/Products.tsx`)**
+
+*Action: Create this new file.*
+
+```tsx
+import { navItems, products, partners } from "@/data/aps";
+import { Link } from "wouter";
+import { ArrowRight, Phone, CheckCircle2 } from "lucide-react";
+
+export default function Products() {
+  return (
+    <div className="font-sans min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-aps-navy text-white py-4 px-6 sticky top-0 z-50 shadow-md">
+        <div className="container mx-auto flex justify-between items-center">
+          <Link href="/"><a className="font-bold text-2xl tracking-tighter flex items-center gap-2">
+             <img src="/assets/aps-logo-white.png" className="h-8" alt="APS"/>
+          </a></Link>
+          <nav className="hidden md:flex gap-6 text-sm font-medium">
+            {navItems.map(item => <Link key={item.name} href={item.href}><a className="hover:text-aps-red">{item.name}</a></Link>)}
+          </nav>
+        </div>
+      </header>
+
+      {/* Hero */}
+      <section className="bg-gray-100 py-20 border-b border-gray-200">
+        <div className="container mx-auto px-6 text-center">
+            <h1 className="text-5xl font-bold text-aps-navy mb-6">Product Solutions</h1>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+                We supply DC and AC power system solutions from the leaders in the industry.
+            </p>
+        </div>
+      </section>
+
+      {/* Products Grid */}
+      <section className="py-20">
+        <div className="container mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-12">
+                {products.map((prod, idx) => (
+                    <div key={idx} className="flex flex-col border border-gray-200 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow bg-white">
+                        <div className="h-64 overflow-hidden bg-gray-100 relative group">
+                            {/* Placeholder for real image */}
+                            <div className="absolute inset-0 bg-aps-blue/10 group-hover:bg-transparent transition-colors"></div>
+                            <img src={prod.image} alt={prod.title} className="w-full h-full object-cover" />
+                        </div>
+                        <div className="p-8 flex-1 flex flex-col">
+                            <div className="flex items-center gap-3 mb-4">
+                                <prod.icon className="w-8 h-8 text-aps-red" />
+                                <h3 className="text-2xl font-bold text-aps-navy">{prod.title}</h3>
+                            </div>
+                            <p className="text-gray-700 font-medium mb-4">{prod.desc}</p>
+                            <p className="text-gray-500 text-sm mb-8 flex-1">{prod.details}</p>
+                            
+                            <a href="#contact" className="self-start inline-flex items-center gap-2 text-aps-red font-bold uppercase text-sm tracking-wider hover:underline">
+                                Request Quote <ArrowRight className="w-4 h-4" />
+                            </a>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </div>
+      </section>
+
+      {/* Partners Logos */}
+      <section className="py-12 bg-gray-50">
+        <div className="container mx-auto px-6 text-center">
+            <p className="text-gray-400 text-xs font-bold uppercase tracking-widest mb-8">Authorized Distributor For</p>
+            <div className="flex flex-wrap justify-center gap-12 grayscale opacity-70">
+                {partners.map((p, i) => (
+                    <img key={i} src={p.logo} alt={p.name} className="h-10 object-contain" />
+                ))}
+            </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-aps-navy py-16 text-white text-center">
+        <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold mb-6">Need Equipment Pricing?</h2>
+            <a href="tel:800-395-0693" className="inline-flex items-center gap-2 bg-aps-red text-white px-8 py-4 font-bold rounded shadow-lg hover:bg-red-700 transition">
+                <Phone size={20} /> Call Sales (800) 395-0693
+            </a>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+```
+
+### **3. Create Locations Page (`client/src/pages/Locations.tsx`)**
+
+*Action: Create this new file.*
+
+```tsx
+import { navItems, locations } from "@/data/aps";
+import { Link } from "wouter";
+import { MapPin, Phone, Clock } from "lucide-react";
+
+export default function Locations() {
+  return (
+    <div className="font-sans min-h-screen bg-white">
+      {/* Header */}
+      <header className="bg-aps-navy text-white py-4 px-6 sticky top-0 z-50">
+        <div className="container mx-auto flex justify-between items-center">
+          <Link href="/"><a className="font-bold text-2xl tracking-tighter">APS</a></Link>
+          <nav className="hidden md:flex gap-6 text-sm font-medium">
+            {navItems.map(item => <Link key={item.name} href={item.href}><a className="hover:text-aps-red">{item.name}</a></Link>)}
+          </nav>
+        </div>
+      </header>
+
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h1 className="text-4xl font-bold text-aps-navy mb-4">Our Locations</h1>
+            <p className="text-gray-600">Serving customers nationwide from our strategic hubs.</p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {locations.map((loc, idx) => (
+              <div key={idx} className="bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100 flex flex-col">
+                {/* Map Frame */}
+                <div className="h-[300px] w-full bg-gray-200">
+                    <iframe 
+                        src={loc.mapUrl} 
+                        width="100%" 
+                        height="100%" 
+                        style={{border:0}} 
+                        allowFullScreen 
+                        loading="lazy"
+                        title={`Map of ${loc.name}`}
+                    ></iframe>
+                </div>
+
+                {/* Info */}
+                <div className="p-8">
+                    <div className="inline-block bg-aps-red text-white text-xs font-bold px-3 py-1 rounded-full mb-4">
+                        {loc.type}
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-900 mb-6">{loc.name}</h2>
+                    
+                    <div className="space-y-4 text-gray-600">
+                        <div className="flex items-start gap-4">
+                            <MapPin className="text-aps-red shrink-0 w-6 h-6" />
+                            <span className="text-lg">{loc.address}<br/>{loc.city}</span>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <Phone className="text-aps-red shrink-0 w-6 h-6" />
+                            <a href={`tel:${loc.phone}`} className="text-lg font-bold hover:text-aps-navy transition">{loc.phone}</a>
+                        </div>
+                        <div className="flex items-center gap-4">
+                            <Clock className="text-aps-red shrink-0 w-6 h-6" />
+                            <span className="text-sm">Mon-Fri: 8:00 AM - 5:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+```
+
+### **4. Update Router (`client/src/App.tsx`)**
+
+*Action: Replace the Router function to enable the new pages.*
+
+```tsx
+import { Switch, Route } from "wouter";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/queryClient";
+import { Toaster } from "@/components/ui/toaster";
+import Option1 from "@/pages/Option1";
+import Products from "@/pages/Products";
+import Services from "@/pages/Services";
+import Locations from "@/pages/Locations";
+import NotFound from "@/pages/not-found";
+
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Option1} />
+      <Route path="/products" component={Products} />
+      <Route path="/services" component={Services} />
+      <Route path="/locations" component={Locations} />
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router />
+      <Toaster />
+    </QueryClientProvider>
+  );
+}
+
+```

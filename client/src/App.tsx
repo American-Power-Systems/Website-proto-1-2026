@@ -9,6 +9,9 @@ import Option2 from "@/pages/Option2";
 import Option3 from "@/pages/Option3";
 import Option4 from "@/pages/Option4";
 import Option5 from "@/pages/Option5";
+import Services from "@/pages/Services";
+import Products from "@/pages/Products";
+import Locations from "@/pages/Locations";
 
 function Router() {
   return (
@@ -19,6 +22,9 @@ function Router() {
       <Route path="/option-3" component={Option3} />
       <Route path="/option-4" component={Option4} />
       <Route path="/option-5" component={Option5} />
+      <Route path="/services" component={Services} />
+      <Route path="/products" component={Products} />
+      <Route path="/locations" component={Locations} />
       <Route component={NotFound} />
     </Switch>
   );
