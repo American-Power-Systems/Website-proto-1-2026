@@ -18,15 +18,22 @@ export default function Option3() {
       {/* HEADER */}
       <header className="sticky top-0 z-50 border-b border-gray-800 bg-[#0a0a0a]/95 backdrop-blur-md">
         <div className="container mx-auto px-6 h-20 flex justify-between items-center">
-          <Link href="/">
-            <a className="flex items-center gap-3">
-              <img src="/assets/aps-logo-white.png" alt="APS" className="h-10 w-auto" />
-              <div className="hidden lg:block h-8 w-px bg-gray-700"></div>
-              <span className="hidden lg:block text-sm text-gray-400 font-light tracking-widest uppercase">
-                Critical Power
-              </span>
-            </a>
-          </Link>
+          <div className="flex items-center gap-6">
+              <Link href="/">
+                <a className="text-gray-500 hover:text-white text-xs uppercase tracking-widest font-bold border border-gray-700 px-3 py-1 rounded hover:border-white transition-colors">
+                    &larr; Styles
+                </a>
+              </Link>
+              <Link href="/">
+                <a className="flex items-center gap-3">
+                  <img src="/assets/aps-logo-white.png" alt="APS" className="h-10 w-auto" />
+                  <div className="hidden lg:block h-8 w-px bg-gray-700"></div>
+                  <span className="hidden lg:block text-sm text-gray-400 font-light tracking-widest uppercase">
+                    Critical Power
+                  </span>
+                </a>
+              </Link>
+          </div>
 
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
             {navItems.map((item) => (

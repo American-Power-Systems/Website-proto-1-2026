@@ -10,6 +10,11 @@ export default function Option5() {
       {/* Minimal Header */}
       <header className="border-b-2 border-black p-4 flex justify-between items-center bg-aps-navy text-white">
         <div className="flex items-center gap-4">
+            <Link href="/">
+                <a className="text-white hover:text-gray-300 font-bold mr-4 border-r border-white/30 pr-4">
+                    &larr; STYLES
+                </a>
+            </Link>
             <img src={apsLogo} alt="APS" className="h-8" />
             <span className="text-sm font-bold tracking-widest hidden sm:inline">| DC POWER SPECS</span>
         </div>

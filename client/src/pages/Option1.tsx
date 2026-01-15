@@ -13,7 +13,12 @@ export default function Option1() {
     <div className="font-sans min-h-screen flex flex-col bg-white">
       
       {/* Top Bar */}
-      <div className="bg-black text-white text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-end gap-4 items-center">
+      <div className="bg-black text-white text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-between gap-4 items-center">
+        <Link href="/">
+            <a className="hover:text-aps-red font-bold flex items-center gap-1">
+                &larr; Back to Styles
+            </a>
+        </Link>
         <div className="flex gap-4">
             <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:text-aps-red flex items-center gap-1 transition-colors">
                 <Phone className="w-3 h-3" /> {companyInfo.phone}

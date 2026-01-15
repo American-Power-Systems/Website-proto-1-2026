@@ -12,7 +12,11 @@ export default function Option2() {
         {/* Corporate Top Bar */}
         <div className="bg-aps-navy text-white text-sm py-2">
             <div className="container mx-auto px-6 flex justify-between">
-                <span>Leading Power Solutions Since 1994</span>
+                <div className="flex items-center gap-4">
+                    <Link href="/"><a className="hover:text-gray-300 flex items-center gap-1 font-bold">&larr; Back to Styles</a></Link>
+                    <span className="opacity-50">|</span>
+                    <span>Leading Power Solutions Since 1994</span>
+                </div>
                 <div className="flex gap-4">
                     <a href="/locations" className="hover:underline">Locations</a>
                     <span>|</span>
