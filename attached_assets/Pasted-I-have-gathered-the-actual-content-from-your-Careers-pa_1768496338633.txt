@@ -1,0 +1,554 @@
+I have gathered the actual content from your Careers page (Benefits, Culture, and Open Positions).
+
+I will now:
+
+1. **Update the Data File** with your real job openings and benefits list.
+2. **Create the Careers Page** using the clean "Option 1" style (Blue/Red branding).
+3. **Connect the Navigation** so the "Careers" link in the top bar actually works.
+
+### **1. Update Data (`client/src/data/aps.ts`)**
+
+*Action:* Add the `careers` data and update the `navItems` to point to the new page.
+
+```typescript
+import { 
+  Wrench, ClipboardList, Activity, Trash2, 
+  Zap, Battery, Server, ShieldCheck, Truck, DraftingCompass,
+  Users, DollarSign, Heart, Clock, GraduationCap, Briefcase
+} from "lucide-react";
+
+export const companyInfo = {
+  name: "American Power Systems",
+  founded: "1994",
+  phone: "(800) 395-0693",
+  email: "info@ampowersys.com",
+  jobsEmail: "jobs@ampowersys.com",
+  address: "1851 Central Place South, Suite 206",
+  cityStateZip: "Kent, WA 98030",
+  tagline: "Complete DC Power Solutions",
+  linkedinUrl: "https://www.linkedin.com/company/american-power-systems-llc",
+  lineCardUrl: "/assets/aps-line-card.pdf" 
+};
+
+export const navItems = [
+  { name: "Home", href: "/", id: "home" },
+  { name: "Products", href: "/products", id: "products" },
+  { name: "Services", href: "/services", id: "services" },
+  { name: "Locations", href: "/locations", id: "locations" },
+  { name: "Partners", href: "/#partners", id: "partners" },
+  { name: "Careers", href: "/careers", id: "careers" }, // Now a real page
+  { name: "Contact", href: "#contact", id: "contact" },
+];
+
+export const benefits = [
+  { title: "Weekly Pay", desc: "Consistent paychecks every Friday.", icon: DollarSign },
+  { title: "Paid Time Off", desc: "9 Paid Holidays & up to 96 hours of PTO.", icon: Clock },
+  { title: "Health Coverage", desc: "Medical, Dental, & Vision with buy-up options.", icon: Heart },
+  { title: "401(k) Match", desc: "Safe Harbor contribution to build your future.", icon: Activity },
+  { title: "Training", desc: "On-the-job training & advancement opportunities.", icon: GraduationCap },
+  { title: "Bonus Program", desc: "Christmas bonus and performance incentives.", icon: Users },
+];
+
+export const openPositions = [
+  {
+    title: "Lead Service Technician",
+    location: "Phoenix, AZ",
+    type: "Full-Time",
+    desc: "Supervise job sites, perform battery/rectifier installations, and mentor junior techs. Requires 4-6 years DC power experience."
+  },
+  {
+    title: "Lead Service Technician",
+    location: "Rialto, CA",
+    type: "Full-Time",
+    desc: "Responsible for safety meetings, MOP documentation, and hands-on installation of DC power systems. 50% travel required."
+  },
+  {
+    title: "Service Manager",
+    location: "Mequon, WI",
+    type: "Management",
+    desc: "Lead our service department operations, scheduling, and customer relationships in the Midwest region."
+  },
+  {
+    title: "DC Power Technician",
+    location: "Kent, WA (HQ)",
+    type: "Full-Time",
+    desc: "Entry to mid-level technician for DC plant installations and battery maintenance. Training provided."
+  }
+];
+
+// ... (Keep products, services, partners, locations as they were) ...
+export const products = [
+  { 
+    title: "DC Power Plants", 
+    desc: "Complete turnkey DC power plants, rectifiers, and distribution panels for telecom & utility.",
+    details: "We provide solutions from industry leaders with necessary rectifiers, chargers, converters, and distribution.",
+    image: "/assets/cd_cat_header.jpg", 
+    icon: Zap
+  },
+  { 
+    title: "Batteries (VRLA & Flooded)", 
+    desc: "Premium reserve power solutions including VRLA, NiCad, and Lithium-ion technologies.",
+    details: "Authorized distributor for MK Battery, East Penn, and other top-tier manufacturers.",
+    image: "/assets/897bc8aa394edab959e2a18f5c83f36a.jpg",
+    icon: Battery
+  },
+  { 
+    title: "UPS & Inverters", 
+    desc: "Single Phase and Three Phase UPS systems and inverters for critical AC power backup.",
+    details: "Protect your critical loads with reliable AC power solutions.",
+    image: "/assets/generated_images/industrial_power_systems_factory_floor.png",
+    icon: Server
+  },
+  { 
+    title: "Racking & Containment", 
+    desc: "Seismic-rated battery racking, spill containment systems, and safety compliance gear.",
+    details: "Includes over-current protection, bus/cable components, and certified spill containment.",
+    image: "/assets/40181a_faa5d04f181b4812b04963a4670024b5~mv2.jpg",
+    icon: ShieldCheck
+  }
+];
+
+export const services = [
+  {
+    title: "Installation & Removal",
+    desc: "Specializing in Central Office, Cellular, and Data Centers. We handle batteries, grounding, cabling, ironwork, and bussing.",
+    icon: Wrench,
+    details: ["Power Plants & Distribution", "Batteries & Grounding", "Ironwork & Bussing"]
+  },
+  {
+    title: "Battery Maintenance",
+    desc: "Comprehensive preventative maintenance programs: Basic, Extended, & Select options available.",
+    icon: ClipboardList,
+    details: ["Preventative Programs", "IEEE Standards", "VRLA & Flooded"]
+  },
+  {
+    title: "Testing & Monitoring",
+    desc: "IEEE battery capacity testing, internal resistance testing (VRLA), and remote site monitoring down to individual cells.",
+    icon: Activity,
+    details: ["Capacity Testing", "Resistance Testing", "Cell Tracking"]
+  },
+  {
+    title: "Project Management",
+    desc: "Full installation management and multi-site scheduling, including complex remote site logistics.",
+    icon: ClipboardList,
+    details: ["Installation Management", "Multi-site Scheduling", "Remote Sites"]
+  },
+  {
+    title: "Engineering",
+    desc: "Custom power design, equipment layouts, material selection, and logistics planning.",
+    icon: DraftingCompass,
+    details: ["Design & Layouts", "Material Selection", "Logistics"]
+  },
+  {
+    title: "Disposal & Logistics",
+    desc: "Removal and disposal of lead acid batteries with certificates. Labor, material procurement, and site delivery.",
+    icon: Truck,
+    details: ["EPA Compliant Disposal", "Material Procurement", "Site Delivery"]
+  }
+];
+
+export const partners = [
+  { name: "East Penn Manufacturing", logo: "/assets/EPM-Logo_RGB.jpg" },
+  { name: "C&D Technologies", logo: "/assets/cd-logo.png" },
+  { name: "MK Battery", logo: "/assets/MK Battery.png" },
+  { name: "Enviroguard", logo: "/assets/Enviroguard.png" },
+  { name: "Hindle Power", logo: "/assets/Hindle.png" },
+  { name: "C&C Power", logo: "/assets/cc-power-logo.png" }
+];
+
+export const locations = [
+  {
+    name: "Kent, WA",
+    type: "Corporate Office",
+    address: "1851 Central Place South, Suite 206",
+    city: "Kent, WA 98030",
+    contacts: [{ label: "Office", phone: "1-800-395-0693" }],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.5678!2d-122.2!3d47.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905f0!2sAmerican+Power+Systems!5e0!3m2!1sen!2sus!4v1"
+  },
+  {
+    name: "Kent, WA",
+    type: "Warehouse",
+    address: "26507 79th Ave South",
+    city: "Kent, WA 98032",
+    contacts: [
+        { label: "Sales | Jon Wagoner", phone: "253-216-8288" },
+        { label: "Sales | Joshua Sharp", phone: "253-406-9037" }
+    ],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.393278637734!2d-122.2465996843699!3d47.41459997917244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905ecc3a223f6b%3A0x6b2b733777777777!2s1851%20Central%20Pl%20S%20%23206%2C%20Kent%2C%20WA%2098030!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+  },
+  {
+    name: "Anchorage, AK",
+    type: "Warehouse",
+    address: "2410 Azurite, Suite B",
+    city: "Anchorage, AK 99507",
+    contacts: [{ label: "Sales | Cody Raymond", phone: "907-791-0288" }],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95460.29749069153!2d-90.6367356653282!3d41.54287532392476!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e234c2e6f4277d%3A0x629f6266075677!2sDavenport%2C%20IA!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+  },
+  {
+    name: "Phoenix, AZ",
+    type: "Warehouse",
+    address: "5237 S. 28th Place",
+    city: "Phoenix, AZ 85040",
+    contacts: [
+        { label: "Sales | Matt Brubaker", phone: "602-361-3220" },
+        { label: "Office", phone: "602-437-2150" }
+    ],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2696.353396860388!2d-122.2356!3d47.382!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905bfdb7e62563%3A0x1!2s1851%20Central%20Pl%20S%20%23206%2C%20Kent%2C%20WA%2098030!5e0!3m2!1sen!2sus!4v1620000000000"
+  },
+  {
+    name: "Rialto, CA",
+    type: "Warehouse",
+    address: "2595 W Renaissance Parkway #3",
+    city: "Rialto, CA 92376",
+    contacts: [{ label: "Sales | Keana Houston", phone: "714-725-2091" }],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95683.50742586324!2d-90.6366!3d41.543!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e234c2e6f7b901%3A0x!2sDavenport%2C%20IA!5e0!3m2!1sen!2sus!4v1620000000000"
+  },
+  {
+    name: "Stockton, CA",
+    type: "Warehouse",
+    address: "1627 Industrial Drive Suite C",
+    city: "Stockton, CA 95206",
+    contacts: [
+        { label: "Office", phone: "209-467-8999" },
+        { label: "Sales | Tom Treacy", phone: "661-212-6269" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=1851+Central+Place+South+Kent+WA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Centennial, CO",
+    type: "Warehouse | Newly Opened",
+    address: "6951 S. Blackhawk St, Ste 200",
+    city: "Centennial, CO 80112-4795",
+    contacts: [
+        { label: "Office", phone: "303-371-6777" },
+        { label: "Sales | Nick Knebel", phone: "720-415-1531" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=Davenport+IA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Indianapolis, IN",
+    type: "Warehouse",
+    address: "8440 E 33rd Street",
+    city: "Indianapolis, IN 46226",
+    contacts: [
+        { label: "Sales | Jackie Mages", phone: "262-282-3678" },
+        { label: "Office", phone: "317-550-0568" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=Davenport+IA&t=&z=13&ie=UTF8&iwloc=&output"
+  },
+  {
+    name: "Albuquerque, NM",
+    type: "Warehouse",
+    address: "3500 Richmond Dr, NE, Suite B",
+    city: "Albuquerque, NM 87107",
+    contacts: [
+        { label: "Sales | Kevin Lizarraga", phone: "928-203-6202" },
+        { label: "Office", phone: "505-345-0523" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=1851+Central+Place+South,+Kent,+WA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Garland, TX",
+    type: "Warehouse",
+    address: "1011 South Jupiter Road",
+    city: "Garland, TX 75042",
+    contacts: [
+        { label: "Sales | Josh Hall", phone: "469-263-5484" },
+        { label: "Office", phone: "1-877-995-4277" },
+        { label: "Houston Sales | Chris Ferguson", phone: "979-398-9176" }
+    ],
+    mapUrl: "https://maps.google.com/maps?q=Davenport,+IA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+  },
+  {
+    name: "Kaysville, UT",
+    type: "Warehouse",
+    address: "1205 Flint Meadow Drive",
+    city: "Kaysville, UT 84037",
+    contacts: [
+        { label: "Sales | Mark Nelson", phone: "303-336-8147" },
+        { label: "Office", phone: "1-801-444-0207" }
+    ],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2701.566373733735!2d-122.2448966843815!3d47.38222997917046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54905bfdb6444445%3A0x6665792d64444445!2s1851%20Central%20Pl%20S%20%23206%2C%20Kent%2C%20WA%2098030!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+  },
+  {
+    name: "Mequon, WI",
+    type: "Warehouse",
+    address: "6100 West Executive Drive, Ste D",
+    city: "Mequon, WI 53092",
+    contacts: [{ label: "Sales | Jackie Mages", phone: "262-282-3678" }],
+    mapUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d95372.56942730303!2d-90.6476337775962!3d41.54305364444444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87e234c644444445%3A0x6665792d64444445!2sDavenport%2C%20IA!5e0!3m2!1sen!2sus!4v1620000000000!5m2!1sen!2sus"
+  }
+];
+
+```
+
+### **2. Create Careers Page (`client/src/pages/Careers.tsx`)**
+
+*Action:* Create this file. It includes a "Why Join Us" benefits grid, the "Culture" section, and a list of open positions.
+
+```tsx
+import { navItems, companyInfo, benefits, openPositions } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png";
+import { Link } from "wouter";
+import { Menu, Phone, Mail, MapPin, ChevronRight, Briefcase, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
+
+export default function Careers() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  return (
+    <div className="font-sans min-h-screen flex flex-col bg-white">
+      
+      {/* 1. TOP BAR (Option 1 Style) */}
+      <div id="top" className="bg-black text-white text-xs py-2 px-4 md:px-8 flex flex-col md:flex-row justify-end gap-4 items-center">
+        <div className="flex gap-4">
+            <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:text-aps-red flex items-center gap-1 transition-colors">
+                <Phone className="w-3 h-3" /> {companyInfo.phone}
+            </a>
+            <span className="hidden md:inline text-gray-600">|</span>
+            <a href={`mailto:${companyInfo.email}`} className="hover:text-aps-red flex items-center gap-1 transition-colors">
+                <Mail className="w-3 h-3" /> {companyInfo.email}
+            </a>
+        </div>
+        <div className="hidden md:flex gap-4 border-l border-gray-700 pl-4">
+            <Link href="/careers"><a className="text-aps-red font-bold">CAREERS</a></Link>
+            <a href="#" className="hover:text-gray-300 font-bold">APS PORTAL</a>
+        </div>
+      </div>
+
+      {/* 2. HEADER */}
+      <header className="sticky top-0 z-50 bg-aps-blue shadow-lg border-b-4 border-aps-red">
+        <div className="container mx-auto px-6">
+          <div className="flex justify-between items-center h-20">
+            <Link href="/">
+                <a className="flex items-center gap-2 cursor-pointer">
+                    <img src={apsLogo} alt={companyInfo.name} className="h-12 w-auto" />
+                </a>
+            </Link>
+
+            <nav className="hidden md:flex gap-8">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <a className={`font-bold hover:text-aps-red transition-colors text-sm uppercase tracking-wider ${item.name === 'Careers' ? 'text-aps-red' : 'text-white'}`}>
+                    {item.name}
+                  </a>
+                </Link>
+              ))}
+            </nav>
+
+            <button className="md:hidden text-white" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+              <Menu />
+            </button>
+          </div>
+        </div>
+        
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-aps-dark border-t border-white/10 p-4">
+            <nav className="flex flex-col gap-4">
+              {navItems.map((item) => (
+                <Link key={item.name} href={item.href}>
+                  <a className="text-white font-bold hover:text-aps-red text-lg">{item.name}</a>
+                </Link>
+              ))}
+            </nav>
+          </div>
+        )}
+      </header>
+
+      {/* 3. HERO */}
+      <section className="relative bg-gray-900 h-[500px] flex items-center justify-center text-center text-white bg-cover bg-center" 
+            style={{backgroundImage: `linear-gradient(rgba(0,51,102,0.8), rgba(0,0,0,0.6)), url('/assets/homepage_hero.avif')`}}>
+        <div className="px-6 max-w-4xl">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">Build Your Career with Power</h1>
+            <p className="text-lg md:text-xl mb-8 text-gray-200">
+                Join a team committed to operational excellence, safety, and long-term relationships.
+            </p>
+            <a href="#openings" className="bg-aps-red hover:bg-red-700 text-white font-bold py-3 px-8 rounded shadow-lg transition">
+                View Open Positions
+            </a>
+        </div>
+      </section>
+
+      {/* 4. BENEFITS GRID */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl font-bold text-aps-navy mb-4">Why Work at APS?</h2>
+                <p className="text-gray-600 max-w-2xl mx-auto">
+                    We believe that team success beats individual credit. We offer competitive benefits because we value our people.
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+                {benefits.map((benefit, idx) => (
+                    <div key={idx} className="bg-gray-50 p-8 rounded-xl border border-gray-100 hover:shadow-lg transition-shadow text-center group">
+                        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-aps-red shadow-sm mx-auto mb-6 group-hover:scale-110 transition-transform">
+                            <benefit.icon size={32} />
+                        </div>
+                        <h3 className="text-xl font-bold text-aps-navy mb-3">{benefit.title}</h3>
+                        <p className="text-gray-600 text-sm">{benefit.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+      </section>
+
+      {/* 5. CULTURE SECTION */}
+      <section className="py-16 bg-gray-100">
+        <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <img src="/assets/40181a_faa5d04f181b4812b04963a4670024b5~mv2.jpg" alt="Team at work" className="rounded-lg shadow-xl" />
+            </div>
+            <div>
+                <h2 className="text-3xl font-bold text-aps-navy mb-6">Our Culture</h2>
+                <div className="space-y-4 text-gray-700 leading-relaxed">
+                    <p>
+                        At APS, we are committed to long-term relationships, not short-term wins. We work with customers, suppliers, and especially our employees with <strong>humor and humility</strong>.
+                    </p>
+                    <p>
+                        You'll work with a team that is supportive, helpful, and focused on solving real-world challenges. We are serious about professionalism and doing great work, but we don't take ourselves too seriously.
+                    </p>
+                    <p className="font-bold text-aps-red">
+                        If you value trust, teamwork, and shared laughter, you will fit in just fine here.
+                    </p>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      {/* 6. OPEN POSITIONS */}
+      <section id="openings" className="py-20">
+        <div className="container mx-auto px-6">
+            <h2 className="text-3xl font-bold text-aps-navy mb-12 border-b border-gray-200 pb-4">Current Opportunities</h2>
+            
+            <div className="space-y-6">
+                {openPositions.map((job, idx) => (
+                    <div key={idx} className="bg-white border border-gray-200 p-8 rounded-lg shadow-sm hover:shadow-md transition flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                        <div>
+                            <h3 className="text-2xl font-bold text-aps-navy mb-2 flex items-center gap-3">
+                                {job.title}
+                                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full uppercase tracking-wide font-bold">{job.type}</span>
+                            </h3>
+                            <div className="flex items-center gap-4 text-sm text-gray-500 mb-4">
+                                <span className="flex items-center gap-1"><MapPin size={14} /> {job.location}</span>
+                                <span className="flex items-center gap-1"><Briefcase size={14} /> Operations</span>
+                            </div>
+                            <p className="text-gray-600 max-w-2xl">{job.desc}</p>
+                        </div>
+                        <a href={`mailto:${companyInfo.jobsEmail}?subject=Application for ${job.title} - ${job.location}`} className="bg-aps-red hover:bg-red-700 text-white px-6 py-3 rounded font-bold transition whitespace-nowrap">
+                            Apply Now
+                        </a>
+                    </div>
+                ))}
+            </div>
+
+            <div className="mt-12 bg-blue-50 p-8 rounded-lg text-center border border-blue-100">
+                <h3 className="text-xl font-bold text-aps-navy mb-2">Don't see the right fit?</h3>
+                <p className="text-gray-600 mb-6">
+                    We are always looking for talented technicians and project managers. Send us your resume!
+                </p>
+                <a href={`mailto:${companyInfo.jobsEmail}`} className="text-aps-red font-bold hover:underline flex items-center justify-center gap-2">
+                    <Mail size={18} /> Email {companyInfo.jobsEmail}
+                </a>
+            </div>
+        </div>
+      </section>
+
+      {/* Footer Reuse */}
+      <footer id="contact" className="bg-aps-dark text-white pt-24 pb-12 mt-auto border-t-[10px] border-aps-blue">
+        <div className="container mx-auto px-6">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+            <div className="col-span-1 md:col-span-1">
+              <img src={apsLogo} alt="APS" className="h-12 mb-8 opacity-90" />
+              <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                American Power Systems provides industry-leading DC power solutions for telecommunications, utility, and industrial applications.
+              </p>
+            </div>
+            
+            <div>
+              <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Quick Links</h4>
+              <ul className="space-y-4 text-gray-400 text-sm">
+                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Installation</a></Link></li>
+                <li><Link href="/services"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Maintenance</a></Link></li>
+                <li><Link href="/products"><a className="hover:text-aps-red transition-colors flex items-center gap-2"><ChevronRight className="w-3 h-3"/> Products</a></Link></li>
+              </ul>
+            </div>
+
+            <div id="about">
+              <h4 className="font-bold text-lg mb-8 text-white tracking-widest uppercase text-xs">Contact Headquarters</h4>
+              <ul className="space-y-4 text-gray-400 text-sm">
+                <li className="flex gap-3 items-start">
+                    <MapPin className="w-5 h-5 text-aps-red shrink-0" />
+                    <span>{companyInfo.address}<br/>{companyInfo.cityStateZip}</span>
+                </li>
+                <li className="flex gap-3 items-center">
+                    <Phone className="w-5 h-5 text-aps-red shrink-0" />
+                    <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:text-white transition">{companyInfo.phone}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-gray-500 gap-4">
+            <p>© 2026 {companyInfo.name}. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+```
+
+### **3. Update Router (`client/src/App.tsx`)**
+
+*Action:* Add the new `/careers` route so the link works.
+
+```tsx
+import { Switch, Route } from "wouter";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { queryClient } from "./lib/queryClient";
+import { Toaster } from "@/components/ui/toaster";
+import Home from "@/pages/Home";
+import Option1 from "@/pages/Option1";
+import Option2 from "@/pages/Option2";
+import Option3 from "@/pages/Option3";
+import Option4 from "@/pages/Option4";
+import Option5 from "@/pages/Option5";
+import Products from "@/pages/Products";
+import Services from "@/pages/Services";
+import Locations from "@/pages/Locations";
+import Careers from "@/pages/Careers"; // IMPORT THE NEW PAGE
+import NotFound from "@/pages/not-found";
+
+function Router() {
+  return (
+    <Switch>
+      <Route path="/" component={Home} />
+      <Route path="/option1" component={Option1} />
+      <Route path="/option2" component={Option2} />
+      <Route path="/option3" component={Option3} />
+      <Route path="/option4" component={Option4} />
+      <Route path="/option5" component={Option5} />
+      
+      {/* Built-Out Subpages */}
+      <Route path="/products" component={Products} />
+      <Route path="/services" component={Services} />
+      <Route path="/locations" component={Locations} />
+      <Route path="/careers" component={Careers} /> {/* NEW ROUTE */}
+      
+      <Route component={NotFound} />
+    </Switch>
+  );
+}
+
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Router />
+      <Toaster />
+    </QueryClientProvider>
+  );
+}
+
+```
