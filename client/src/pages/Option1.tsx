@@ -183,6 +183,9 @@ export default function Option1() {
             <p>&copy; 2026 American Power Systems. All rights reserved.</p>
             <p>Privacy Policy | Terms of Service</p>
           </div>
+          <div className="flex justify-center mt-8">
+             <img src="/assets/naspo-logo-white.png" alt="NASPO ValuePoint" className="h-12 opacity-80 hover:opacity-100 transition-opacity" />
+          </div>
         </div>
       </footer>
     </div>

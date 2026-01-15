@@ -99,7 +99,10 @@ export default function Option4() {
                <p>(800) 395-0693<br/>info@ampowersys.com</p>
              </div>
           </div>
-          <p>&copy; 2026 American Power Systems. All rights reserved.</p>
+          <div className="mt-12 pt-8 border-t border-gray-100 flex items-center justify-between flex-wrap gap-4">
+            <p>&copy; 2026 American Power Systems. All rights reserved.</p>
+            <img src="/assets/naspo-logo.png" alt="NASPO ValuePoint" className="h-10" />
+          </div>
         </footer>
       </main>
     </div>

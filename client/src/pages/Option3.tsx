@@ -150,6 +150,9 @@ export default function Option3() {
              </div>
         </div>
         <div className="container mx-auto px-6 text-center border-t border-cyan-900/30 pt-8">
+          <div className="mb-6 flex justify-center">
+             <img src="/assets/naspo-logo-white.png" alt="NASPO" className="h-10 opacity-50 hover:opacity-100 transition-opacity grayscale hover:grayscale-0" />
+          </div>
           <p className="font-mono text-cyan-900 text-sm">SYSTEM END OF LINE // © 2026</p>
         </div>
       </footer>

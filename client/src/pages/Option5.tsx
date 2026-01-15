@@ -100,6 +100,10 @@ export default function Option5() {
            <div className="text-right">
              <p className="text-sm font-mono">POWERING THE FUTURE</p>
              <a href="mailto:info@ampowersys.com" className="text-aps-red hover:underline block mt-2">info@ampowersys.com</a>
+             
+             <div className="mt-8 flex justify-end">
+               <img src="/assets/naspo-logo-white.png" alt="NASPO" className="h-12" />
+             </div>
            </div>
         </div>
       </footer>

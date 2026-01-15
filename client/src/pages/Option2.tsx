@@ -131,6 +131,13 @@ export default function Option2() {
               <a href="#" className="hover:text-white">Careers</a>
             </div>
           </div>
+          
+          <div className="col-span-1 md:col-span-3 mt-8 pt-8 border-t border-gray-700 flex justify-center">
+             <div className="text-center">
+               <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">Contract Holder</p>
+               <img src="/assets/naspo-logo-white.png" alt="NASPO ValuePoint" className="h-12 opacity-70 hover:opacity-100 transition-opacity mx-auto" />
+             </div>
+          </div>
         </div>
       </footer>
     </div>
