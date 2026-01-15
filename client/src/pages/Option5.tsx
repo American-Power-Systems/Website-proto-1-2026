@@ -30,7 +30,7 @@ export default function Option5() {
       </div>
 
       {/* 2. HEADER (Black with Red Accent) */}
-      <header className="sticky top-0 z-50 bg-[#0f0f0f]/95 backdrop-blur-md shadow-2xl border-b-4 border-aps-red">
+      <header className="sticky top-0 z-50 bg-black/95 backdrop-blur-md shadow-2xl border-b-4 border-aps-red">
         <div className="container mx-auto px-6">
           <div className="flex justify-between items-center h-20">
             <a href="#top" className="flex items-center gap-2 cursor-pointer">
