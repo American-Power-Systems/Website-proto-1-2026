@@ -1,146 +1,120 @@
-import { navItems, products } from "@/data/aps";
-import { LinkedInFeed } from "@/components/aps/LinkedInFeed";
+import { navItems, products, services, companyInfo } from "@/data/aps";
+import apsLogo from "/assets/aps-logo-white.png";
 import { Link } from "wouter";
-
-const heroImage = "/assets/homepage_hero.avif";
-const apsLogo = "/assets/aps-logo-white.png";
+import { ChevronRight, ArrowRight, Menu } from "lucide-react";
+import { useState } from "react";
 
 export default function Option2() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <div className="font-sans min-h-screen bg-gray-100 flex flex-col text-gray-800">
-      {/* Top Bar - Black */}
-      <div className="bg-black text-white text-[12px] py-[5px] px-[20px] flex justify-end gap-[15px] items-center">
-        <a href="#" className="text-white no-underline hover:text-gray-300">CAREERS</a>
-        <span>|</span>
-        <a href="#" className="text-white no-underline hover:text-gray-300">CONTACT US</a>
-        <span>|</span>
-        <a href="#" className="text-white no-underline hover:text-gray-300">PORTAL</a>
-      </div>
-
-      {/* Navbar - Bootstrap Style (Standard) */}
-      <nav className="bg-aps-blue shadow-md">
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/">
-              <a className="flex items-center gap-2 text-white no-underline hover:no-underline cursor-pointer">
-                <img src="/assets/aps-logo-white.png" alt="American Power Systems, LLC" className="h-10 w-auto" />
-                <span className="font-bold text-lg tracking-tight hidden md:inline">American Power Systems, LLC</span>
-              </a>
-            </Link>
-            
-            <div className="hidden md:flex space-x-1">
-              {navItems.map((item) => (
-                <a 
-                  key={item.name} 
-                  href={item.href} 
-                  className="text-white px-3 py-2 rounded-md text-sm font-medium hover:bg-white/10 transition-colors"
-                >
-                  {item.name}
-                </a>
-              ))}
+    <div className="font-sans bg-gray-100 min-h-screen">
+        {/* Corporate Top Bar */}
+        <div className="bg-aps-navy text-white text-sm py-2">
+            <div className="container mx-auto px-6 flex justify-between">
+                <span>Leading Power Solutions Since 1994</span>
+                <div className="flex gap-4">
+                    <a href="/locations" className="hover:underline">Locations</a>
+                    <span>|</span>
+                    <a href={`tel:${companyInfo.phone.replace(/\D/g,'')}`} className="hover:underline">{companyInfo.phone}</a>
+                </div>
             </div>
-          </div>
         </div>
-      </nav>
 
-      {/* Hero - Boxed Container (Like Bootstrap .container) */}
-      <div className="container mx-auto px-4 mt-8">
-        <div className="relative rounded-lg overflow-hidden bg-gray-900 text-white h-[400px]">
-          <img 
-            src={heroImage} 
-            alt="Hero" 
-            className="absolute inset-0 w-full h-full object-cover opacity-60"
-          />
-          <div className="absolute inset-0 flex flex-col justify-center px-12">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 font-heading">Leading DC Power Solutions</h1>
-            <p className="text-lg mb-6 max-w-xl">
-              Reliable energy infrastructure for the modern world. Innovation, safety, and performance.
-            </p>
-            <div>
-              <button className="bg-aps-red hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition-colors mr-2">
-                Learn More
-              </button>
-              <button className="bg-transparent border border-white hover:bg-white hover:text-black text-white font-bold py-2 px-6 rounded transition-colors">
-                Our Services
-              </button>
+        {/* Main Nav (Bootstrap-style) */}
+        <nav className="bg-white shadow-sm sticky top-0 z-50">
+            <div className="container mx-auto px-6 py-4 flex justify-between items-center">
+                {/* Real Logo */}
+                <Link href="/">
+                    <a><img src={apsLogo} alt="APS" className="h-12 bg-aps-navy p-2 rounded-sm" /></a>
+                </Link>
+
+                {/* Desktop Menu */}
+                <div className="hidden md:flex gap-8 font-bold text-gray-700">
+                    {navItems.map(item => (
+                        <Link key={item.name} href={item.href}>
+                            <a className="hover:text-aps-red uppercase text-sm tracking-wide">{item.name}</a>
+                        </Link>
+                    ))}
+                </div>
+
+                {/* Mobile Menu Button */}
+                <button className="md:hidden text-gray-700" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                    <Menu size={28} />
+                </button>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Breadcrumb Style Spacer */}
-      <div className="container mx-auto px-4 py-4">
-        <div className="text-sm text-gray-500">
-          Home / Products / <span className="text-gray-900 font-bold">Overview</span>
-        </div>
-      </div>
+            {/* Mobile Dropdown */}
+            {mobileMenuOpen && (
+                <div className="md:hidden bg-gray-100 border-t border-gray-200 p-4">
+                    <div className="flex flex-col gap-3">
+                        {navItems.map(item => (
+                            <Link key={item.name} href={item.href}>
+                                <a className="block py-2 px-4 bg-white rounded shadow-sm text-aps-navy font-bold">{item.name}</a>
+                            </Link>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </nav>
 
-      {/* Card Grid */}
-      <div className="container mx-auto px-4 py-8">
-        <h2 className="text-2xl font-bold text-gray-800 mb-6 border-b pb-2">Our Divisions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {products.map((prod, idx) => (
-            <div key={idx} className="bg-white border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow">
-              <div className="h-40 bg-gray-200 flex items-center justify-center text-gray-400">
-                <span className="text-4xl font-bold opacity-20">{idx + 1}</span>
-              </div>
-              <div className="p-5">
-                <h5 className="text-lg font-bold mb-2 text-aps-blue">{prod.title}</h5>
-                <p className="text-gray-600 text-sm mb-4">{prod.desc}</p>
-                <a href="#" className="inline-block bg-aps-blue text-white px-4 py-2 rounded text-sm hover:bg-blue-900 transition-colors">
-                  Details
-                </a>
-              </div>
+        {/* Hero Slider Style */}
+        <section className="bg-white border-b border-gray-300">
+            <div className="container mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 className="text-4xl font-bold text-aps-navy mb-4">Industrial Power Systems</h1>
+                    <p className="text-xl text-gray-600 mb-8">{companyInfo.tagline}. Reliability when you need it most.</p>
+                    <Link href="/products">
+                        <a className="bg-aps-red text-white px-8 py-3 rounded font-bold hover:bg-red-700 transition">View Products</a>
+                    </Link>
+                </div>
+                {/* Right side Image */}
+                <div className="h-64 bg-gray-200 rounded-lg overflow-hidden border-4 border-gray-100 shadow-lg">
+                     {/* Use first product image as placeholder or dedicated hero */}
+                     <img src={products[0].image} className="w-full h-full object-cover" alt="Industrial Power" />
+                </div>
             </div>
-          ))}
-        </div>
-      </div>
+        </section>
 
-      {/* LinkedIn Section - Bootstrap Style Container */}
-      <div className="bg-white py-12 mt-8 border-t border-gray-200">
-        <div className="container mx-auto px-4">
-           <LinkedInFeed />
-        </div>
-      </div>
-
-      {/* Footer - Simple Grey */}
-      <footer className="bg-gray-800 text-gray-300 py-12 mt-auto">
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8 text-sm">
-          <div>
-            <h4 className="font-bold text-white text-lg mb-4">American Power Systems, LLC</h4>
-            <p className="mb-4">
-              Providing industry-leading DC power solutions for telecommunications, utility, and industrial applications.
-            </p>
-            <p>&copy; 2026 American Power Systems, LLC</p>
-          </div>
-          
-          <div>
-            <h4 className="font-bold text-white text-lg mb-4">Contact Us</h4>
-            <ul className="space-y-2">
-              <li>1851 Central Place South, Suite 206</li>
-              <li>Kent, WA 98030</li>
-              <li>(800) 395-0693</li>
-              <li>info@ampowersys.com</li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-white text-lg mb-4">Links</h4>
-            <div className="flex flex-col space-y-2">
-              <a href="#" className="hover:text-white">Privacy Policy</a>
-              <a href="#" className="hover:text-white">Terms of Service</a>
-              <a href="#" className="hover:text-white">Careers</a>
+        {/* Breadcrumb / Section Header */}
+        <div className="bg-gray-200 py-4 border-y border-gray-300">
+            <div className="container mx-auto px-6 flex items-center gap-2 text-sm text-gray-600">
+                <span>Home</span> <ChevronRight size={14} /> <span className="font-bold text-aps-navy">Divisions</span>
             </div>
-          </div>
-          
-          <div className="col-span-1 md:col-span-3 mt-8 pt-8 border-t border-gray-700 flex justify-center">
-             <div className="text-center">
-               <p className="text-xs uppercase tracking-widest text-gray-500 mb-4">Contract Holder</p>
-               <img src="/assets/naspo-logo-white.png" alt="NASPO ValuePoint" className="h-12 opacity-70 hover:opacity-100 transition-opacity mx-auto" />
-             </div>
-          </div>
         </div>
-      </footer>
+
+        {/* Card Grid (Bootstrap Style) */}
+        <section className="py-16 container mx-auto px-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {products.map((prod, idx) => (
+                    <div key={idx} className="bg-white border border-gray-300 rounded shadow-sm hover:shadow-md transition">
+                        <div className="h-40 bg-gray-100 border-b border-gray-200 relative">
+                            {/* Real Image tied to Data */}
+                            <img src={prod.image} alt={prod.title} className="w-full h-full object-cover" />
+                            <div className="absolute bottom-0 left-0 bg-aps-navy text-white text-xs px-2 py-1 font-bold">
+                                SERIES {idx + 1}00
+                            </div>
+                        </div>
+                        <div className="p-4">
+                            <h3 className="font-bold text-lg text-aps-navy mb-2">{prod.title}</h3>
+                            <p className="text-sm text-gray-600 mb-4 h-10 overflow-hidden">{prod.desc}</p>
+                            <Link href="/products">
+                                <a className="text-aps-red font-bold text-sm flex items-center hover:underline">
+                                    Learn More <ArrowRight size={14} className="ml-1" />
+                                </a>
+                            </Link>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+        
+        {/* Footer Minimal */}
+        <footer className="bg-white border-t border-gray-300 py-8 mt-8">
+            <div className="container mx-auto px-6 text-center text-sm text-gray-500">
+                &copy; 2026 {companyInfo.name}. 
+            </div>
+        </footer>
     </div>
   );
 }
