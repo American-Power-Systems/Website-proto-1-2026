@@ -1,0 +1,57 @@
+Here are the fixes for the security issues in your Website-proto-1-2026 project.
+
+1. Fix Security Headers (Express)
+Issue: "Express is not emitting security headers" in server/index.ts Severity: High Fix: Install and use the helmet middleware to secure HTTP headers.
+
+Step 1: In the Shell, install the package:
+
+Bash
+
+npm install helmet
+Step 2: Update server/index.ts: Add helmet import and usage before other middleware.
+
+TypeScript
+
+// server/index.ts
+
+import express, { type Request, Response, NextFunction } from "express";
+import { registerRoutes } from "./routes";
+import { setupVite, serveStatic, createViteLogger } from "./vite";
+import helmet from "helmet"; // <--- ADD THIS
+
+const app = express();
+// ADD THIS LINE BELOW:
+app.use(helmet({
+  contentSecurityPolicy: false, // Set to false during development to allow Vite scripts
+})); 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+// ... rest of the file ...
+2. Fix Exposed Secrets (The "Old Website" Folder)
+Issue: Multiple "Exposed Secrets" and "GCP API key" found in Old Website/... Severity: High Context: These warnings are coming from the Old Website folder, which appears to be a raw download/scrape of your previous Wix site. This folder contains minified vendor code (thunderbolt-commons, google-map.min.js) with embedded API keys. Fix: You should delete this folder from the repository. It is not part of your new application code and is triggering high-severity alerts.
+
+Run these commands in the Shell to remove them:
+
+Bash
+
+# Remove the folder containing the secrets
+rm -rf "Old Website"
+
+# Remove the specific asset flagged for secrets
+rm "attached_assets/naspo_logo_1768491251456.html"
+
+# Commit the removal
+git add -A
+git commit -m "Security: Remove legacy website assets containing secrets"
+git push
+3. Fix JavaScript Vulnerabilities (qs, lodash, on-headers)
+Issue: Vulnerabilities in dependencies (qs, lodash, on-headers). Severity: High/Medium Fix: These are likely dependencies of dependencies. You can usually fix them by updating your lockfile.
+
+Run this command in the Shell:
+
+Bash
+
+npm audit fix
+(If it reports that some issues require manual review, you can usually ignore them if npm audit doesn't auto-fix them, as they are often deep inside build tools like Vite and don't affect the production runtime.)
