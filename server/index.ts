@@ -1,3 +1,5 @@
+import helmet from "helmet";
+import { securityOptions } from "./security";
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
@@ -5,6 +7,9 @@ import { createServer } from "http";
 
 const app = express();
 const httpServer = createServer(app);
+
+// Apply to API responses, static assets, and errors before other middleware.
+app.use(helmet(securityOptions(app.get("env") === "production")));
 
 declare module "http" {
   interface IncomingMessage {
@@ -67,7 +72,7 @@ app.use((req, res, next) => {
     const message = err.message || "Internal Server Error";
 
     res.status(status).json({ message });
-    throw err;
+    // The response completes the error. Rethrowing would terminate the server.
   });
 
   // importantly only setup vite in development and after
