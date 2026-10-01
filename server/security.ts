@@ -2,7 +2,7 @@ import type { HelmetOptions } from "helmet";
 
 export function securityOptions(isProduction: boolean): HelmetOptions {
   return {
-    // Vite injects development scripts and uses WebSockets; Replit embeds its preview.
+    // Vite injects development scripts and uses WebSockets.
     // Production keeps the enforced policy and same-origin framing protection.
     contentSecurityPolicy: isProduction
       ? {
@@ -17,7 +17,5 @@ export function securityOptions(isProduction: boolean): HelmetOptions {
         }
       : false,
     strictTransportSecurity: isProduction,
-    xFrameOptions: isProduction ? { action: "sameorigin" } : false,
-    crossOriginOpenerPolicy: isProduction ? { policy: "same-origin" } : false,
   };
 }

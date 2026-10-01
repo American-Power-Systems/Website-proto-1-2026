@@ -138,7 +138,7 @@ Since I cannot create image files from thin air, and a "C&D Logo" wasn't in your
 
 1. **Find a C&D Technologies logo** (PNG or JPG).
 2. **Rename it** to `cd-logo.png`.
-3. **Upload it** to the `client/public/assets/` folder in Replit.
+3. **Upload it** to the `client/public/assets/` folder in the project.
 
 Once you do that, it will instantly appear in the Partner Strip on all 5 options.
 

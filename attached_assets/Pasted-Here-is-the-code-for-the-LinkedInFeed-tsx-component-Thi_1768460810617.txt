@@ -1,7 +1,7 @@
 Here is the code for the LinkedInFeed.tsx component.
 This component handles the "Social Wall" section. It uses a responsive grid to display your posts and includes the logic to keep the iframes correct.
 1. Create the File
-In your Replit or IDE, create this file path:
+In your IDE, create this file path:
 components/aps/LinkedInFeed.tsx
 2. Paste this Code
 import { Linkedin } from "lucide-react";
@@ -119,7 +119,7 @@ function EmptyPlaceholder() {
 }
 
 Quick Setup Tip
-To make the Red and Blue colors work in Tailwind, make sure your tailwind.config.js (or replit.nix config) includes these specific color extensions.
+To make the Red and Blue colors work in Tailwind, make sure your tailwind.config.js includes these specific color extensions.
 If the colors look "generic blue/red" instead of your brand colors, add this to your tailwind.config.js:
 module.exports = {
   theme: {

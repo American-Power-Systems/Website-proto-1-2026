@@ -27,8 +27,9 @@ for (const production of [true, false]) {
         assert.equal(response.headers.get("x-content-type-options"), "nosniff");
         assert.equal(response.headers.get("referrer-policy"), "no-referrer");
         assert.equal(response.headers.has("x-powered-by"), false);
+        assert.equal(response.headers.get("x-frame-options"), "SAMEORIGIN");
+        assert.equal(response.headers.get("cross-origin-opener-policy"), "same-origin");
         if (production) {
-          assert.equal(response.headers.get("x-frame-options"), "SAMEORIGIN");
           assert.match(response.headers.get("strict-transport-security")!, /max-age=31536000/);
           const policy = response.headers.get("content-security-policy")!;
           if (status === 404) {
@@ -48,8 +49,8 @@ for (const production of [true, false]) {
             assert.ok(policy.includes(origin), `${origin} must remain permitted`);
           }
         } else {
-          // Keep HTTP localhost, Vite HMR, and embedded Replit previews usable.
-          for (const header of ["content-security-policy", "strict-transport-security", "x-frame-options", "cross-origin-opener-policy"]) {
+          // Keep HTTP localhost and Vite HMR usable.
+          for (const header of ["content-security-policy", "strict-transport-security"]) {
             if (status === 404 && header === "content-security-policy") {
               assert.equal(response.headers.get(header), "default-src 'none'");
             } else {

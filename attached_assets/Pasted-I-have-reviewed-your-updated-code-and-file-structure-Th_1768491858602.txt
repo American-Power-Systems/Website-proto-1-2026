@@ -48,7 +48,7 @@ Here is my review of the current state and **3 specific recommendations** to mak
 ### **3. The HTML Page Title (SEO)**
 
 * **Status:** ⚠️ **Generic.**
-* **The Issue:** Your `client/index.html` likely still says "Vite + React" or "Replit App" in the browser tab.
+* **The Issue:** Your `client/index.html` likely still says "Vite + React" or "Prototype App" in the browser tab.
 * **Recommended Fix:** Open `client/index.html` and change line 10:
 ```html
 <title>Vite + React</title>
